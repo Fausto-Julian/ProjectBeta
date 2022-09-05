@@ -12,6 +12,7 @@ public class PlayerController : NetworkBehaviour, INetworkRunnerCallbacks
     private InputActionAsset inputAsset;
     private InputActionMap playerControls;
     
+
     public override void Spawned()
     {
         if (Object.HasInputAuthority)
@@ -25,7 +26,7 @@ public class PlayerController : NetworkBehaviour, INetworkRunnerCallbacks
 
     void Update()
     {
-        
+
     }
 
     private void OnEnable()

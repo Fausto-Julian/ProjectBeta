@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraLock"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8fe1106-9b90-46f9-965b-cafe7a8c48cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3920225-b01c-4d27-9479-e5b3598354fd"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraLock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,6 +182,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_PlayerControls_Ability4 = m_PlayerControls.FindAction("Ability4", throwIfNotFound: true);
         m_PlayerControls_LeftClick = m_PlayerControls.FindAction("LeftClick", throwIfNotFound: true);
         m_PlayerControls_RightClick = m_PlayerControls.FindAction("RightClick", throwIfNotFound: true);
+        m_PlayerControls_CameraLock = m_PlayerControls.FindAction("CameraLock", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +248,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Ability4;
     private readonly InputAction m_PlayerControls_LeftClick;
     private readonly InputAction m_PlayerControls_RightClick;
+    private readonly InputAction m_PlayerControls_CameraLock;
     public struct PlayerControlsActions
     {
         private @Controls m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Ability4 => m_Wrapper.m_PlayerControls_Ability4;
         public InputAction @LeftClick => m_Wrapper.m_PlayerControls_LeftClick;
         public InputAction @RightClick => m_Wrapper.m_PlayerControls_RightClick;
+        public InputAction @CameraLock => m_Wrapper.m_PlayerControls_CameraLock;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +287,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RightClick.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnRightClick;
                 @RightClick.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnRightClick;
                 @RightClick.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnRightClick;
+                @CameraLock.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnCameraLock;
+                @CameraLock.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnCameraLock;
+                @CameraLock.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnCameraLock;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -286,6 +312,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RightClick.started += instance.OnRightClick;
                 @RightClick.performed += instance.OnRightClick;
                 @RightClick.canceled += instance.OnRightClick;
+                @CameraLock.started += instance.OnCameraLock;
+                @CameraLock.performed += instance.OnCameraLock;
+                @CameraLock.canceled += instance.OnCameraLock;
             }
         }
     }
@@ -298,5 +327,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAbility4(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnCameraLock(InputAction.CallbackContext context);
     }
 }

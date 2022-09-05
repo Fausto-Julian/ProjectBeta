@@ -33,13 +33,13 @@ namespace _ProjectBeta.Scripts.Network
         
         private void CreateSessionHandler()
         {
-            var currentTask = CreateNetworkSession(_networkRunner, GameMode.Client, NetAddress.Any(), (SceneManager.GetActiveScene().buildIndex-1), null);
+            var currentTask = CreateNetworkSession(_networkRunner, GameMode.Host, NetAddress.Any(), SceneManager.GetActiveScene().buildIndex, null);
             StartCoroutine(CreatingSessionCoroutine(currentTask));
         }
 
         private void JoinSessionHandler()
         {
-            var currentTask = CreateNetworkSession(_networkRunner, GameMode.Host, NetAddress.Any(), SceneManager.GetActiveScene().buildIndex, null);
+            var currentTask = CreateNetworkSession(_networkRunner, GameMode.Client, NetAddress.Any(), (SceneManager.GetActiveScene().buildIndex-1), null);
             StartCoroutine(JoinSessionCoroutine(currentTask));
         }
 

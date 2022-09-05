@@ -1,170 +1,111 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using Fusion;
 using Fusion.Sockets;
+using UnityEngine.InputSystem;
 
-public class PlayerController : NetworkBehaviour, INetworkRunnerCallbacks
+namespace _ProjectBeta.Scripts
 {
-    private PlayerModel model;
-    private InputActionAsset inputAsset;
-    private InputActionMap playerControls;
-    
-
-    public override void Spawned()
+    public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
-        if (Object.HasInputAuthority)
+        private PlayerModel _model;
+        private InputActionAsset _inputAsset;
+        private InputActionMap _playerControls;
+        
+        public event Action OnActiveQ;
+        public event Action OnActiveW;
+        public event Action OnActiveE;
+        public event Action OnActiveR;
+
+        public override void Spawned()
         {
-            Runner.AddCallbacks(this);
+            if (Object.HasInputAuthority)
+            {
+                Runner.AddCallbacks(this);
+            }
+            _model = GetComponent<PlayerModel>();
+            _inputAsset = this.GetComponent<PlayerInput>().actions;
+            _playerControls = _inputAsset.FindActionMap("PlayerControls");
         }
-        model = GetComponent<PlayerModel>();
-        inputAsset = this.GetComponent<PlayerInput>().actions;
-        playerControls = inputAsset.FindActionMap("PlayerControls");
-    }
 
-    void Update()
-    {
+        private void OnEnable()
+        {
+            OnPlayerControllersSubscribe();
+        }
 
-    }
+        private void OnDisable()
+        {
+            OnPlayerControllersUnsubscribe();
+        }
 
-    private void OnEnable()
-    {
-        onPlayerControllersSubscribe();
-    }
+        private void OnPlayerControllersSubscribe()
+        {
+            _playerControls.FindAction("Ability1").performed += Ability1Input;
+            _playerControls.FindAction("Ability2").performed += Ability2Input;
+            _playerControls.FindAction("Ability3").performed += Ability3Input;
+            _playerControls.FindAction("Ability4").performed += Ability4Input;
+            _playerControls.FindAction("LeftClick").performed += LeftClickInput;
+            _playerControls.FindAction("RightClick").performed += RightClickInput;
+            _playerControls.Enable();
+        }
+        private void OnPlayerControllersUnsubscribe()
+        {
+            _playerControls.FindAction("Ability1").performed -= Ability1Input;
+            _playerControls.FindAction("Ability2").performed -= Ability2Input;
+            _playerControls.FindAction("Ability3").performed -= Ability3Input;
+            _playerControls.FindAction("Ability4").performed -= Ability4Input;
+            _playerControls.FindAction("LeftClick").performed -= LeftClickInput;
+            _playerControls.FindAction("RightClick").performed -= RightClickInput;
+            _playerControls.Disable();
+        }
 
-    private void OnDisable()
-    {
-        onPlayerControllersUnsubscribe();
-    }
+        private void LeftClickInput(InputAction.CallbackContext obj)
+        {
+            //PlayerModel LeftClick function 
+        }
 
-    private void onPlayerControllersSubscribe()
-    {
-        playerControls.FindAction("Ability1").performed += Ability1Input;
-        playerControls.FindAction("Ability2").performed += Ability2Input;
-        playerControls.FindAction("Ability3").performed += Ability3Input;
-        playerControls.FindAction("Ability4").performed += Ability4Input;
-        playerControls.FindAction("LeftClick").performed += LeftClickInput;
-        playerControls.FindAction("RightClick").performed += RightClickInput;
-        playerControls.Enable();
-    }
-    private void onPlayerControllersUnsubscribe()
-    {
-        playerControls.FindAction("Ability1").performed -= Ability1Input;
-        playerControls.FindAction("Ability2").performed -= Ability2Input;
-        playerControls.FindAction("Ability3").performed -= Ability3Input;
-        playerControls.FindAction("Ability4").performed -= Ability4Input;
-        playerControls.FindAction("LeftClick").performed -= LeftClickInput;
-        playerControls.FindAction("RightClick").performed -= RightClickInput;
-        playerControls.Disable();
-    }
+        private void RightClickInput(InputAction.CallbackContext obj)
+        {
+            //PlayerModel RightClick function
+        }
 
-    private void LeftClickInput(InputAction.CallbackContext obj)
-    {
-        //PlayerModel LeftClick function 
-    }
+        private void Ability1Input(InputAction.CallbackContext obj)
+        {
+            OnActiveQ?.Invoke();
+        }
+        private void Ability2Input(InputAction.CallbackContext obj)
+        {
+            OnActiveW?.Invoke();
+        }
+        private void Ability3Input(InputAction.CallbackContext obj)
+        {
+            OnActiveE?.Invoke();
+        }
 
-    private void RightClickInput(InputAction.CallbackContext obj)
-    {
-        //PlayerModel RightClick function
-    }
+        private void Ability4Input(InputAction.CallbackContext obj)
+        {
+            OnActiveR?.Invoke();
+        }
+    
+        public void OnInput(NetworkRunner runner, NetworkInput input)
+        {
+            throw new NotImplementedException();
+        }
 
-    private void Ability1Input(InputAction.CallbackContext obj)
-    {
-        //PlayerMoodel ability1
-    }
-    private void Ability2Input(InputAction.CallbackContext obj)
-    {
-        //PlayerMoodel ability2
-    }
-    private void Ability3Input(InputAction.CallbackContext obj)
-    {
-        //PlayerMoodel ability3
-    }
-
-    private void Ability4Input(InputAction.CallbackContext obj)
-    {
-        //PlayerModel ability4
-    }
-
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnInput(NetworkRunner runner, NetworkInput input)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnConnectedToServer(NetworkRunner runner)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnDisconnectedFromServer(NetworkRunner runner)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnSceneLoadDone(NetworkRunner runner)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void OnSceneLoadStart(NetworkRunner runner)
-    {
-        throw new NotImplementedException();
+        public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){ }
+        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player){ }
+        public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input){ }
+        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason){ }
+        public void OnConnectedToServer(NetworkRunner runner){ }
+        public void OnDisconnectedFromServer(NetworkRunner runner){ }
+        public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token){ }
+        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason){ }
+        public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message){ }
+        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList){ }
+        public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data){ }
+        public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken){ }
+        public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data){ }
+        public void OnSceneLoadDone(NetworkRunner runner){ }
+        public void OnSceneLoadStart(NetworkRunner runner) { }
     }
 }

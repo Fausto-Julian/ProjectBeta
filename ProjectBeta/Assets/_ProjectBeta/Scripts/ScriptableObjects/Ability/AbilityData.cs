@@ -5,8 +5,8 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
     [System.Serializable]
     public struct AbilityData
     {
-        public float CooldownTime;
-        public float Damage;
-        public float DamageMagic;
+        public float cooldownTime;
+        public float damage;
+        public float damageMagic;
     }
 }

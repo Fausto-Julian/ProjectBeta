@@ -9,8 +9,15 @@ namespace _ProjectBeta.Scripts
     public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
         private PlayerModel _model;
-        private InputActionAsset _inputAsset;
-        private InputActionMap _playerControls;
+        //private InputActionAsset _inputAsset;
+        //private InputActionMap _playerControls;
+
+        private InputAction _ability1;
+        private InputAction _ability2;
+        private InputAction _ability3;
+        private InputAction _ability4;
+        private InputAction _leftClick;
+        private InputAction _rightClick;
         
         public event Action OnActiveQ;
         public event Action OnActiveW;
@@ -24,8 +31,23 @@ namespace _ProjectBeta.Scripts
                 Runner.AddCallbacks(this);
             }
             _model = GetComponent<PlayerModel>();
-            _inputAsset = this.GetComponent<PlayerInput>().actions;
-            _playerControls = _inputAsset.FindActionMap("PlayerControls");
+            
+            //Todo: Networking Get PlayerInput and destroy other.
+            var input = GetComponent<PlayerInput>()?.actions;
+
+            if (input != null)
+            {
+                _ability1 = input["Ability1"];
+                _ability2 = input["Ability2"];
+                _ability3 = input["Ability3"];
+                _ability4 = input["Ability4"];
+
+                _leftClick = input["LeftClick"];
+                _rightClick = input["RightClick"];
+            }
+
+            // _inputAsset = GetComponent<PlayerInput>().actions;
+            // _playerControls = _inputAsset.FindActionMap("PlayerControls");
         }
 
         private void OnEnable()
@@ -37,26 +59,44 @@ namespace _ProjectBeta.Scripts
         {
             OnPlayerControllersUnsubscribe();
         }
-
+        
         private void OnPlayerControllersSubscribe()
         {
+            _ability1.performed += Ability1Input;
+            _ability2.performed += Ability2Input;
+            _ability3.performed += Ability3Input;
+            _ability4.performed += Ability4Input;
+
+            _leftClick.performed += LeftClickInput;
+            _rightClick.performed += RightClickInput;
+
+            /*
             _playerControls.FindAction("Ability1").performed += Ability1Input;
             _playerControls.FindAction("Ability2").performed += Ability2Input;
             _playerControls.FindAction("Ability3").performed += Ability3Input;
             _playerControls.FindAction("Ability4").performed += Ability4Input;
             _playerControls.FindAction("LeftClick").performed += LeftClickInput;
             _playerControls.FindAction("RightClick").performed += RightClickInput;
-            _playerControls.Enable();
+            _playerControls.Enable();*/
         }
+        
         private void OnPlayerControllersUnsubscribe()
         {
+            _ability1.performed -= Ability1Input;
+            _ability2.performed -= Ability2Input;
+            _ability3.performed -= Ability3Input;
+            _ability4.performed -= Ability4Input;
+
+            _leftClick.performed -= LeftClickInput;
+            _rightClick.performed -= RightClickInput;
+            /*
             _playerControls.FindAction("Ability1").performed -= Ability1Input;
             _playerControls.FindAction("Ability2").performed -= Ability2Input;
             _playerControls.FindAction("Ability3").performed -= Ability3Input;
             _playerControls.FindAction("Ability4").performed -= Ability4Input;
             _playerControls.FindAction("LeftClick").performed -= LeftClickInput;
             _playerControls.FindAction("RightClick").performed -= RightClickInput;
-            _playerControls.Disable();
+            _playerControls.Disable();*/
         }
 
         private void LeftClickInput(InputAction.CallbackContext obj)
@@ -86,7 +126,8 @@ namespace _ProjectBeta.Scripts
         {
             OnActiveR?.Invoke();
         }
-    
+        
+        //Todo: Implement Input Networking
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
             throw new NotImplementedException();

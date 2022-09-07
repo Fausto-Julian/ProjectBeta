@@ -4,8 +4,8 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
 {
     public abstract class Ability : ScriptableObject
     {
-        [field: SerializeField] public AbilityData Data { get; private set; }
-        
+        [field: SerializeField] public AbilityData[] LevelsData { get; private set; }
+
         /// <summary>
         /// Active ability action.
         /// </summary>

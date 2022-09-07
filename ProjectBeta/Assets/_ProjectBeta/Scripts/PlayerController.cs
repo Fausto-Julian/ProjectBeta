@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using Fusion;
 using Fusion.Sockets;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
         private PlayerModel _model;
@@ -23,6 +25,8 @@ namespace _ProjectBeta.Scripts
         public event Action OnActiveW;
         public event Action OnActiveE;
         public event Action OnActiveR;
+        public event Action onRightClick;
+        public event Action onLeftClick;
 
         public override void Spawned()
         {
@@ -33,7 +37,23 @@ namespace _ProjectBeta.Scripts
             _model = GetComponent<PlayerModel>();
             
             //Todo: Networking Get PlayerInput and destroy other.
-            var input = GetComponent<PlayerInput>()?.actions;
+
+            PlayerInputGetActions();
+
+            // _inputAsset = GetComponent<PlayerInput>().actions;
+            // _playerControls = _inputAsset.FindActionMap("PlayerControls");
+        }
+
+        private void PlayerInputGetActions()
+        {
+            var playerInput = GetComponent<PlayerInput>();
+            if (!Object.HasInputAuthority)
+            {
+                Destroy(playerInput);
+                return;
+            }
+                
+            var input = playerInput.actions;
 
             if (input != null)
             {
@@ -46,13 +66,12 @@ namespace _ProjectBeta.Scripts
                 _rightClick = input["RightClick"];
             }
 
-            // _inputAsset = GetComponent<PlayerInput>().actions;
-            // _playerControls = _inputAsset.FindActionMap("PlayerControls");
+            OnPlayerControllersSubscribe();
         }
 
         private void OnEnable()
         {
-            OnPlayerControllersSubscribe();
+            
         }
 
         private void OnDisable()
@@ -101,12 +120,12 @@ namespace _ProjectBeta.Scripts
 
         private void LeftClickInput(InputAction.CallbackContext obj)
         {
-            //PlayerModel LeftClick function 
+            onLeftClick?.Invoke();
         }
 
         private void RightClickInput(InputAction.CallbackContext obj)
         {
-            //PlayerModel RightClick function
+            onRightClick?.Invoke();
         }
 
         private void Ability1Input(InputAction.CallbackContext obj)
@@ -127,7 +146,7 @@ namespace _ProjectBeta.Scripts
             OnActiveR?.Invoke();
         }
         
-        //Todo: Implement Input Networking
+        //Todo: Implement Input Networking | Testear si funciona sin esto.
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
             throw new NotImplementedException();

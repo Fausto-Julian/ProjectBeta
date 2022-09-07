@@ -6,6 +6,7 @@ namespace _ProjectBeta.Scripts
 {
     public class PlayerModel : NetworkBehaviour
     {
+        //Todo: pasar estas 4 habilidades a playerData
         [SerializeField] private Ability abilityQ;
         [SerializeField] private Ability abilityW;
         [SerializeField] private Ability abilityE;

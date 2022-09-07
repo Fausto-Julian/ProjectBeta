@@ -8,5 +8,8 @@ namespace _ProjectBeta.Scripts
         event Action OnActiveW;
         event Action OnActiveE;
         event Action OnActiveR;
+
+        event Action onRightClick;
+        event Action onLeftClick;
     }
 }

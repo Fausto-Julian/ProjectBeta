@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="" />
+    <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/AbilityChargedShot.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/AbilityChargedShot.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Classes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Classes/HealthController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Classes/HealthController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/IDamageable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/IDamageable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/602e1cb430e34c21b04b6ecf1f67d1a186400/3d/b82535d5/NetworkBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Facultad Tps/2do año/2do Cuatri/Progra de Sistemas/Tower Defense/Assets/Scripts/Clases/HealthController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Facultad Tps/2do año/2do Cuatri/Progra de Sistemas/Tower Defense/Assets/Scripts/Enemies/EnemyModel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.3.0/InputSystem/Actions/InputActionMap.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -15,7 +31,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2E3bnKLi9k8yQnxeO3Ax4nDbjUD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -71,6 +89,8 @@
       <workItem from="1662402395523" duration="4016000" />
       <workItem from="1662429745837" duration="4074000" />
       <workItem from="1662520802392" duration="2242000" />
+      <workItem from="1662733073701" duration="1297000" />
+      <workItem from="1662738587627" duration="4065000" />
     </task>
     <servers />
   </component>

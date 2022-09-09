@@ -1,11 +1,17 @@
+using System;
+using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.ScriptableObjects.Ability;
+using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using Fusion;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _ProjectBeta.Scripts
 {
-    public class PlayerModel : NetworkBehaviour
+    public class PlayerModel : NetworkBehaviour, IDamageable
     {
+        [SerializeField] private PlayerData data;
+        
         //Todo: pasar estas 4 habilidades a playerData
         [SerializeField] private Ability abilityQ;
         [SerializeField] private Ability abilityW;
@@ -19,6 +25,8 @@ namespace _ProjectBeta.Scripts
 
         private IPlayerController _playerController;
 
+        private HealthController _healthController;
+        private event Action Ondie;
         public override void Spawned()
         {
             _abilityHolderQ = new AbilityHolder(abilityQ, this);
@@ -29,6 +37,9 @@ namespace _ProjectBeta.Scripts
             _playerController = GetComponent<PlayerController>();
             
             SubscribePlayerController();
+            
+            _healthController = new HealthController(data.MaxHealth);
+
         }
 
         private void OnDisable()
@@ -60,6 +71,15 @@ namespace _ProjectBeta.Scripts
             _playerController.OnActiveE -= _abilityHolderE.Activate;
             _playerController.OnActiveR -= _abilityHolderR.Activate;
         }
+        
+        public void DoDamage(int damage)
+        {
+            _healthController.TakeDamage(damage);
+            
+            if(_healthController.Hp <= 0)
+                Ondie.Invoke();
+            
+        }
 
 #if UNITY_EDITOR
         [ContextMenu("ActiveQ")]
@@ -71,5 +91,6 @@ namespace _ProjectBeta.Scripts
         [ContextMenu("ActiveR")]
         private void ActiveR() => _abilityHolderR.Activate();
 #endif
+        
     }
 }

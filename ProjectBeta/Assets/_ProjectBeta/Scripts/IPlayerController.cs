@@ -9,7 +9,7 @@ namespace _ProjectBeta.Scripts
         event Action OnActiveE;
         event Action OnActiveR;
 
-        event Action onRightClick;
+        event Action<float, float> onRightClick;
         event Action onLeftClick;
     }
 }

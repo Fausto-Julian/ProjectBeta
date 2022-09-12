@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace _ProjectBeta.Scripts
 {
-    public class PlayerModel : NetworkBehaviour
+    public class PlayerModelCopia : NetworkBehaviour
     {
         //Todo: pasar estas 4 habilidades a playerData
         [SerializeField] private Ability abilityQ;
@@ -24,15 +24,25 @@ namespace _ProjectBeta.Scripts
         private NavMeshAgent _agent;
         private float _rotateVelocity;
 
+        private void Awake()
+        {
+            _playerController = GetComponent<PlayerControllerCopia>();
+            _agent = GetComponent<NavMeshAgent>();
+        }
         public override void Spawned()
         {
-            _abilityHolderQ = new AbilityHolder(abilityQ, this);
-            _abilityHolderW = new AbilityHolder(abilityW, this);
-            _abilityHolderE = new AbilityHolder(abilityE, this);
-            _abilityHolderR = new AbilityHolder(abilityR, this);
+        //    _abilityHolderQ = new AbilityHolder(abilityQ, this);
+        //    _abilityHolderW = new AbilityHolder(abilityW, this);
+        //    _abilityHolderE = new AbilityHolder(abilityE, this);
+        //    _abilityHolderR = new AbilityHolder(abilityR, this);
 
-            _playerController = GetComponent<PlayerController>();
             
+            
+     
+        }
+
+        private void OnEnable()
+        {
             SubscribePlayerController();
         }
 
@@ -40,8 +50,8 @@ namespace _ProjectBeta.Scripts
         {
             UnSubscribePlayerController();
         }
-        
-        
+
+
         public override void FixedUpdateNetwork()
         {
             _abilityHolderQ.Update();
@@ -52,6 +62,7 @@ namespace _ProjectBeta.Scripts
 
         private void Movement(float x, float y)
         {
+            Debug.Log("entre");
             Vector3 mousePos = new Vector3(x, y, 0);
             RaycastHit hit;
 
@@ -61,7 +72,7 @@ namespace _ProjectBeta.Scripts
 
                 Quaternion rotationToLook = Quaternion.LookRotation(hit.point - transform.position);
 
-                float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
+                float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5) );
 
                 transform.eulerAngles = new Vector3(0, rotationY, 0);
             }
@@ -69,20 +80,20 @@ namespace _ProjectBeta.Scripts
 
         private void SubscribePlayerController()
         {
-            _playerController.OnActiveQ += _abilityHolderQ.Activate;
-            _playerController.OnActiveW += _abilityHolderW.Activate;
-            _playerController.OnActiveE += _abilityHolderE.Activate;
-            _playerController.OnActiveR += _abilityHolderR.Activate;
+            //_playerController.OnActiveQ += _abilityHolderQ.Activate;
+            //_playerController.OnActiveW += _abilityHolderW.Activate;
+            //_playerController.OnActiveE += _abilityHolderE.Activate;
+            //_playerController.OnActiveR += _abilityHolderR.Activate;
             _playerController.onRightClick += Movement;
 
         }
         
         private void UnSubscribePlayerController()
         {
-            _playerController.OnActiveQ -= _abilityHolderQ.Activate;
-            _playerController.OnActiveW -= _abilityHolderW.Activate;
-            _playerController.OnActiveE -= _abilityHolderE.Activate;
-            _playerController.OnActiveR -= _abilityHolderR.Activate;
+            //_playerController.OnActiveQ -= _abilityHolderQ.Activate;
+            //_playerController.OnActiveW -= _abilityHolderW.Activate;
+            //_playerController.OnActiveE -= _abilityHolderE.Activate;
+            //_playerController.OnActiveR -= _abilityHolderR.Activate;
             _playerController.onRightClick -= Movement;
 
         }

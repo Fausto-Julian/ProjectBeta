@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private InputActionAsset inputAsset;
     private CameraModel cameraModel;
-    private InputActionAsset inputAsset;
     private InputActionMap playerControls;
     private bool isCameraLocked;
 
     private void Awake()
     {
         cameraModel = GetComponent<CameraModel>();
-        inputAsset = this.GetComponentInParent<PlayerInput>().actions;
+
        
         playerControls = inputAsset.FindActionMap("PlayerControls");
     }
@@ -33,6 +33,7 @@ public class CameraController : MonoBehaviour
 
     private void CameraLock(InputAction.CallbackContext obj)
     {
+        Debug.Log("espacio");
         isCameraLocked = !isCameraLocked;
     }
 }

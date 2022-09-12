@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 namespace _ProjectBeta.Scripts
 {
     [RequireComponent(typeof(PlayerInput))]
-    public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
+    public class PlayerControllerCopia : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
         private PlayerModel _model;
         //private InputActionAsset _inputAsset;
@@ -47,11 +47,11 @@ namespace _ProjectBeta.Scripts
         private void PlayerInputGetActions()
         {
             var playerInput = GetComponent<PlayerInput>();
-            if (!Object.HasInputAuthority)
-            {
-                Destroy(playerInput);
-                return;
-            }
+            //if (!Object.HasInputAuthority)
+            //{
+            //    Destroy(playerInput);
+            //    return;
+            //}
                 
             var input = playerInput.actions;
 
@@ -71,7 +71,7 @@ namespace _ProjectBeta.Scripts
 
         private void OnEnable()
         {
-            
+            PlayerInputGetActions();
 
         }
 

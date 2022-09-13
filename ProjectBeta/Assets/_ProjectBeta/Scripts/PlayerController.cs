@@ -57,7 +57,8 @@ namespace _ProjectBeta.Scripts
                     playerInput = input;
                     continue;
                 }
-                Destroy(playerInput);
+                
+                Destroy(input);
             }
 
             if (playerInput == null)

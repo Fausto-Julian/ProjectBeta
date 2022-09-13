@@ -1,4 +1,4 @@
-namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
+namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 {
     public enum AbilityState
     {
@@ -8,7 +8,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
 
     public class AbilityHolder
     {
-        private readonly Ability _ability;
+        private readonly Abilities.Ability _ability;
         private AbilityData _currentData;
         
         private readonly int _maxLevel;
@@ -19,7 +19,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
 
         private AbilityState _state;
 
-        public AbilityHolder(Ability ability, PlayerModel model)
+        public AbilityHolder(Abilities.Ability ability, PlayerModel model)
         {
             _ability = ability;
             _currentData = ability.LevelsData[0];

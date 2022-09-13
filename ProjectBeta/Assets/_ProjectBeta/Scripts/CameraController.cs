@@ -19,12 +19,16 @@ namespace _ProjectBeta.Scripts
 
         private void Start()
         {
-            if (!PlayerModel.Local.Object.HasInputAuthority)
+            var playerController = GetComponentInParent<PlayerController>();
+            
+            if (playerController == null)
+                return;
+
+            if (!playerController.Object.HasInputAuthority)
             {
                 Destroy(gameObject);
+                return;
             }
-            
-            var playerController = GetComponentInParent<PlayerController>();
 
             _playerController = playerController;
             _target = playerController.transform;

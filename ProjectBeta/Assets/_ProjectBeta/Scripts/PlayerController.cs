@@ -49,18 +49,16 @@ namespace _ProjectBeta.Scripts
             PlayerInput playerInput = null;
             foreach (var player in playerModels)
             {
-                if (player.TryGetComponent<PlayerInput>(out var input))
+                if (!player.TryGetComponent(out PlayerInput input)) 
+                    continue;
+                
+                if (player.Object.HasInputAuthority)
                 {
-                    if (player.Object.HasInputAuthority)
-                    {
-                        _model = player;
-                        playerInput = input;
-                    }
-                    else
-                    {
-                        Destroy(playerInput);
-                    }
+                    _model = player;
+                    playerInput = input;
+                    continue;
                 }
+                Destroy(playerInput);
             }
 
             if (playerInput == null)

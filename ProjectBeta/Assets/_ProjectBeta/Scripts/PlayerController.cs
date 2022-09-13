@@ -69,12 +69,6 @@ namespace _ProjectBeta.Scripts
             OnPlayerControllersSubscribe();
         }
 
-        private void OnEnable()
-        {
-            
-
-        }
-
         private void OnDisable()
         {
             OnPlayerControllersUnsubscribe();

@@ -17,13 +17,12 @@ namespace _ProjectBeta.Scripts
         private IPlayerController _playerController;
         private Transform _target;
 
-        private void Awake()
+        private void Start()
         {
-            /*
             if (!PlayerModel.Local.Object.HasInputAuthority)
             {
                 Destroy(gameObject);
-            }*/
+            }
             
             var playerController = GetComponentInParent<PlayerController>();
 

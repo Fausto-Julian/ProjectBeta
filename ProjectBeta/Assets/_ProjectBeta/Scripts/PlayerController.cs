@@ -34,7 +34,6 @@ namespace _ProjectBeta.Scripts
             {
                 Runner.AddCallbacks(this);
             }
-            _model = GetComponent<PlayerModel>();
             
             //Todo: Networking Get PlayerInput and destroy other.
 
@@ -46,24 +45,41 @@ namespace _ProjectBeta.Scripts
 
         private void PlayerInputGetActions()
         {
-            var playerInput = GetComponent<PlayerInput>();
-            if (!Object.HasInputAuthority)
+            var playerModels = FindObjectsOfType<PlayerModel>();
+            PlayerInput playerInput = null;
+            foreach (var player in playerModels)
             {
-                Destroy(playerInput);
+                if (player.TryGetComponent<PlayerInput>(out var input))
+                {
+                    if (player.Object.HasInputAuthority)
+                    {
+                        _model = player;
+                        playerInput = input;
+                    }
+                    else
+                    {
+                        Destroy(playerInput);
+                    }
+                }
+            }
+
+            if (playerInput == null)
+            {
+                Debug.LogError("Null player Input");
                 return;
             }
-                
-            var input = playerInput.actions;
+            
+            var inputActions = playerInput.actions;
 
-            if (input != null)
+            if (inputActions != null)
             {
-                _abilityInputAction1 = input["Ability1"];
-                _abilityInputAction2 = input["Ability2"];
-                _abilityInputAction3 = input["Ability3"];
-                _spaceInputAction = input["CameraLock"];
+                _abilityInputAction1 = inputActions["Ability1"];
+                _abilityInputAction2 = inputActions["Ability2"];
+                _abilityInputAction3 = inputActions["Ability3"];
+                _spaceInputAction = inputActions["CameraLock"];
 
-                _leftClickInputAction = input["LeftClick"];
-                _rightClickInputAction = input["RightClick"];
+                _leftClickInputAction = inputActions["LeftClick"];
+                _rightClickInputAction = inputActions["RightClick"];
             }
 
             OnPlayerControllersSubscribe();

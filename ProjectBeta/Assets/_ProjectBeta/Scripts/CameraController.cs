@@ -11,7 +11,7 @@ namespace _ProjectBeta.Scripts
 
         private Vector3 _offset;
         private Vector3 _pos;
-        
+
         private bool _isCameraLocked;
 
         private IPlayerController _playerController;
@@ -20,7 +20,7 @@ namespace _ProjectBeta.Scripts
         private void Start()
         {
             var playerController = GetComponentInParent<PlayerController>();
-            
+
             if (playerController == null)
                 return;
 
@@ -32,16 +32,16 @@ namespace _ProjectBeta.Scripts
 
             _playerController = playerController;
             _target = playerController.transform;
-            
+
             _offset = transform.position - _target.position;
-            
+
             _playerController.OnSpace += CameraLock;
 
             _isCameraLocked = true;
 
             transform.SetParent(null);
         }
-        
+
         private void LateUpdate()
         {
             if (!_isCameraLocked)
@@ -50,12 +50,15 @@ namespace _ProjectBeta.Scripts
                 CameraFreeMovement(mousePos);
                 return;
             }
-            
+
             CameraLockedMovement();
         }
-        
+
         private void OnDisable()
         {
+            if (_playerController == null)
+                return;
+            
             _playerController.OnSpace -= CameraLock;
         }
 

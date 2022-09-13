@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts
 {
-    [RequireComponent(typeof(PlayerInput))]
     public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
         private PlayerModel _model;

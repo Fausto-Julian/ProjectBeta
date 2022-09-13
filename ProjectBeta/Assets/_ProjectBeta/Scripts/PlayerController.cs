@@ -25,7 +25,7 @@ namespace _ProjectBeta.Scripts
         public event Action OnActiveW;
         public event Action OnActiveE;
         public event Action OnActiveR;
-        public event Action<float, float> onRightClick;
+        public event Action<Vector2> onRightClick;
         public event Action onLeftClick;
 
         public override void Spawned()
@@ -128,7 +128,7 @@ namespace _ProjectBeta.Scripts
         private void RightClickInput(InputAction.CallbackContext obj)
         {
             Debug.Log("click derecho");
-            onRightClick?.Invoke(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y);
+            onRightClick?.Invoke(Mouse.current.position.ReadValue());
         }
 
         private void Ability1Input(InputAction.CallbackContext obj)

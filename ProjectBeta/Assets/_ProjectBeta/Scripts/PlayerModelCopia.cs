@@ -60,22 +60,18 @@ namespace _ProjectBeta.Scripts
             _abilityHolderR.Update();
         }
 
-        private void Movement(float x, float y)
+        private void Movement(Vector2 mousePos)
         {
-            Debug.Log("entre");
-            Vector3 mousePos = new Vector3(x, y, 0);
-            RaycastHit hit;
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity)) 
+                return;
+            
+            _agent.SetDestination(hit.point);
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out hit, Mathf.Infinity))
-            {
-                _agent.SetDestination(hit.point);
+            var rotationToLook = Quaternion.LookRotation(hit.point - transform.position);
 
-                Quaternion rotationToLook = Quaternion.LookRotation(hit.point - transform.position);
+            var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5) );
 
-                float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5) );
-
-                transform.eulerAngles = new Vector3(0, rotationY, 0);
-            }
+            transform.eulerAngles = new Vector3(0, rotationY, 0);
         }
 
         private void SubscribePlayerController()

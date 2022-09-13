@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace _ProjectBeta.Scripts
 {
@@ -9,7 +10,7 @@ namespace _ProjectBeta.Scripts
         event Action OnActiveE;
         event Action OnActiveR;
 
-        event Action<float, float> onRightClick;
+        event Action<Vector2> onRightClick;
         event Action onLeftClick;
     }
 }

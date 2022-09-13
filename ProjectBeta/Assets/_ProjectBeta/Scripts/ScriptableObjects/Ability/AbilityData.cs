@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
 {
     [System.Serializable]

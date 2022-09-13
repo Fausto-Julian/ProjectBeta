@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
+namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 {
     [System.Serializable]
     public struct AbilityData

@@ -1,5 +1,5 @@
 using System;
-using _ProjectBeta.Scripts.ScriptableObjects.Ability;
+using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using Fusion;
 using UnityEngine;
 

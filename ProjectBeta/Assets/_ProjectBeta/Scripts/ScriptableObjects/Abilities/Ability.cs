@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _ProjectBeta.Scripts.ScriptableObjects.Ability
+namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 {
     public abstract class Ability : ScriptableObject
     {

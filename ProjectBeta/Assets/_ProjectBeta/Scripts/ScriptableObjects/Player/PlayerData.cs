@@ -1,4 +1,4 @@
-using _ProjectBeta.Scripts.ScriptableObjects.Ability;
+using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine;
 
 namespace _ProjectBeta.Scripts.ScriptableObjects.Player
@@ -6,9 +6,14 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
     [CreateAssetMenu(fileName = "PlayerData", menuName = "_Main/Data/PlayerData", order = 0)]
     public class PlayerData : ScriptableObject
     {
-        [field: SerializeField] public int MaxHealth { get; private set; }
+        [field: Header("Stats")]
+        [field: SerializeField] public float MaxHealth { get; private set; }
         [field: SerializeField] public float BaseMovementSpeed { get; private set; }
         [field: SerializeField] public float BaseDefense { get; private set; }
-        //Abilities
+        
+        [field: Header("Abilities")]
+        [field: SerializeField] public Ability AbilityOne { get; private set; }
+        [field: SerializeField] public Ability AbilityTwo { get; private set; }
+        [field: SerializeField] public Ability AbilityThree { get; private set; }
     }
 }

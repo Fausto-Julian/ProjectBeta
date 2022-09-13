@@ -14,17 +14,19 @@ namespace _ProjectBeta.Scripts
         //private InputActionAsset _inputAsset;
         //private InputActionMap _playerControls;
 
-        private InputAction _ability1;
-        private InputAction _ability2;
-        private InputAction _ability3;
-        private InputAction _leftClick;
-        private InputAction _rightClick;
+        private InputAction _abilityInputAction1;
+        private InputAction _abilityInputAction2;
+        private InputAction _abilityInputAction3;
+        private InputAction _leftClickInputAction;
+        private InputAction _rightClickInputAction;
+        private InputAction _spaceInputAction;
         
         public event Action OnActiveOne;
         public event Action OnActiveTwo;
         public event Action OnActiveThree;
-        public event Action<Vector2> onRightClick;
-        public event Action onLeftClick;
+        public event Action<Vector2> OnRightClick;
+        public event Action OnLeftClick;
+        public event Action OnSpace;
 
         public override void Spawned()
         {
@@ -55,12 +57,13 @@ namespace _ProjectBeta.Scripts
 
             if (input != null)
             {
-                _ability1 = input["Ability1"];
-                _ability2 = input["Ability2"];
-                _ability3 = input["Ability3"];
+                _abilityInputAction1 = input["Ability1"];
+                _abilityInputAction2 = input["Ability2"];
+                _abilityInputAction3 = input["Ability3"];
+                _spaceInputAction = input["CameraLock"];
 
-                _leftClick = input["LeftClick"];
-                _rightClick = input["RightClick"];
+                _leftClickInputAction = input["LeftClick"];
+                _rightClickInputAction = input["RightClick"];
             }
 
             OnPlayerControllersSubscribe();
@@ -79,63 +82,54 @@ namespace _ProjectBeta.Scripts
         
         private void OnPlayerControllersSubscribe()
         {
-            _ability1.performed += Ability1Input;
-            _ability2.performed += Ability2Input;
-            _ability3.performed += Ability3Input;
+            _abilityInputAction1.performed += AbilityInputAction1Input;
+            _abilityInputAction2.performed += AbilityInputAction2Input;
+            _abilityInputAction3.performed += AbilityInputAction3Input;
 
-            _leftClick.performed += LeftClickInput;
-            _rightClick.performed += RightClickInput;
-
+            _leftClickInputAction.performed += LeftClickInputActionInput;
+            _rightClickInputAction.performed += RightClickInputActionInput;
             
-            /*
-            _playerControls.FindAction("Ability1").performed += Ability1Input;
-            _playerControls.FindAction("Ability2").performed += Ability2Input;
-            _playerControls.FindAction("Ability3").performed += Ability3Input;
-            _playerControls.FindAction("Ability4").performed += Ability4Input;
-            _playerControls.FindAction("LeftClick").performed += LeftClickInput;
-            _playerControls.FindAction("RightClick").performed += RightClickInput;
-            _playerControls.Enable();*/
+            _spaceInputAction.performed += SpaceInputAction;
         }
+
         
+
         private void OnPlayerControllersUnsubscribe()
         {
-            _ability1.performed -= Ability1Input;
-            _ability2.performed -= Ability2Input;
-            _ability3.performed -= Ability3Input;
+            _abilityInputAction1.performed -= AbilityInputAction1Input;
+            _abilityInputAction2.performed -= AbilityInputAction2Input;
+            _abilityInputAction3.performed -= AbilityInputAction3Input;
 
-            _leftClick.performed -= LeftClickInput;
-            _rightClick.performed -= RightClickInput;
-            /*
-            _playerControls.FindAction("Ability1").performed -= Ability1Input;
-            _playerControls.FindAction("Ability2").performed -= Ability2Input;
-            _playerControls.FindAction("Ability3").performed -= Ability3Input;
-            _playerControls.FindAction("Ability4").performed -= Ability4Input;
-            _playerControls.FindAction("LeftClick").performed -= LeftClickInput;
-            _playerControls.FindAction("RightClick").performed -= RightClickInput;
-            _playerControls.Disable();*/
+            _leftClickInputAction.performed -= LeftClickInputActionInput;
+            _rightClickInputAction.performed -= RightClickInputActionInput;
         }
-
-        private void LeftClickInput(InputAction.CallbackContext obj)
+        
+        private void SpaceInputAction(InputAction.CallbackContext obj)
         {
-            onLeftClick?.Invoke();
+            OnSpace?.Invoke();
         }
 
-        private void RightClickInput(InputAction.CallbackContext obj)
+        private void LeftClickInputActionInput(InputAction.CallbackContext obj)
+        {
+            OnLeftClick?.Invoke();
+        }
+
+        private void RightClickInputActionInput(InputAction.CallbackContext obj)
         {
             Debug.Log("click derecho");
-            onRightClick?.Invoke(Mouse.current.position.ReadValue());
+            OnRightClick?.Invoke(Mouse.current.position.ReadValue());
         }
 
-        private void Ability1Input(InputAction.CallbackContext obj)
+        private void AbilityInputAction1Input(InputAction.CallbackContext obj)
         {
             Debug.Log("Q");
             OnActiveOne?.Invoke();
         }
-        private void Ability2Input(InputAction.CallbackContext obj)
+        private void AbilityInputAction2Input(InputAction.CallbackContext obj)
         {
             OnActiveTwo?.Invoke();
         }
-        private void Ability3Input(InputAction.CallbackContext obj)
+        private void AbilityInputAction3Input(InputAction.CallbackContext obj)
         {
             OnActiveThree?.Invoke();
         }

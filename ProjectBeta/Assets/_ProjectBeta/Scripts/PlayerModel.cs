@@ -8,10 +8,11 @@ namespace _ProjectBeta.Scripts
 {
     public class PlayerModel : NetworkBehaviour
     {
+        public static PlayerModel Local;
+        
         [SerializeField] private PlayerData data;
         [SerializeField] private float rotateSpeed;
 
-        
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
         private AbilityHolder _abilityHolderThree;
@@ -22,10 +23,15 @@ namespace _ProjectBeta.Scripts
 
         public override void Spawned()
         {
+            if (Object.HasInputAuthority)
+            {
+                Local = this;
+            }
+            
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
             _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
-
+            
             _playerController = GetComponent<PlayerController>();
             _agent = GetComponent<NavMeshAgent>();
             
@@ -64,8 +70,7 @@ namespace _ProjectBeta.Scripts
             _playerController.OnActiveOne += _abilityHolderOne.Activate;
             _playerController.OnActiveTwo += _abilityHolderTwo.Activate;
             _playerController.OnActiveThree += _abilityHolderThree.Activate;
-            _playerController.onRightClick += Movement;
-
+            _playerController.OnRightClick += Movement;
         }
         
         private void UnSubscribePlayerController()
@@ -73,8 +78,7 @@ namespace _ProjectBeta.Scripts
             _playerController.OnActiveOne -= _abilityHolderOne.Activate;
             _playerController.OnActiveTwo -= _abilityHolderTwo.Activate;
             _playerController.OnActiveThree -= _abilityHolderThree.Activate;
-            _playerController.onRightClick -= Movement;
-
+            _playerController.OnRightClick -= Movement;
         }
 
 #if UNITY_EDITOR

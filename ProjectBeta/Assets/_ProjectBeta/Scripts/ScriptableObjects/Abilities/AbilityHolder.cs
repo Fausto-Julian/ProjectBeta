@@ -8,7 +8,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 
     public class AbilityHolder
     {
-        private readonly Abilities.Ability _ability;
+        private readonly Ability _ability;
         private AbilityData _currentData;
         
         private readonly int _maxLevel;
@@ -19,7 +19,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 
         private AbilityState _state;
 
-        public AbilityHolder(Abilities.Ability ability, PlayerModel model)
+        public AbilityHolder(Ability ability, PlayerModel model)
         {
             _ability = ability;
             _currentData = ability.LevelsData[0];

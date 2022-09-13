@@ -15,7 +15,7 @@ namespace _ProjectBeta.Scripts.Network
             Debug.Log("Joined Partida");
             if (runner.IsServer)
             {
-                runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
+                runner.Spawn(playerPrefab, Vector3.one, Quaternion.identity, player);
             }
         }
 

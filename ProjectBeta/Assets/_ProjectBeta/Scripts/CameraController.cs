@@ -1,39 +1,89 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraController : MonoBehaviour
+namespace _ProjectBeta.Scripts
 {
-    [SerializeField] private InputActionAsset inputAsset;
-    private CameraModel cameraModel;
-    private InputActionMap playerControls;
-    private bool isCameraLocked;
+    public class CameraController : MonoBehaviour
+    {
+        [SerializeField] private float camSpeed;
+        [SerializeField] private float borderThickness;
+        [SerializeField] private float smoothness;
 
-    private void Awake()
-    {
-        cameraModel = GetComponent<CameraModel>();
+        private Vector3 _offset;
+        private Vector3 _pos;
+        
+        private bool _isCameraLocked;
 
-       
-        playerControls = inputAsset.FindActionMap("PlayerControls");
-    }
-    private void Update()
-    {
-        cameraModel.CameraMode(Mouse.current.position.ReadValue(), isCameraLocked);
-    }
+        private IPlayerController _playerController;
+        private Transform _target;
 
-    private void OnEnable()
-    {
-        playerControls.FindAction("CameraLock").performed += CameraLock;
-        playerControls.Enable();
-    }
-    private void OnDisable()
-    {
-        playerControls.FindAction("CameraLock").performed -= CameraLock;
-        playerControls.Disable();
-    }
+        private void Awake()
+        {
+            /*
+            if (!PlayerModel.Local.Object.HasInputAuthority)
+            {
+                Destroy(gameObject);
+            }*/
+            
+            var playerController = GetComponentInParent<PlayerController>();
 
-    private void CameraLock(InputAction.CallbackContext obj)
-    {
-        Debug.Log("espacio");
-        isCameraLocked = !isCameraLocked;
+            _playerController = playerController;
+            _target = playerController.transform;
+            
+            _offset = transform.position - _target.position;
+            
+            _playerController.OnSpace += CameraLock;
+
+            _isCameraLocked = true;
+
+            transform.SetParent(null);
+        }
+        
+        private void LateUpdate()
+        {
+            if (!_isCameraLocked)
+            {
+                var mousePos = Mouse.current.position.ReadValue();
+                CameraFreeMovement(mousePos);
+                return;
+            }
+            
+            CameraLockedMovement();
+        }
+        
+        private void OnDisable()
+        {
+            _playerController.OnSpace -= CameraLock;
+        }
+
+        private void CameraLockedMovement()
+        {
+            _pos = _target.position + _offset;
+            transform.position = Vector3.Slerp(transform.position, _pos, smoothness);
+        }
+
+        private void CameraFreeMovement(Vector2 mousePos)
+        {
+            _pos = transform.position;
+            //up
+            if (mousePos.y >= Screen.height - borderThickness)
+                _pos.x -= camSpeed * Time.deltaTime;
+            //down
+            if (mousePos.y <= borderThickness)
+                _pos.x += camSpeed * Time.deltaTime;
+            //left
+            if (mousePos.x <= borderThickness)
+                _pos.z -= camSpeed * Time.deltaTime;
+            //right
+            if (mousePos.x >= Screen.height - borderThickness)
+                _pos.z += camSpeed * Time.deltaTime;
+
+            transform.position = _pos;
+        }
+
+        private void CameraLock()
+        {
+            _isCameraLocked = !_isCameraLocked;
+        }
     }
 }

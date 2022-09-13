@@ -9,7 +9,9 @@ namespace _ProjectBeta.Scripts
         event Action OnActiveTwo;
         event Action OnActiveThree;
 
-        event Action<Vector2> onRightClick;
-        event Action onLeftClick;
+        event Action<Vector2> OnRightClick;
+        event Action OnLeftClick;
+
+        event Action OnSpace;
     }
 }

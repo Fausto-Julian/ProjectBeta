@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb865273849f294e8193344f2c69c8d, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 0
-  <MovementSpeed>k__BackingField: 0
-  <Defense>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <BaseMovementSpeed>k__BackingField: 0
+  <BaseDefense>k__BackingField: 0
+  <AbilityOne>k__BackingField: {fileID: 11400000, guid: 396c50d3983af664d8ecac3dcd938a83, type: 2}
+  <AbilityTwo>k__BackingField: {fileID: 11400000, guid: 396c50d3983af664d8ecac3dcd938a83, type: 2}
+  <AbilityThree>k__BackingField: {fileID: 11400000, guid: 396c50d3983af664d8ecac3dcd938a83, type: 2}

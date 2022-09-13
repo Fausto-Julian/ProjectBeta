@@ -1,4 +1,5 @@
-using _ProjectBeta.Scripts.ScriptableObjects.Ability;
+using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
+using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,18 +8,13 @@ namespace _ProjectBeta.Scripts
 {
     public class PlayerModel : NetworkBehaviour
     {
-        //Todo: pasar estas 4 habilidades a playerData
-        [SerializeField] private Ability abilityQ;
-        [SerializeField] private Ability abilityW;
-        [SerializeField] private Ability abilityE;
-        [SerializeField] private Ability abilityR;
+        [SerializeField] private PlayerData data;
         [SerializeField] private float rotateSpeed;
 
         
-        private AbilityHolder _abilityHolderQ;
-        private AbilityHolder _abilityHolderW;
-        private AbilityHolder _abilityHolderE;
-        private AbilityHolder _abilityHolderR;
+        private AbilityHolder _abilityHolderOne;
+        private AbilityHolder _abilityHolderTwo;
+        private AbilityHolder _abilityHolderThree;
 
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
@@ -26,12 +22,12 @@ namespace _ProjectBeta.Scripts
 
         public override void Spawned()
         {
-            _abilityHolderQ = new AbilityHolder(abilityQ, this);
-            _abilityHolderW = new AbilityHolder(abilityW, this);
-            _abilityHolderE = new AbilityHolder(abilityE, this);
-            _abilityHolderR = new AbilityHolder(abilityR, this);
+            _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
+            _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
+            _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
 
             _playerController = GetComponent<PlayerController>();
+            _agent = GetComponent<NavMeshAgent>();
             
             SubscribePlayerController();
         }
@@ -44,10 +40,9 @@ namespace _ProjectBeta.Scripts
         
         public override void FixedUpdateNetwork()
         {
-            _abilityHolderQ.Update();
-            _abilityHolderW.Update();
-            _abilityHolderE.Update();
-            _abilityHolderR.Update();
+            _abilityHolderOne.Update();
+            _abilityHolderTwo.Update();
+            _abilityHolderThree.Update();
         }
 
         private void Movement(Vector2 mousePos)
@@ -66,33 +61,29 @@ namespace _ProjectBeta.Scripts
 
         private void SubscribePlayerController()
         {
-            _playerController.OnActiveQ += _abilityHolderQ.Activate;
-            _playerController.OnActiveW += _abilityHolderW.Activate;
-            _playerController.OnActiveE += _abilityHolderE.Activate;
-            _playerController.OnActiveR += _abilityHolderR.Activate;
+            _playerController.OnActiveOne += _abilityHolderOne.Activate;
+            _playerController.OnActiveTwo += _abilityHolderTwo.Activate;
+            _playerController.OnActiveThree += _abilityHolderThree.Activate;
             _playerController.onRightClick += Movement;
 
         }
         
         private void UnSubscribePlayerController()
         {
-            _playerController.OnActiveQ -= _abilityHolderQ.Activate;
-            _playerController.OnActiveW -= _abilityHolderW.Activate;
-            _playerController.OnActiveE -= _abilityHolderE.Activate;
-            _playerController.OnActiveR -= _abilityHolderR.Activate;
+            _playerController.OnActiveOne -= _abilityHolderOne.Activate;
+            _playerController.OnActiveTwo -= _abilityHolderTwo.Activate;
+            _playerController.OnActiveThree -= _abilityHolderThree.Activate;
             _playerController.onRightClick -= Movement;
 
         }
 
 #if UNITY_EDITOR
         [ContextMenu("ActiveQ")]
-        private void ActiveQ() => _abilityHolderQ.Activate();
+        private void ActiveQ() => _abilityHolderOne.Activate();
         [ContextMenu("ActiveW")]
-        private void ActiveW() => _abilityHolderW.Activate();
+        private void ActiveW() => _abilityHolderTwo.Activate();
         [ContextMenu("ActiveE")]
-        private void ActiveE() => _abilityHolderE.Activate();
-        [ContextMenu("ActiveR")]
-        private void ActiveR() => _abilityHolderR.Activate();
+        private void ActiveE() => _abilityHolderThree.Activate();
 #endif
     }
 }

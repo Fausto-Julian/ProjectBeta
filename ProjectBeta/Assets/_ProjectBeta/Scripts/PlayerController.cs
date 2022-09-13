@@ -17,14 +17,12 @@ namespace _ProjectBeta.Scripts
         private InputAction _ability1;
         private InputAction _ability2;
         private InputAction _ability3;
-        private InputAction _ability4;
         private InputAction _leftClick;
         private InputAction _rightClick;
         
-        public event Action OnActiveQ;
-        public event Action OnActiveW;
-        public event Action OnActiveE;
-        public event Action OnActiveR;
+        public event Action OnActiveOne;
+        public event Action OnActiveTwo;
+        public event Action OnActiveThree;
         public event Action<Vector2> onRightClick;
         public event Action onLeftClick;
 
@@ -60,7 +58,6 @@ namespace _ProjectBeta.Scripts
                 _ability1 = input["Ability1"];
                 _ability2 = input["Ability2"];
                 _ability3 = input["Ability3"];
-                _ability4 = input["Ability4"];
 
                 _leftClick = input["LeftClick"];
                 _rightClick = input["RightClick"];
@@ -85,7 +82,6 @@ namespace _ProjectBeta.Scripts
             _ability1.performed += Ability1Input;
             _ability2.performed += Ability2Input;
             _ability3.performed += Ability3Input;
-            _ability4.performed += Ability4Input;
 
             _leftClick.performed += LeftClickInput;
             _rightClick.performed += RightClickInput;
@@ -106,7 +102,6 @@ namespace _ProjectBeta.Scripts
             _ability1.performed -= Ability1Input;
             _ability2.performed -= Ability2Input;
             _ability3.performed -= Ability3Input;
-            _ability4.performed -= Ability4Input;
 
             _leftClick.performed -= LeftClickInput;
             _rightClick.performed -= RightClickInput;
@@ -134,26 +129,20 @@ namespace _ProjectBeta.Scripts
         private void Ability1Input(InputAction.CallbackContext obj)
         {
             Debug.Log("Q");
-            OnActiveQ?.Invoke();
+            OnActiveOne?.Invoke();
         }
         private void Ability2Input(InputAction.CallbackContext obj)
         {
-            OnActiveW?.Invoke();
+            OnActiveTwo?.Invoke();
         }
         private void Ability3Input(InputAction.CallbackContext obj)
         {
-            OnActiveE?.Invoke();
-        }
-
-        private void Ability4Input(InputAction.CallbackContext obj)
-        {
-            OnActiveR?.Invoke();
+            OnActiveThree?.Invoke();
         }
         
         //Todo: Implement Input Networking | Testear si funciona sin esto.
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            throw new NotImplementedException();
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){ }

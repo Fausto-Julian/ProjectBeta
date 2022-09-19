@@ -1,5 +1,6 @@
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
+using _ProjectBeta.Scripts.Classes;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,13 +28,15 @@ namespace _ProjectBeta.Scripts
             {
                 Local = this;
             }
-            
+
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
             _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
-            
+
             _playerController = GetComponent<PlayerController>();
             _agent = GetComponent<NavMeshAgent>();
+           
+            
             
             SubscribePlayerController();
         }

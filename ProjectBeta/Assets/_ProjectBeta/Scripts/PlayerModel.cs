@@ -18,6 +18,8 @@ namespace _ProjectBeta.Scripts
         private AbilityHolder _abilityHolderTwo;
         private AbilityHolder _abilityHolderThree;
 
+        private Stats _stats;
+        private HealthController _healthController;
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;
@@ -35,6 +37,9 @@ namespace _ProjectBeta.Scripts
 
             _playerController = GetComponent<PlayerController>();
             _agent = GetComponent<NavMeshAgent>();
+            _stats = new Stats(data);
+            _healthController = new HealthController(_stats);
+
            
             
             
@@ -66,6 +71,8 @@ namespace _ProjectBeta.Scripts
             var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
 
             transform.eulerAngles = new Vector3(0, rotationY, 0);
+
+            
         }
 
         private void SubscribePlayerController()

@@ -4,39 +4,23 @@ using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Classes
 {
-    public class HealthController:MonoBehaviour
+    public class HealthController
     {
-        [SerializeField] private PlayerData data;
 
-        private float _maxHp;
-        private float _baseMovementSpeed;
-        private float _baseDefense;
-        private float _magicDefense;
+        private Stats _stats;
         private float _currentHealth;
-
         private event Action OnDie;
         private event Action OnTakeDamage;
-
-
-        private void Awake()
-        {
-            InitializeHealthController(data);
-        }
-
         
-
-        public void InitializeHealthController( PlayerData data )
+        public HealthController ( Stats stats )
         {
-            _maxHp = data.MaxHealth;
-            _baseMovementSpeed = data.BaseMovementSpeed;
-            _baseDefense = data.BaseDefense;
-            _currentHealth = _maxHp;
+            this._stats = stats;
         }
 
-        //ver como manejar el daño magico
+       
         public void TakeDamage(float damage)
         {
-            float mitigationDamage = (damage / (1 + (_baseDefense / 100)));
+            float mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
             _currentHealth -= mitigationDamage;
 
             OnTakeDamage?.Invoke();
@@ -49,15 +33,15 @@ namespace _ProjectBeta.Scripts.Classes
         {
             _currentHealth += healAmount;
 
-            if (_currentHealth > _maxHp)
+            if (_currentHealth > _stats.MaxHealth)
             {
-                _currentHealth = _maxHp;
+                _currentHealth = _stats.MaxHealth;
             }
         }
 
         public void RestoreMaxHealth()
         {
-            _currentHealth += _maxHp;
+            _currentHealth += _stats.MaxHealth;
         }
 
         public float GetCurrentHealth() => _currentHealth;

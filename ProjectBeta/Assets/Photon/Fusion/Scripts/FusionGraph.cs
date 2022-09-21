@@ -279,11 +279,11 @@ public class FusionGraph : FusionGraphBase {
       LabelPer = prt.AddText("per sample", TextAnchor.LowerCenter, _fusionStats.FontColor);
     }
 
-    LabelPer.text =
+        LabelPer.text =
       // Histograms only show avg per sample
       (_graphVisualization == FusionGraphVisualization.ValueHistogram | _graphVisualization == FusionGraphVisualization.CountHistogram) ? "avg per Sample" :
-      CurrentPer == Stats.StatsPer.Second ? "avg per Second" :
-      CurrentPer == Stats.StatsPer.Tick   ? "avg per Tick" :
+      CurrentPer == Simulation.Statistics.StatsPer.Second ? "avg per Second" :
+      CurrentPer == Simulation.Statistics.StatsPer.Tick   ? "avg per Tick" :
                                             "avg per Sample";
   }
   /// <summary>
@@ -521,14 +521,14 @@ public class FusionGraph : FusionGraphBase {
   float GetIntermittentAverageInfo(ref IStatsBuffer data, float sum) {
 
     switch (CurrentPer) {
-      case Stats.StatsPer.Second: {
+      case Simulation.Statistics.StatsPer.Second: {
           var oldestTimeRecord = data.GetSampleAtIndex(0).TimeValue;
           var currentTime = (float)_fusionStats.Runner.Simulation.LatestServerState.Time;
           var avg = sum / (currentTime - oldestTimeRecord);
           return avg;
         }
 
-      case Stats.StatsPer.Tick: {
+      case Simulation.Statistics.StatsPer.Tick: {
           var oldestTickRecord = data.GetSampleAtIndex(0).TickValue;
           var currentTick = (float)_fusionStats.Runner.Simulation.LatestServerState.Tick;
           var avg = sum / (currentTick - oldestTickRecord);
@@ -671,9 +671,9 @@ public class FusionGraph : FusionGraphBase {
   /// <summary>
   /// Creates a new GameObject with <see cref="FusionGraph"/> and attaches it to the specified parent.
   /// </summary>
-  public static FusionGraph Create(FusionStats iFusionStats, Stats.StatSourceTypes statSourceType, int statId, RectTransform parentRT) {
+  public static FusionGraph Create(FusionStats iFusionStats, Simulation.Statistics.StatSourceTypes statSourceType, int statId, RectTransform parentRT) {
     
-    var statInfo = Stats.GetDescription(statSourceType, statId);
+    var statInfo = Simulation.Statistics.GetDescription(statSourceType, statId);
 
     var rootRT = parentRT.CreateRectTransform(statInfo.LongName);
     var graph = rootRT.gameObject.AddComponent<FusionGraph>();
@@ -686,7 +686,7 @@ public class FusionGraph : FusionGraphBase {
   /// <summary>
   /// Generates the Graph UI for this <see cref="FusionGraph"/>.
   /// </summary>
-  public void Generate(Stats.StatSourceTypes type, int statId, RectTransform root) {
+  public void Generate(Simulation.Statistics.StatSourceTypes type, int statId, RectTransform root) {
 
     _statSourceType = type;
     

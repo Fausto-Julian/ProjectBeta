@@ -249,13 +249,13 @@ public class FusionStatsMeterBar : FusionGraphBase
   public static FusionStatsMeterBar Create(
     RectTransform parent, 
     FusionStats fusionStats,
-    Stats.StatSourceTypes statSourceType, 
+    Simulation.Statistics.StatSourceTypes statSourceType, 
     int statId, 
     float warnThreshold,
     float alertThreshold
     ) {
 
-    var info = Stats.GetDescription(statSourceType, statId);
+    var info = Simulation.Statistics.GetDescription(statSourceType, statId);
     var barRT = parent.CreateRectTransform(info.LongName, true);
     var bar   = barRT.gameObject.AddComponent<FusionStatsMeterBar>();
     bar.StatSourceInfo = info;
@@ -270,7 +270,7 @@ public class FusionStatsMeterBar : FusionGraphBase
 
   public void GenerateMeter() {
 
-    var info = Stats.GetDescription(_statSourceType, _statId);
+    var info = Simulation.Statistics.GetDescription(_statSourceType, _statId);
     var backRT = transform.CreateRectTransform("Back", true);
     BackImage = backRT.gameObject.AddComponent<Image>();
     BackImage.raycastTarget = false;

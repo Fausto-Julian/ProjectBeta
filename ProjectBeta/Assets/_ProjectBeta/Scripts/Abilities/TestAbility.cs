@@ -7,7 +7,7 @@ namespace _ProjectBeta.Scripts.Abilities
     [CreateAssetMenu(fileName = "TestAbility", menuName = "TestAbility", order = 0)]
     public class TestAbility : Ability
     {
-        public override void Activate(PlayerModel model, AbilityData abilityData)
+        public override void Activate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity)) 

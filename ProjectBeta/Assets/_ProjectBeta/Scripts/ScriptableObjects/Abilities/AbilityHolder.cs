@@ -9,10 +9,6 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
     public class AbilityHolder
     {
         private readonly Ability _ability;
-        private AbilityData _currentData;
-        
-        private readonly int _maxLevel;
-        private int _currentLevel;
 
         private float _currentTime;
         private readonly PlayerModel _player;
@@ -22,9 +18,6 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
         public AbilityHolder(Ability ability, PlayerModel model)
         {
             _ability = ability;
-            _currentData = ability.LevelsData[0];
-            _maxLevel = ability.LevelsData.Length - 1;
-            _currentLevel = 0;
             _player = model;
         }
 
@@ -38,11 +31,11 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 
             _currentTime += _player.Runner.DeltaTime;
 
-            if (_currentTime >= _currentData.cooldownTime)
-            {
-                _state = AbilityState.Active;
-                _currentTime = 0;
-            }
+            if (!(_currentTime >= _ability.CooldownTime)) 
+                return;
+            
+            _state = AbilityState.Active;
+            _currentTime = 0;
         }
 
         /// <summary>
@@ -53,17 +46,8 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
             if (_state != AbilityState.Active)
                 return;
 
-            _ability.Activate(_player, _currentData);
+            _ability.Activate(_player);
             _state = AbilityState.Cooldown;
-        }
-
-        public void UpgradeAbility()
-        {
-            if (_currentLevel >= _maxLevel) 
-                return;
-            
-            _currentLevel++;
-            _currentData = _ability.LevelsData[_currentLevel];
         }
     }
 }

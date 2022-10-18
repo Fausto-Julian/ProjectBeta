@@ -1,5 +1,6 @@
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
+using _ProjectBeta.Scripts.Classes;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,6 +18,8 @@ namespace _ProjectBeta.Scripts
         private AbilityHolder _abilityHolderTwo;
         private AbilityHolder _abilityHolderThree;
 
+        private Stats _stats;
+        private HealthController _healthController;
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;
@@ -27,13 +30,18 @@ namespace _ProjectBeta.Scripts
             {
                 Local = this;
             }
-            
+
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
             _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
-            
+
             _playerController = GetComponent<PlayerController>();
             _agent = GetComponent<NavMeshAgent>();
+            _stats = new Stats(data);
+            _healthController = new HealthController(_stats);
+
+           
+            
             
             SubscribePlayerController();
         }
@@ -63,6 +71,8 @@ namespace _ProjectBeta.Scripts
             var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
 
             transform.eulerAngles = new Vector3(0, rotationY, 0);
+
+            
         }
 
         private void SubscribePlayerController()

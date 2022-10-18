@@ -79,7 +79,7 @@ public class FusionStats : Fusion.Behaviour {
   static Dictionary<string, FusionStats> _activeGuids = new Dictionary<string, FusionStats>();
 
   // Added to make calling by reflection cleaner internally. Used in RunnerVisibilityControls.
-  internal static FusionStats CreateInternal(NetworkRunner runner = null, DefaultLayouts layout = DefaultLayouts.Left, Stats.NetStatFlags? netStatsMask = null, Stats.SimStatFlags? simStatsMask = null) {
+  internal static FusionStats CreateInternal(NetworkRunner runner = null, DefaultLayouts layout = DefaultLayouts.Left, Simulation.Statistics.NetStatFlags? netStatsMask = null, Simulation.Statistics.SimStatFlags? simStatsMask = null) {
     return Create(null, runner, layout, layout, netStatsMask, simStatsMask);
   }
 
@@ -92,7 +92,7 @@ public class FusionStats : Fusion.Behaviour {
   /// <param name="netStatsMask">The network stats to be enabled. If left null, default statistics will be used.</param>
   /// <param name="simStatsMask">The simulation stats to be enabled. If left null, default statistics will be used.</param>
   /// <returns></returns>
-  public static FusionStats Create(Transform parent = null, NetworkRunner runner = null, DefaultLayouts? screenLayout = null, DefaultLayouts? objectLayout = null, Stats.NetStatFlags? netStatsMask = null, Stats.SimStatFlags? simStatsMask = null) {
+  public static FusionStats Create(Transform parent = null, NetworkRunner runner = null, DefaultLayouts? screenLayout = null, DefaultLayouts? objectLayout = null, Simulation.Statistics.NetStatFlags? netStatsMask = null, Simulation.Statistics.SimStatFlags? simStatsMask = null) {
 
     var go = new GameObject($"{nameof(FusionStats)} {(runner ? runner.name : "null")}");
     FusionStats stats;
@@ -112,7 +112,7 @@ public class FusionStats : Fusion.Behaviour {
     return stats;
   }
 
-  public static Stats.NetStatFlags DefaultNetStatsMask => Stats.NetStatFlags.RoundTripTime | Stats.NetStatFlags.ReceivedPacketSizes | Stats.NetStatFlags.SentPacketSizes;
+  public static Simulation.Statistics.NetStatFlags DefaultNetStatsMask => Simulation.Statistics.NetStatFlags.RoundTripTime | Simulation.Statistics.NetStatFlags.ReceivedPacketSizes | Simulation.Statistics.NetStatFlags.SentPacketSizes;
 
   /// <summary>
   /// The gets the default SimStats. Some are only intended for Fusion internal development and aren't useful to users.
@@ -120,14 +120,14 @@ public class FusionStats : Fusion.Behaviour {
 #if FUSION_DEV
   public const Stats.SimStatFlags DefaultSimStatsMask = (Stats.SimStatFlags)(-1);
 #else
-  public const Stats.SimStatFlags DefaultSimStatsMask =
+  public const Simulation.Statistics.SimStatFlags DefaultSimStatsMask =
       ~(
-      Stats.SimStatFlags.InterpDiff |
-      Stats.SimStatFlags.InterpUncertainty |
-      Stats.SimStatFlags.InterpMultiplier |
-      Stats.SimStatFlags.InputOffsetTarget |
-      Stats.SimStatFlags.InputOffsetDeviation |
-      Stats.SimStatFlags.InputReceiveDeltaDeviation
+      Simulation.Statistics.SimStatFlags.InterpDiff |
+      Simulation.Statistics.SimStatFlags.InterpUncertainty |
+      Simulation.Statistics.SimStatFlags.InterpMultiplier |
+      Simulation.Statistics.SimStatFlags.InputOffsetTarget |
+      Simulation.Statistics.SimStatFlags.InputOffsetDeviation |
+      Simulation.Statistics.SimStatFlags.InputReceiveDeltaDeviation
       );
 #endif
 
@@ -377,10 +377,10 @@ public class FusionStats : Fusion.Behaviour {
     get => _enableObjectStats && this.Object == null;
   }
 
-  /// <summary>
-  /// The <see cref="NetworkObject"/> source for any <see cref="Stats.ObjStats"/> specific telemetry.
-  /// </summary>
-  [InlineHelp]
+    /// <summary>
+    /// The <see cref="NetworkObject"/> source for any <see cref="Simulation.Statistics.ObjStats"/> specific telemetry.
+    /// </summary>
+    [InlineHelp]
   [SerializeField]
   [DrawIf(nameof(EnableObjectStats), true)]
   NetworkObject _object;
@@ -519,8 +519,8 @@ public class FusionStats : Fusion.Behaviour {
   [VersaMask]
   [DrawIf(nameof(EnableObjectStats), true)]
   [MultiPropertyDrawersFix]
-  Stats.ObjStatFlags _includedObjStats;
-  public Stats.ObjStatFlags IncludedObjectStats {
+    Simulation.Statistics.ObjStatFlags _includedObjStats;
+  public Simulation.Statistics.ObjStatFlags IncludedObjectStats {
     get => _includedObjStats;
     set {
       _includedObjStats = value;
@@ -535,8 +535,8 @@ public class FusionStats : Fusion.Behaviour {
   [SerializeField]
   [VersaMask]
   [MultiPropertyDrawersFix]
-  Stats.NetStatFlags _includedNetStats;
-  public Stats.NetStatFlags IncludedNetStats {
+    Simulation.Statistics.NetStatFlags _includedNetStats;
+  public Simulation.Statistics.NetStatFlags IncludedNetStats {
     get => _includedNetStats;
     set {
       _includedNetStats = value;
@@ -551,8 +551,8 @@ public class FusionStats : Fusion.Behaviour {
   [SerializeField]
   [VersaMask]
   [MultiPropertyDrawersFix]
-  Stats.SimStatFlags _includedSimStats;
-  public Stats.SimStatFlags IncludedSimStats {
+    Simulation.Statistics.SimStatFlags _includedSimStats;
+  public Simulation.Statistics.SimStatFlags IncludedSimStats {
     get => _includedSimStats;
     set {
       _includedSimStats = value;
@@ -766,9 +766,9 @@ public class FusionStats : Fusion.Behaviour {
 #endif
 
   void ResetInternal(
-    bool? enableObjectStats          = null, 
-    Stats.NetStatFlags? netStatsMask = null, 
-    Stats.SimStatFlags? simStatsMask = null,
+    bool? enableObjectStats          = null,
+    Simulation.Statistics.NetStatFlags? netStatsMask = null,
+    Simulation.Statistics.SimStatFlags? simStatsMask = null,
     DefaultLayouts? objectLayout     = null,
     DefaultLayouts? screenLayout     = null
     ) {
@@ -786,7 +786,7 @@ public class FusionStats : Fusion.Behaviour {
     // If attached to a NetObject
     if (enableObjectStats.GetValueOrDefault() || (enableObjectStats.GetValueOrDefault(true) && hasNetworkObject)) {
       EnableObjectStats = true;
-      _includedObjStats = Stats.ObjStatFlags.Buffer;
+            _includedObjStats = Simulation.Statistics.ObjStatFlags.Buffer;
       _includedSimStats = simStatsMask.GetValueOrDefault();
       _includedNetStats = netStatsMask.GetValueOrDefault();
       _canvasType = StatCanvasTypes.GameObject;
@@ -806,10 +806,10 @@ public class FusionStats : Fusion.Behaviour {
         EnforceSingle = true;
       }
       _includedSimStats = simStatsMask.GetValueOrDefault(DefaultSimStatsMask);
-      _includedNetStats = netStatsMask.GetValueOrDefault(
-        Stats.NetStatFlags.RoundTripTime | 
-        Stats.NetStatFlags.SentPacketSizes | 
-        Stats.NetStatFlags.ReceivedPacketSizes);
+            _includedNetStats = netStatsMask.GetValueOrDefault(
+        Simulation.Statistics.NetStatFlags.RoundTripTime |
+        Simulation.Statistics.NetStatFlags.SentPacketSizes |
+        Simulation.Statistics.NetStatFlags.ReceivedPacketSizes);
 
     }
 
@@ -1069,8 +1069,8 @@ public class FusionStats : Fusion.Behaviour {
       .ExpandTopAnchor(MARGIN)
       .AddVerticalLayoutGroup(MARGIN);
 
-    FusionStatsMeterBar.Create(_objectMetersPanelRT, this, Stats.StatSourceTypes.NetworkObject, (int)Stats.ObjStats.Bandwidth, 15, 30);
-    FusionStatsMeterBar.Create(_objectMetersPanelRT, this, Stats.StatSourceTypes.NetworkObject, (int)Stats.ObjStats.RPC,       3,  6);
+        FusionStatsMeterBar.Create(_objectMetersPanelRT, this, Simulation.Statistics.StatSourceTypes.NetworkObject, (int)Simulation.Statistics.ObjStats.Bandwidth, 15, 30);
+        FusionStatsMeterBar.Create(_objectMetersPanelRT, this, Simulation.Statistics.StatSourceTypes.NetworkObject, (int)Simulation.Statistics.ObjStats.RPC,       3,  6);
 
     // Graphs
     _graphsLayoutRT = _statsPanelRT
@@ -1081,37 +1081,37 @@ public class FusionStats : Fusion.Behaviour {
     //.AddGridlLayoutGroup(MRGN);
     _graphGridLayoutGroup = _graphsLayoutRT.AddGridlLayoutGroup(MARGIN);
 
-    _objGraphs = new FusionGraph[Stats.OBJ_STAT_TYPE_COUNT];
-    for (int i = 0; i < Stats.OBJ_STAT_TYPE_COUNT; ++i) {
+        _objGraphs = new FusionGraph[Simulation.Statistics.OBJ_STAT_TYPE_COUNT];
+    for (int i = 0; i < Simulation.Statistics.OBJ_STAT_TYPE_COUNT; ++i) {
       if (InitializeAllGraphs == false) {
-        var statFlag = (Stats.ObjStatFlags)(1 << i);
+        var statFlag = (Simulation.Statistics.ObjStatFlags)(1 << i);
         if ((statFlag & _includedObjStats) == 0) {
           continue;
         }
       }
-      CreateGraph(Stats.StatSourceTypes.NetworkObject, i, _graphsLayoutRT);
+            CreateGraph(Simulation.Statistics.StatSourceTypes.NetworkObject, i, _graphsLayoutRT);
     }
 
-    _netGraphs = new FusionGraph[Stats.NET_STAT_TYPE_COUNT];
-    for (int i = 0; i < Stats.NET_STAT_TYPE_COUNT; ++i) {
+        _netGraphs = new FusionGraph[Simulation.Statistics.NET_STAT_TYPE_COUNT];
+    for (int i = 0; i < Simulation.Statistics.NET_STAT_TYPE_COUNT; ++i) {
       if (InitializeAllGraphs == false) {
-        var statFlag = (Stats.NetStatFlags)(1 << i);
+        var statFlag = (Simulation.Statistics.NetStatFlags)(1 << i);
         if ((statFlag & _includedNetStats) == 0) {
           continue;
         }
       }
-      CreateGraph(Stats.StatSourceTypes.NetConnection, i, _graphsLayoutRT);
+            CreateGraph(Simulation.Statistics.StatSourceTypes.NetConnection, i, _graphsLayoutRT);
     }
 
-    _simGraphs = new FusionGraph[Stats.SIM_STAT_TYPE_COUNT];
-    for (int i = 0; i < Stats.SIM_STAT_TYPE_COUNT; ++i) {
+        _simGraphs = new FusionGraph[Simulation.Statistics.SIM_STAT_TYPE_COUNT];
+    for (int i = 0; i < Simulation.Statistics.SIM_STAT_TYPE_COUNT; ++i) {
       if (InitializeAllGraphs == false) {
-        var statFlag = (Stats.SimStatFlags)(1 << i);
+        var statFlag = (Simulation.Statistics.SimStatFlags)(1 << i);
         if ((statFlag & _includedSimStats) == 0) {
           continue;
         }
       }
-      CreateGraph(Stats.StatSourceTypes.Simulation, i, _graphsLayoutRT);
+            CreateGraph(Simulation.Statistics.StatSourceTypes.Simulation, i, _graphsLayoutRT);
     }
 
     // Hide canvas for a tick. Unity makes some ugliness on the first update.
@@ -1358,22 +1358,22 @@ public class FusionStats : Fusion.Behaviour {
     }
   }
 
-  public FusionGraph CreateGraph(Stats.StatSourceTypes type, int statId, RectTransform parentRT) {
+  public FusionGraph CreateGraph(Simulation.Statistics.StatSourceTypes type, int statId, RectTransform parentRT) {
 
     var fg = FusionGraph.Create(this, type, statId, parentRT);
 
-    if (type == Stats.StatSourceTypes.Simulation) {
-      _simGraphs[statId] = fg;
+    if (type == Simulation.Statistics.StatSourceTypes.Simulation) {
+            _simGraphs[statId] = fg;
       if (((int)_includedSimStats & (1 << statId)) == 0) {
         fg.gameObject.SetActive(false);
       }
-    } else if (type == Stats.StatSourceTypes.NetworkObject) {
-      _objGraphs[statId] = fg;
+    } else if (type == Simulation.Statistics.StatSourceTypes.NetworkObject) {
+            _objGraphs[statId] = fg;
       if (((int)_includedObjStats & (1 << statId)) == 0) {
         fg.gameObject.SetActive(false);
       }
     } else {
-      _netGraphs[statId] = fg;
+            _netGraphs[statId] = fg;
       if (((int)_includedNetStats & (1 << statId)) == 0) {
         fg.gameObject.SetActive(false);
       }
@@ -1398,10 +1398,10 @@ public class FusionStats : Fusion.Behaviour {
 
     for (int i = 0; i < _simGraphs.Length; ++i) {
       var graph = _simGraphs[i];
-      bool enabled = ((Stats.SimStatFlags)(1 << i) & _includedSimStats) != 0;
+      bool enabled = ((Simulation.Statistics.SimStatFlags)(1 << i) & _includedSimStats) != 0;
       if (graph == null) {
         if (enabled) {
-          graph = CreateGraph(Stats.StatSourceTypes.Simulation, i, _graphsLayoutRT);
+          graph = CreateGraph(Simulation.Statistics.StatSourceTypes.Simulation, i, _graphsLayoutRT);
           _simGraphs[i] = graph;
         } else {
           continue;
@@ -1412,10 +1412,10 @@ public class FusionStats : Fusion.Behaviour {
 
     for (int i = 0; i < _objGraphs.Length; ++i) {
       var graph = _objGraphs[i];
-      bool enabled = _enableObjectStats && ((Stats.ObjStatFlags)(1 << i) & _includedObjStats) != 0;
+      bool enabled = _enableObjectStats && ((Simulation.Statistics.ObjStatFlags)(1 << i) & _includedObjStats) != 0;
       if (graph == null) {
         if (enabled) {
-          graph = CreateGraph(Stats.StatSourceTypes.NetworkObject, i, _graphsLayoutRT);
+          graph = CreateGraph(Simulation.Statistics.StatSourceTypes.NetworkObject, i, _graphsLayoutRT);
           _objGraphs[i] = graph;
         } else {
           continue;
@@ -1429,10 +1429,10 @@ public class FusionStats : Fusion.Behaviour {
 
     for (int i = 0; i < _netGraphs.Length; ++i) {
       var graph = _netGraphs[i];
-      bool enabled = ((Stats.NetStatFlags)(1 << i) & _includedNetStats) != 0;
+      bool enabled = ((Simulation.Statistics.NetStatFlags)(1 << i) & _includedNetStats) != 0;
       if (graph == null) {
         if (enabled) {
-          graph = CreateGraph(Stats.StatSourceTypes.NetConnection, i, _graphsLayoutRT);
+          graph = CreateGraph(Simulation.Statistics.StatSourceTypes.NetConnection, i, _graphsLayoutRT);
           _netGraphs[i] = graph;
         } else {
           continue;

@@ -1,25 +1,27 @@
 using System;
+using _ProjectBeta.Scripts.ScriptableObjects.Player;
+using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Classes
 {
     public class HealthController
     {
-        //todo: implement armor and resistance reduce
-        private float _maxHealth;
-        private float _currentHealth;
 
+        private Stats _stats;
+        private float _currentHealth;
         private event Action OnDie;
         private event Action OnTakeDamage;
         
-        public HealthController(float maxHealth)
+        public HealthController ( Stats stats )
         {
-            _maxHealth = maxHealth;
-            _currentHealth = _maxHealth;
+            this._stats = stats;
         }
 
+       
         public void TakeDamage(float damage)
         {
-            _currentHealth -= damage;
+            float mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
+            _currentHealth -= mitigationDamage;
 
             OnTakeDamage?.Invoke();
             
@@ -31,15 +33,15 @@ namespace _ProjectBeta.Scripts.Classes
         {
             _currentHealth += healAmount;
 
-            if (_currentHealth > _maxHealth)
+            if (_currentHealth > _stats.MaxHealth)
             {
-                _currentHealth = _maxHealth;
+                _currentHealth = _stats.MaxHealth;
             }
         }
 
         public void RestoreMaxHealth()
         {
-            _currentHealth += _maxHealth;
+            _currentHealth += _stats.MaxHealth;
         }
 
         public float GetCurrentHealth() => _currentHealth;

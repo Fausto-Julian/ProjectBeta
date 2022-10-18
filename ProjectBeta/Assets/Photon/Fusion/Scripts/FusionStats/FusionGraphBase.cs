@@ -20,8 +20,8 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
   /// </summary>
   [InlineHelp]
   [SerializeField]
-  protected Stats.StatSourceTypes _statSourceType;
-  public Stats.StatSourceTypes StateSourceType {
+  protected Simulation.Statistics.StatSourceTypes _statSourceType;
+  public Simulation.Statistics.StatSourceTypes StateSourceType {
     get => _statSourceType;
     set {
       _statSourceType = value;
@@ -78,10 +78,10 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
 
   protected virtual Color BackColor {
     get {
-      if (_statSourceType == Stats.StatSourceTypes.Simulation) {
+      if (_statSourceType == Simulation.Statistics.StatSourceTypes.Simulation) {
         return _fusionStats.SimDataBackColor;
       }
-      if (_statSourceType == Stats.StatSourceTypes.NetConnection) {
+      if (_statSourceType == Simulation.Statistics.StatSourceTypes.NetConnection) {
         return _fusionStats.NetDataBackColor;
       }
       return _fusionStats.ObjDataBackColor;
@@ -89,9 +89,9 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
   }
 
   protected Type CastToStatType => 
-    (_statSourceType == Stats.StatSourceTypes.Simulation)    ? typeof(Stats.SimStats) : 
-    (_statSourceType == Stats.StatSourceTypes.NetConnection) ? typeof(Stats.NetStats) : 
-                                                               typeof(Stats.ObjStats);
+    (_statSourceType == Simulation.Statistics.StatSourceTypes.Simulation)    ? typeof(Simulation.Statistics.SimStats) : 
+    (_statSourceType == Simulation.Statistics.StatSourceTypes.NetConnection) ? typeof(Simulation.Statistics.NetStats) : 
+                                                               typeof(Simulation.Statistics.ObjStats);
 
   protected FusionStats _fusionStats;
   protected FusionStats LocateParentFusionStats() {
@@ -103,15 +103,15 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
 
   protected bool _layoutDirty = true;
 
-  protected Stats.StatsPer CurrentPer;
+  protected Simulation.Statistics.StatsPer CurrentPer;
 
-  public Stats.StatSourceInfo StatSourceInfo;
+  public Simulation.Statistics.StatSourceInfo StatSourceInfo;
 
 
   // Track source values to detect changes in OnValidate.
   [SerializeField]
   [HideInInspector]
-  Stats.StatSourceTypes _prevStatSourceType;
+    Simulation.Statistics.StatSourceTypes _prevStatSourceType;
   
   [SerializeField]
   [HideInInspector]
@@ -137,27 +137,27 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
 
     var flags = StatSourceInfo.PerFlags;
     switch (CurrentPer) {
-      case Stats.StatsPer.Individual:
-        if ((flags & Stats.StatsPer.Tick) == Stats.StatsPer.Tick) {
-          CurrentPer = Stats.StatsPer.Tick;
-        } else if ((flags & Stats.StatsPer.Second) == Stats.StatsPer.Second) {
-          CurrentPer = Stats.StatsPer.Second;
+      case Simulation.Statistics.StatsPer.Individual:
+        if ((flags & Simulation.Statistics.StatsPer.Tick) == Simulation.Statistics.StatsPer.Tick) {
+                    CurrentPer = Simulation.Statistics.StatsPer.Tick;
+        } else if ((flags & Simulation.Statistics.StatsPer.Second) == Simulation.Statistics.StatsPer.Second) {
+                    CurrentPer = Simulation.Statistics.StatsPer.Second;
         }
         return;
 
-      case Stats.StatsPer.Tick:
-        if ((flags & Stats.StatsPer.Second) == Stats.StatsPer.Second) {
-          CurrentPer = Stats.StatsPer.Second;
-        } else if ((flags & Stats.StatsPer.Individual) == Stats.StatsPer.Individual) {
-          CurrentPer = Stats.StatsPer.Individual;
+      case Simulation.Statistics.StatsPer.Tick:
+        if ((flags & Simulation.Statistics.StatsPer.Second) == Simulation.Statistics.StatsPer.Second) {
+                    CurrentPer = Simulation.Statistics.StatsPer.Second;
+        } else if ((flags & Simulation.Statistics.StatsPer.Individual) == Simulation.Statistics.StatsPer.Individual) {
+                    CurrentPer = Simulation.Statistics.StatsPer.Individual;
         }
         return;
 
-      case Stats.StatsPer.Second:
-        if ((flags & Stats.StatsPer.Individual) == Stats.StatsPer.Individual) {
-          CurrentPer = Stats.StatsPer.Individual;
-        } else if ((flags & Stats.StatsPer.Tick) == Stats.StatsPer.Tick) {
-          CurrentPer = Stats.StatsPer.Tick;
+      case Simulation.Statistics.StatsPer.Second:
+        if ((flags & Simulation.Statistics.StatsPer.Individual) == Simulation.Statistics.StatsPer.Individual) {
+                    CurrentPer = Simulation.Statistics.StatsPer.Individual;
+        } else if ((flags & Simulation.Statistics.StatsPer.Tick) == Simulation.Statistics.StatsPer.Tick) {
+                    CurrentPer = Simulation.Statistics.StatsPer.Tick;
         }
         return;
 
@@ -172,7 +172,7 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
 
   protected virtual bool TryConnect() {
 
-    StatSourceInfo = Stats.GetDescription(_statSourceType, _statId);
+        StatSourceInfo = Simulation.Statistics.GetDescription(_statSourceType, _statId);
     // 
     if (WarnThreshold == 0 && ErrorThreshold == 0) {
       WarnThreshold = StatSourceInfo.WarnThreshold;
@@ -195,35 +195,35 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
 
 
     switch (_statSourceType) {
-      case Stats.StatSourceTypes.Simulation: {
-          _statsBuffer = statistics?.GetStatBuffer((Stats.SimStats)_statId);
+      case Simulation.Statistics.StatSourceTypes.Simulation: {
+                    _statsBuffer = statistics?.GetStatBuffer((Simulation.Statistics.SimStats)_statId);
           break;
         }
-      case Stats.StatSourceTypes.NetworkObject: {
-          if (_statId >= Stats.OBJ_STAT_TYPE_COUNT) {
-            StatId = 0;
+      case Simulation.Statistics.StatSourceTypes.NetworkObject: {
+          if (_statId >= Simulation.Statistics.OBJ_STAT_TYPE_COUNT) {
+                        StatId = 0;
           }
           if (_fusionStats.Object == null) {
-            _statsBuffer = null;
+                        _statsBuffer = null;
             break;
           }
 
-          _statsBuffer = statistics?.GetObjectBuffer(_fusionStats.Object.Id, (Stats.ObjStats)_statId, true);
+                    _statsBuffer = statistics?.GetObjectBuffer(_fusionStats.Object.Id, (Simulation.Statistics.ObjStats)_statId, true);
           break;
         }
-      case Stats.StatSourceTypes.NetConnection: {
+      case Simulation.Statistics.StatSourceTypes.NetConnection: {
 
           //StatSourceInfo = Stats.GetDescription((Stats.NetStats)_statId);
           if (runner == null) {
-            _statsBuffer = null;
+                        _statsBuffer = null;
             break;
           }
-          _statsBuffer = statistics?.GetStatBuffer((Stats.NetStats)_statId, runner);
+                    _statsBuffer = statistics?.GetStatBuffer((Simulation.Statistics.NetStats)_statId, runner);
 
           break;
         }
       default: {
-          _statsBuffer = null;
+                    _statsBuffer = null;
           break;
         }
     }
@@ -274,15 +274,15 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
     //var info = StatSourceInfo;
     var flags = StatSourceInfo.Flags;
 
-    if ((flags & Stats.StatFlags.ValidForBuildType) == 0) {
-      StatSourceInfo.InvalidReason = "DEBUG DLL ONLY";
+    if ((flags & Simulation.Statistics.StatFlags.ValidForBuildType) == 0) {
+            StatSourceInfo.InvalidReason = "DEBUG DLL ONLY";
       return;
     }
 
-    var obj = _statSourceType == Stats.StatSourceTypes.NetworkObject ? _fusionStats?.Object : null;
+    var obj = _statSourceType == Simulation.Statistics.StatSourceTypes.NetworkObject ? _fusionStats?.Object : null;
 
     if (obj) {
-      bool nonStateAuthOnly = (flags & Stats.StatFlags.ValidOnStateAuthority) == 0;
+      bool nonStateAuthOnly = (flags & Simulation.Statistics.StatFlags.ValidOnStateAuthority) == 0;
       if (nonStateAuthOnly && obj.HasStateAuthority) {
         StatSourceInfo.InvalidReason = "NON STATE AUTH ONLY";
         return;
@@ -290,12 +290,12 @@ public abstract class FusionGraphBase : Fusion.Behaviour, IFusionStatsView {
     }
 
     if (runner) {
-      bool clientOnly = (flags & Stats.StatFlags.ValidOnServer) == 0;
+      bool clientOnly = (flags & Simulation.Statistics.StatFlags.ValidOnServer) == 0;
       if (clientOnly && runner.IsClient == false) {
         StatSourceInfo.InvalidReason = "CLIENT ONLY";
         return;
       }
-      bool ecOnly = (flags & Stats.StatFlags.ValidWithDeltaSnapshot) == 0;
+      bool ecOnly = (flags & Simulation.Statistics.StatFlags.ValidWithDeltaSnapshot) == 0;
       if (ecOnly && runner.Config.Simulation.ReplicationMode == SimulationConfig.StateReplicationModes.DeltaSnapshots) {
         StatSourceInfo.InvalidReason = "EC MODE ONLY";
         return;

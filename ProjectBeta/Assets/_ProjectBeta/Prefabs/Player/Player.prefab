@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   data: {fileID: 11400000, guid: d331764a073d01649b6444dcdd645cbf, type: 2}
-  rotateSpeed: 20
+  rotateSpeed: 0.005
 --- !u!114 &3734709936710267516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

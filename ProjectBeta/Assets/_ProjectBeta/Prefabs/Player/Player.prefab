@@ -93,7 +93,7 @@ BoxCollider:
   m_GameObject: {fileID: 3734709935044019034}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -251,6 +251,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   data: {fileID: 11400000, guid: d331764a073d01649b6444dcdd645cbf, type: 2}
   rotateSpeed: 0.005
+  view: {fileID: 3734709935044019029}
 --- !u!114 &3734709936710267516
 MonoBehaviour:
   m_ObjectHideFlags: 0

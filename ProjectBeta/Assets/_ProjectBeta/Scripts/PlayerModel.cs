@@ -13,6 +13,7 @@ namespace _ProjectBeta.Scripts
         
         [SerializeField] private PlayerData data;
         [SerializeField] private float rotateSpeed;
+        [SerializeField] private Transform view;
 
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
@@ -70,9 +71,7 @@ namespace _ProjectBeta.Scripts
 
             var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
 
-            transform.eulerAngles = new Vector3(0, rotationY, 0);
-
-            
+            view.eulerAngles = new Vector3(0, rotationY, 0);
         }
 
         private void SubscribePlayerController()

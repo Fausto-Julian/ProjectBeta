@@ -10,13 +10,21 @@ namespace _ProjectBeta.Scripts.Abilities
         public override void Activate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
+
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity)) 
                 return;
 
-            var dir = hit.point - model.transform.position;
-            dir.Normalize();
+            var transform = model.transform;
+
+            if (!(Vector3.Distance(hit.point, transform.position) < 10f))
+            {
+                var dir = hit.point - transform.position;
+                dir += new Vector3(10, 0, 10);
+                transform.position = dir;
+                return;
+            }
             
-            model.transform.position = dir * 10;
+            transform.position = hit.point;
         }
     }
 }

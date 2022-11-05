@@ -41,31 +41,30 @@ namespace _ProjectBeta.Scripts
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
 
-           
-            
-            
             SubscribePlayerController();
         }
 
-        private void OnDisable()
-        {
-            UnSubscribePlayerController();
-        }
-        
-        
         public override void FixedUpdateNetwork()
         {
+            if (Vector3.Distance(_destination, transform.position) < 0.05f)
+            {
+                _agent.isStopped = true;
+            }
+            
             _abilityHolderOne.Update();
             _abilityHolderTwo.Update();
             _abilityHolderThree.Update();
         }
 
+        private Vector3 _destination;
+        
         private void Movement(Vector2 mousePos)
         {
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity)) 
                 return;
-            
-            _agent.SetDestination(hit.point);
+            _destination = hit.point;
+            _agent.isStopped = false;
+            _agent.SetDestination(_destination);
 
             var rotationToLook = Quaternion.LookRotation(hit.point - transform.position);
 

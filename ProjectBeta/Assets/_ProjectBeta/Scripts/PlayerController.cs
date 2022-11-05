@@ -10,8 +10,6 @@ namespace _ProjectBeta.Scripts
     public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
         private PlayerModel _model;
-        //private InputActionAsset _inputAsset;
-        //private InputActionMap _playerControls;
 
         private InputAction _abilityInputAction1;
         private InputAction _abilityInputAction2;
@@ -27,14 +25,22 @@ namespace _ProjectBeta.Scripts
         public event Action OnLeftClick;
         public event Action OnSpace;
 
+        private NetworkInputData _networkInputData;
+        
+        public Vector2 rightClickCommand;
+        public bool rightClickActiveCommand;
+        public bool activeOneCommand;
+        public bool activeTwoCommand;
+        public bool activeThreeCommand;
+        public bool leftClickCommand;
+        public bool spaceCommand;
+
         public override void Spawned()
         {
             if (Object.HasInputAuthority)
             {
                 Runner.AddCallbacks(this);
             }
-            
-            //Todo: Networking Get PlayerInput and destroy other.
 
             PlayerInputGetActions();
 
@@ -67,6 +73,9 @@ namespace _ProjectBeta.Scripts
                 return;
             }
             
+            if (!Object.HasInputAuthority)
+                return;
+            
             var inputActions = playerInput.actions;
 
             if (inputActions != null)
@@ -83,11 +92,6 @@ namespace _ProjectBeta.Scripts
             OnPlayerControllersSubscribe();
         }
 
-        private void OnDisable()
-        {
-            OnPlayerControllersUnsubscribe();
-        }
-        
         private void OnPlayerControllersSubscribe()
         {
             _abilityInputAction1.performed += AbilityInputAction1Input;
@@ -112,39 +116,77 @@ namespace _ProjectBeta.Scripts
             _rightClickInputAction.performed -= RightClickInputActionInput;
         }
         
-        private void SpaceInputAction(InputAction.CallbackContext obj)
+        private void SpaceInputAction(InputAction.CallbackContext context)
         {
-            OnSpace?.Invoke();
+            spaceCommand = context.ReadValue<float>() > 0.5f;
         }
 
-        private void LeftClickInputActionInput(InputAction.CallbackContext obj)
+        private void LeftClickInputActionInput(InputAction.CallbackContext context)
         {
-            OnLeftClick?.Invoke();
+            leftClickCommand = context.ReadValue<float>() > 0.5f;
         }
 
-        private void RightClickInputActionInput(InputAction.CallbackContext obj)
+        private void RightClickInputActionInput(InputAction.CallbackContext context)
         {
-            Debug.Log("click derecho");
-            OnRightClick?.Invoke(Mouse.current.position.ReadValue());
+            rightClickActiveCommand = context.ReadValue<float>() > 0.5f;
+            rightClickCommand = Mouse.current.position.ReadValue();
         }
 
-        private void AbilityInputAction1Input(InputAction.CallbackContext obj)
+        private void AbilityInputAction1Input(InputAction.CallbackContext context)
         {
-            Debug.Log("Q");
-            OnActiveOne?.Invoke();
+            activeOneCommand = context.ReadValue<float>() > 0.5f;
         }
-        private void AbilityInputAction2Input(InputAction.CallbackContext obj)
+        private void AbilityInputAction2Input(InputAction.CallbackContext context)
         {
-            OnActiveTwo?.Invoke();
+            activeTwoCommand = context.ReadValue<float>() > 0.5f;
         }
-        private void AbilityInputAction3Input(InputAction.CallbackContext obj)
+        private void AbilityInputAction3Input(InputAction.CallbackContext context)
         {
-            OnActiveThree?.Invoke();
+            activeThreeCommand = context.ReadValue<float>() > 0.5f;
         }
         
-        //Todo: Implement Input Networking | Testear si funciona sin esto.
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
+            _networkInputData.OnActiveOne = activeOneCommand;
+            _networkInputData.OnActiveTwo = activeTwoCommand;
+            _networkInputData.OnActiveThree = activeThreeCommand;
+            _networkInputData.OnRightClick = rightClickCommand;
+            _networkInputData.OnLeftClick = leftClickCommand;
+            _networkInputData.OnRightClickActive = rightClickActiveCommand;
+            _networkInputData.OnSpace = spaceCommand;
+
+            input.Set(_networkInputData);
+
+            activeOneCommand = false;
+            activeTwoCommand = false;
+            activeThreeCommand = false;
+            leftClickCommand = false;
+            rightClickActiveCommand = false;
+            spaceCommand = false;
+        }
+
+        public override void FixedUpdateNetwork()
+        {
+            if (!GetInput(out NetworkInputData input)) 
+                return;
+
+            if (input.OnRightClickActive)
+                OnRightClick?.Invoke(input.OnRightClick);
+            
+            if (input.OnActiveOne)
+                OnActiveOne?.Invoke();
+
+            if (input.OnActiveTwo)
+                OnActiveTwo?.Invoke();
+            
+            if (input.OnActiveThree)
+                OnActiveTwo?.Invoke();
+            
+            if (input.OnLeftClick)
+                OnActiveTwo?.Invoke();
+            
+            if (input.OnSpace)
+                OnSpace?.Invoke();
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){ }

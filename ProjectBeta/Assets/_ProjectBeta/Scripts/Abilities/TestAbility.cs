@@ -1,4 +1,5 @@
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
+using _ProjectBeta.Scripts.Classes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,24 +8,25 @@ namespace _ProjectBeta.Scripts.Abilities
     [CreateAssetMenu(fileName = "TestAbility", menuName = "TestAbility", order = 0)]
     public class TestAbility : Ability
     {
+        [SerializeField] GameObject wall;
         public override void Activate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
 
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity)) 
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity))
                 return;
 
-            var transform = model.transform;
 
-            if (!(Vector3.Distance(hit.point, transform.position) < 10f))
+
+            if (Vector3.Distance(hit.point, model.transform.position) < 6f)
             {
-                var dir = hit.point - transform.position;
-                dir += new Vector3(10, 0, 10);
-                transform.position = dir;
-                return;
+                //instanciar en network y fijarse la rotacion
+                Instantiate(wall, hit.point, Quaternion.identity);
             }
-            
-            transform.position = hit.point;
+
+
         }
+
     }
+    
 }

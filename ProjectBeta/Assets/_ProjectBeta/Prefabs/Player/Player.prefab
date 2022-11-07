@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 3734709936710267458}
   - component: {fileID: 3734709936710267513}
   - component: {fileID: 3734709936710267518}
+  - component: {fileID: 3044230420804840581}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -369,3 +370,16 @@ MonoBehaviour:
     RotBlendStart: 0.1
     RotBlendEnd: 0.5
     RotTeleportRadians: 1.5
+--- !u!65 &3044230420804840581
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734709936710267456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

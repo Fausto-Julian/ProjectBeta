@@ -27,7 +27,7 @@ namespace _ProjectBeta.Scripts.Player
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;
-        
+
         private Vector3 _destination;
 
         public override void Spawned()
@@ -44,40 +44,28 @@ namespace _ProjectBeta.Scripts.Player
             _agent.speed = data.BaseMovementSpeed;
 
             healthBar.fillAmount = 1;
-            
+
             if (Object.HasInputAuthority)
             {
                 Local = this;
                 FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
-                _healthController.OnDie += HealthControllerOnOnDie;
             }
+
+            _healthController.OnDie += HealthControllerOnOnDie;
 
             SubscribePlayerController();
         }
 
         private void HealthControllerOnOnDie()
         {
-            StartCoroutine(DieCoroutine());
+            Test.Instance.ActiveRespawn(this);
         }
 
-        private IEnumerator DieCoroutine()
-        {
-            RPC_SetActiveObject(false);
-            RPC_RestoreMaxHealth();
-            yield return new WaitForSeconds(2f);
-            RPC_SetActiveObject(true);
-        }
-        
         [Rpc(RpcSources.All, RpcTargets.All)]
-        private void RPC_RestoreMaxHealth()
+        public void RPC_RestoreMaxHealth()
         {
             _healthController.RestoreMaxHealth();
-        }
-
-        [Rpc(RpcSources.All, RpcTargets.All)]
-        private void RPC_SetActiveObject(bool value)
-        {
-            gameObject.SetActive(value);
+            healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
         public override void FixedUpdateNetwork()
@@ -86,7 +74,7 @@ namespace _ProjectBeta.Scripts.Player
             {
                 _agent.isStopped = true;
             }
-            
+
             _abilityHolderOne.Update();
             _abilityHolderTwo.Update();
             _abilityHolderThree.Update();
@@ -98,7 +86,7 @@ namespace _ProjectBeta.Scripts.Player
         {
             RPC_UpgradeDefense(value);
         }
-        
+
         [Rpc(RpcSources.All, RpcTargets.All)]
         private void RPC_UpgradeDefense(float value)
         {
@@ -118,7 +106,8 @@ namespace _ProjectBeta.Scripts.Player
         {
             RPC_TakeDamage(damage);
         }
-        [Rpc(RpcSources.All,RpcTargets.All)]
+
+        [Rpc(RpcSources.All, RpcTargets.All)]
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);
@@ -131,12 +120,14 @@ namespace _ProjectBeta.Scripts.Player
             ActiveAbilityOne?.Invoke(data.AbilityOne.CooldownTime);
             _abilityHolderOne.Activate();
         }
+
         private void OnActiveTwoAbilityHandler()
         {
             _agent.isStopped = true;
             ActiveAbilityTwo?.Invoke(data.AbilityTwo.CooldownTime);
             _abilityHolderTwo.Activate();
         }
+
         private void OnActiveThreeAbilityHandler()
         {
             _agent.isStopped = true;
@@ -153,7 +144,7 @@ namespace _ProjectBeta.Scripts.Player
             _playerController.OnActiveThree += OnActiveThreeAbilityHandler;
             _playerController.OnRightClick += Movement;
         }
-        
+
         private void UnSubscribePlayerController()
         {
             _playerController.OnActiveOne -= _abilityHolderOne.Activate;
@@ -165,12 +156,14 @@ namespace _ProjectBeta.Scripts.Player
 #if UNITY_EDITOR
         [ContextMenu("ActiveQ")]
         private void ActiveQ() => _abilityHolderOne.Activate();
+
         [ContextMenu("ActiveW")]
         private void ActiveW() => _abilityHolderTwo.Activate();
+
         [ContextMenu("ActiveE")]
         private void ActiveE() => _abilityHolderThree.Activate();
 
-       
+
 #endif
         public event Action<float> ActiveAbilityOne;
         public event Action<float> ActiveAbilityThree;

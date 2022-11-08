@@ -69,8 +69,13 @@ namespace _ProjectBeta.Scripts.Player
 
         public PlayerData GetData() => data;
 
-        [Rpc(RpcSources.All, RpcTargets.All)]
         public void UpgradeDefense(float value)
+        {
+            RPC_UpgradeDefense(value);
+        }
+        
+        [Rpc(RpcSources.All, RpcTargets.All)]
+        private void RPC_UpgradeDefense(float value)
         {
             _stats.BaseDefense += value;
         }

@@ -6,16 +6,16 @@ using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerModel : NetworkBehaviour, IDamageable, IPlayerUIInvoker
     {
         public static PlayerModel Local;
-        
+
         [SerializeField] private PlayerData data;
-        [SerializeField] private float rotateSpeed;
-        [SerializeField] private Transform view;
+        [SerializeField] private Slider healthBar;
 
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
@@ -48,6 +48,9 @@ namespace _ProjectBeta.Scripts.Player
             _healthController = new HealthController(_stats);
 
             _agent.speed = data.BaseMovementSpeed;
+            
+            healthBar.maxValue = _stats.MaxHealth;
+            healthBar.value = _stats.MaxHealth;
 
             SubscribePlayerController();
         }
@@ -89,6 +92,7 @@ namespace _ProjectBeta.Scripts.Player
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);
+            healthBar.value = _healthController.GetCurrentHealth();
         }
 
         private void OnActiveOneAbilityHandler()

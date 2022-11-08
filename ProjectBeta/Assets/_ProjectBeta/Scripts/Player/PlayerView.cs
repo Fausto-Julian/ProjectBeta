@@ -1,19 +1,24 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerView : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private NavMeshAgent agent;
+        private Animator animator;
+        private float motionSmoothTime = 0.1f;
+
+        private void Awake()
         {
-        
+            agent = gameObject.GetComponent<NavMeshAgent>();
+            animator = gameObject.GetComponentInChildren<Animator>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-        
+            float speed = agent.velocity.magnitude / agent.speed;
+            animator.SetFloat("Speed", speed, motionSmoothTime, Time.deltaTime);
         }
     }
 }

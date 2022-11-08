@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace _ProjectBeta.Scripts
 {
-    public class PlayerModel : NetworkBehaviour
+    public class PlayerModel : NetworkBehaviour, IDamageable
     {
         public static PlayerModel Local;
         
@@ -73,6 +73,16 @@ namespace _ProjectBeta.Scripts
             view.eulerAngles = new Vector3(0, rotationY, 0);
         }
 
+        public void DoDamage(float damage)
+        {
+            RPC_TakeDamage(damage);
+        }
+        [Rpc(RpcSources.All,RpcTargets.All)]
+        private void RPC_TakeDamage(float damage)
+        {
+            _healthController.TakeDamage(damage);
+        }
+
         private void SubscribePlayerController()
         {
             _playerController.OnActiveOne += _abilityHolderOne.Activate;
@@ -96,6 +106,8 @@ namespace _ProjectBeta.Scripts
         private void ActiveW() => _abilityHolderTwo.Activate();
         [ContextMenu("ActiveE")]
         private void ActiveE() => _abilityHolderThree.Activate();
+
+       
 #endif
     }
 }

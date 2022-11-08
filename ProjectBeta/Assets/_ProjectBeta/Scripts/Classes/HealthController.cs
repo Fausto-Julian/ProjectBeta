@@ -2,6 +2,7 @@ using System;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using UnityEngine;
 
+
 namespace _ProjectBeta.Scripts.Classes
 {
     public class HealthController: MonoBehaviour

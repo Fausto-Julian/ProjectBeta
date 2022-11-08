@@ -5,13 +5,17 @@ using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+
 
 namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerModel : NetworkBehaviour, IDamageable
     {
         public static PlayerModel Local;
-        
+
+        public Slider healthBar;
+
         [SerializeField] private PlayerData data;
         [SerializeField] private float rotateSpeed;
         [SerializeField] private Transform view;
@@ -43,6 +47,8 @@ namespace _ProjectBeta.Scripts.Player
             _agent = GetComponent<NavMeshAgent>();
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
+            healthBar.maxValue = _stats.MaxHealth;
+            healthBar.value = _stats.MaxHealth;
 
             SubscribePlayerController();
         }
@@ -59,6 +65,13 @@ namespace _ProjectBeta.Scripts.Player
             _abilityHolderThree.Update();
         }
 
+        private void Update()
+        {
+            
+            
+        }
+
+
         private void Movement(Vector3 destination)
         {
             _destination = destination;
@@ -67,9 +80,9 @@ namespace _ProjectBeta.Scripts.Player
 
             var rotationToLook = Quaternion.LookRotation(destination - transform.position);
 
-            var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
+            //var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
 
-            view.eulerAngles = new Vector3(0, rotationY, 0);
+            view.LookAt(destination); 
         }
 
         public void DoDamage(float damage)
@@ -80,6 +93,8 @@ namespace _ProjectBeta.Scripts.Player
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);
+            var currentHealth = _healthController.GetCurrentHealth();
+            healthBar.value = currentHealth;
         }
 
         private void SubscribePlayerController()

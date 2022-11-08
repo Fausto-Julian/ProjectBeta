@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb865273849f294e8193344f2c69c8d, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 100
   <BaseMovementSpeed>k__BackingField: 0
   <BaseDefense>k__BackingField: 0
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: fc0830bdee1bfe44ab6ab1e63e0aa7ff, type: 2}

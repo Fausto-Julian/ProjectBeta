@@ -4,11 +4,12 @@ using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using UnityEngine;
 
 
+
 namespace _ProjectBeta.Scripts.Classes
 {
-    public class HealthController: MonoBehaviour
+    public class HealthController
     {
-
+        
         private Stats _stats;
         private float _currentHealth;
         private event Action OnDie;
@@ -17,6 +18,7 @@ namespace _ProjectBeta.Scripts.Classes
         public HealthController ( Stats stats )
         {
             this._stats = stats;
+            _currentHealth = _stats.MaxHealth;
         }
 
        
@@ -48,5 +50,7 @@ namespace _ProjectBeta.Scripts.Classes
         }
 
         public float GetCurrentHealth() => _currentHealth;
+
+       
     }
 }

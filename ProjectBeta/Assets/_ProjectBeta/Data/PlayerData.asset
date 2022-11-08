@@ -15,6 +15,6 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 0
   <BaseMovementSpeed>k__BackingField: 0
   <BaseDefense>k__BackingField: 0
-  <AbilityOne>k__BackingField: {fileID: 11400000, guid: 396c50d3983af664d8ecac3dcd938a83, type: 2}
-  <AbilityTwo>k__BackingField: {fileID: 11400000, guid: 396c50d3983af664d8ecac3dcd938a83, type: 2}
+  <AbilityOne>k__BackingField: {fileID: 11400000, guid: fc0830bdee1bfe44ab6ab1e63e0aa7ff, type: 2}
+  <AbilityTwo>k__BackingField: {fileID: 11400000, guid: 8d07032600ba65141a61b6125e9bacf3, type: 2}
   <AbilityThree>k__BackingField: {fileID: 11400000, guid: 396c50d3983af664d8ecac3dcd938a83, type: 2}

@@ -2,9 +2,10 @@ using System;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using UnityEngine;
 
+
 namespace _ProjectBeta.Scripts.Classes
 {
-    public class HealthController
+    public class HealthController: MonoBehaviour
     {
 
         private Stats _stats;
@@ -20,6 +21,7 @@ namespace _ProjectBeta.Scripts.Classes
        
         public void TakeDamage(float damage)
         {
+            Debug.Log("recibi daño");
             float mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
             _currentHealth -= mitigationDamage;
 

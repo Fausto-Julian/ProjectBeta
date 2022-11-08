@@ -16,6 +16,7 @@ MonoBehaviour:
   <BaseMovementSpeed>k__BackingField: 3.5
   <BaseDefense>k__BackingField: 40
   <DistanceToAttack>k__BackingField: 8
+  <DistanceToBasicAttack>k__BackingField: 5
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: fc0830bdee1bfe44ab6ab1e63e0aa7ff, type: 2}
   <AbilityTwo>k__BackingField: {fileID: 11400000, guid: 8d07032600ba65141a61b6125e9bacf3, type: 2}
   <AbilityThree>k__BackingField: {fileID: 11400000, guid: c7e4868878a1ca540a87f482178c4a68, type: 2}

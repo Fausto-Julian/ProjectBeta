@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
@@ -15,7 +16,7 @@ namespace _ProjectBeta.Scripts.Player
         public static PlayerModel Local;
 
         [SerializeField] private PlayerData data;
-        [SerializeField] private Slider healthBar;
+        [SerializeField] private Image healthBar;
 
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
@@ -31,13 +32,6 @@ namespace _ProjectBeta.Scripts.Player
 
         public override void Spawned()
         {
-            if (Object.HasInputAuthority)
-            {
-                Local = this;
-                
-                FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
-            }
-
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
             _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
@@ -48,11 +42,42 @@ namespace _ProjectBeta.Scripts.Player
             _healthController = new HealthController(_stats);
 
             _agent.speed = data.BaseMovementSpeed;
+
+            healthBar.fillAmount = 1;
             
-            healthBar.maxValue = _stats.MaxHealth;
-            healthBar.value = _stats.MaxHealth;
+            if (Object.HasInputAuthority)
+            {
+                Local = this;
+                FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
+                _healthController.OnDie += HealthControllerOnOnDie;
+            }
 
             SubscribePlayerController();
+        }
+
+        private void HealthControllerOnOnDie()
+        {
+            StartCoroutine(DieCoroutine());
+        }
+
+        private IEnumerator DieCoroutine()
+        {
+            RPC_SetActiveObject(false);
+            RPC_RestoreMaxHealth();
+            yield return new WaitForSeconds(2f);
+            RPC_SetActiveObject(true);
+        }
+        
+        [Rpc(RpcSources.All, RpcTargets.All)]
+        private void RPC_RestoreMaxHealth()
+        {
+            _healthController.RestoreMaxHealth();
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.All)]
+        private void RPC_SetActiveObject(bool value)
+        {
+            gameObject.SetActive(value);
         }
 
         public override void FixedUpdateNetwork()
@@ -97,7 +122,7 @@ namespace _ProjectBeta.Scripts.Player
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);
-            healthBar.value = _healthController.GetCurrentHealth();
+            healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
         private void OnActiveOneAbilityHandler()

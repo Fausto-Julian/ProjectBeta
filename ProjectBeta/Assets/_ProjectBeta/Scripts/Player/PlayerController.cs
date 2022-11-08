@@ -135,6 +135,18 @@ namespace _ProjectBeta.Scripts.Player
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
                 return;
 
+            if (Vector3.Distance(hit.point, transform.position) < PlayerModel.Local.GetData().DistanceToBasicAttack)
+            {
+                if (hit.collider.TryGetComponent(out PlayerModel model))
+                {
+                    if (model != PlayerModel.Local)
+                    {
+                        model.DoDamage(10);
+                        return;
+                    }
+                }
+            }
+
             _rightClickCommand = hit.point;
         }
 

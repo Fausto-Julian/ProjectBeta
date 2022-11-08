@@ -10,8 +10,8 @@ namespace _ProjectBeta.Scripts.Classes
     {
         private readonly Stats _stats;
         private float _currentHealth;
-        private event Action OnDie;
-        private event Action OnTakeDamage;
+        public event Action OnDie;
+        public event Action OnTakeDamage;
 
         public float GetMaxHealth() => _stats.MaxHealth;
         

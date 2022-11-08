@@ -55,7 +55,7 @@ namespace _ProjectBeta.Scripts.Player
         {
             if (_playerHealthController == default)
                 return;
-            var value = _playerHealthController.GetMaxHealth() / _playerHealthController.GetCurrentHealth();
+            var value = _playerHealthController.GetCurrentHealth() / _playerHealthController.GetMaxHealth();
             lifeBar.fillAmount = value;
         }
 

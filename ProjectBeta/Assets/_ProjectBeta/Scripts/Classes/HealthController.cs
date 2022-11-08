@@ -18,6 +18,7 @@ namespace _ProjectBeta.Scripts.Classes
         public HealthController ( Stats stats )
         {
             _stats = stats;
+            _currentHealth = _stats.MaxHealth;
         }
 
         public void TakeDamage(float damage)

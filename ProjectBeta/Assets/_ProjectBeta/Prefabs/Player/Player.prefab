@@ -346,7 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   data: {fileID: 11400000, guid: d331764a073d01649b6444dcdd645cbf, type: 2}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 7999616965552534937}
 --- !u!114 &3734709936710267516
 MonoBehaviour:
   m_ObjectHideFlags: 0

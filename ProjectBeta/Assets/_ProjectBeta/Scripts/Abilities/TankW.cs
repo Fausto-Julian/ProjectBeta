@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using _ProjectBeta.Scripts.Classes;
+using _ProjectBeta.Scripts.Player;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine.InputSystem;
 using UnityEngine;

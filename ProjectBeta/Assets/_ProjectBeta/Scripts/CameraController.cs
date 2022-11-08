@@ -1,3 +1,5 @@
+using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.Player.Interface;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

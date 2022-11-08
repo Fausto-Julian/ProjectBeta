@@ -1,4 +1,5 @@
 using System;
+using _ProjectBeta.Scripts.Player;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace _ProjectBeta.Scripts.Classes
        
         public void TakeDamage(float damage)
         {
-            Debug.Log("recibi daño");
+            Debug.Log("recibi daï¿½o");
             float mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
             _currentHealth -= mitigationDamage;
 

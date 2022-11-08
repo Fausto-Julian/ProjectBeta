@@ -1,3 +1,5 @@
+using _ProjectBeta.Scripts.Player;
+
 namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 {
     public enum AbilityState

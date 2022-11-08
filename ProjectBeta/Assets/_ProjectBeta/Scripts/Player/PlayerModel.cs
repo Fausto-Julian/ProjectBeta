@@ -1,11 +1,12 @@
+using _ProjectBeta.Scripts.Classes;
+using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
-using _ProjectBeta.Scripts.Classes;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _ProjectBeta.Scripts
+namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerModel : NetworkBehaviour
     {
@@ -24,6 +25,8 @@ namespace _ProjectBeta.Scripts
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;
+        
+        private Vector3 _destination;
 
         public override void Spawned()
         {
@@ -56,17 +59,13 @@ namespace _ProjectBeta.Scripts
             _abilityHolderThree.Update();
         }
 
-        private Vector3 _destination;
-        
-        private void Movement(Vector2 mousePos)
+        private void Movement(Vector3 destination)
         {
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity)) 
-                return;
-            _destination = hit.point;
+            _destination = destination;
             _agent.isStopped = false;
             _agent.SetDestination(_destination);
 
-            var rotationToLook = Quaternion.LookRotation(hit.point - transform.position);
+            var rotationToLook = Quaternion.LookRotation(destination - transform.position);
 
             var rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLook.eulerAngles.y, ref _rotateVelocity, rotateSpeed * (Time.deltaTime * 5));
 

@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using _ProjectBeta.Scripts.Player.Interface;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _ProjectBeta.Scripts
+namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
     {
@@ -21,13 +22,13 @@ namespace _ProjectBeta.Scripts
         public event Action OnActiveOne;
         public event Action OnActiveTwo;
         public event Action OnActiveThree;
-        public event Action<Vector2> OnRightClick;
+        public event Action<Vector3> OnRightClick;
         public event Action OnLeftClick;
         public event Action OnSpace;
 
         private NetworkInputData _networkInputData;
         
-        public Vector2 rightClickCommand;
+        public Vector3 rightClickCommand;
         public bool rightClickActiveCommand;
         public bool activeOneCommand;
         public bool activeTwoCommand;
@@ -129,7 +130,12 @@ namespace _ProjectBeta.Scripts
         private void RightClickInputActionInput(InputAction.CallbackContext context)
         {
             rightClickActiveCommand = context.ReadValue<float>() > 0.5f;
-            rightClickCommand = Mouse.current.position.ReadValue();
+            
+            var mouse = Mouse.current.position.ReadValue();
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
+                return;
+
+            rightClickCommand = hit.point;
         }
 
         private void AbilityInputAction1Input(InputAction.CallbackContext context)

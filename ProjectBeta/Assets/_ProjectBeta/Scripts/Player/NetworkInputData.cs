@@ -1,11 +1,11 @@
 using Fusion;
 using UnityEngine;
 
-namespace _ProjectBeta.Scripts
+namespace _ProjectBeta.Scripts.Player
 {
     public struct NetworkInputData : INetworkInput
     {
-        public Vector2 OnRightClick;
+        public Vector3 OnRightClick;
         public NetworkBool OnRightClickActive;
         public NetworkBool OnActiveOne;
         public NetworkBool OnActiveTwo;

@@ -170,13 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  rightClickCommand: {x: 0, y: 0, z: 0}
-  rightClickActiveCommand: 0
-  activeOneCommand: 0
-  activeTwoCommand: 0
-  activeThreeCommand: 0
-  leftClickCommand: 0
-  spaceCommand: 0
 --- !u!114 &6674656875131646998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,8 +252,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 100
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 800
+  m_StoppingDistance: 0.04
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -1,3 +1,4 @@
+using System;
 using _ProjectBeta.Scripts.Player;
 
 namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities

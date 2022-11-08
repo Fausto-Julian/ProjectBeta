@@ -28,13 +28,13 @@ namespace _ProjectBeta.Scripts.Player
 
         private NetworkInputData _networkInputData;
         
-        public Vector3 rightClickCommand;
-        public bool rightClickActiveCommand;
-        public bool activeOneCommand;
-        public bool activeTwoCommand;
-        public bool activeThreeCommand;
-        public bool leftClickCommand;
-        public bool spaceCommand;
+        private Vector3 _rightClickCommand;
+        private bool _rightClickActiveCommand;
+        private bool _activeOneCommand;
+        private bool _activeTwoCommand;
+        private bool _activeThreeCommand;
+        private bool _leftClickCommand;
+        private bool _spaceCommand;
 
         public override void Spawned()
         {
@@ -119,56 +119,56 @@ namespace _ProjectBeta.Scripts.Player
         
         private void SpaceInputAction(InputAction.CallbackContext context)
         {
-            spaceCommand = context.ReadValue<float>() > 0.5f;
+            _spaceCommand = context.ReadValue<float>() > 0.5f;
         }
 
         private void LeftClickInputActionInput(InputAction.CallbackContext context)
         {
-            leftClickCommand = context.ReadValue<float>() > 0.5f;
+            _leftClickCommand = context.ReadValue<float>() > 0.5f;
         }
 
         private void RightClickInputActionInput(InputAction.CallbackContext context)
         {
-            rightClickActiveCommand = context.ReadValue<float>() > 0.5f;
+            _rightClickActiveCommand = context.ReadValue<float>() > 0.5f;
             
             var mouse = Mouse.current.position.ReadValue();
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
                 return;
 
-            rightClickCommand = hit.point;
+            _rightClickCommand = hit.point;
         }
 
         private void AbilityInputAction1Input(InputAction.CallbackContext context)
         {
-            activeOneCommand = context.ReadValue<float>() > 0.5f;
+            _activeOneCommand = context.ReadValue<float>() > 0.5f;
         }
         private void AbilityInputAction2Input(InputAction.CallbackContext context)
         {
-            activeTwoCommand = context.ReadValue<float>() > 0.5f;
+            _activeTwoCommand = context.ReadValue<float>() > 0.5f;
         }
         private void AbilityInputAction3Input(InputAction.CallbackContext context)
         {
-            activeThreeCommand = context.ReadValue<float>() > 0.5f;
+            _activeThreeCommand = context.ReadValue<float>() > 0.5f;
         }
         
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            _networkInputData.OnActiveOne = activeOneCommand;
-            _networkInputData.OnActiveTwo = activeTwoCommand;
-            _networkInputData.OnActiveThree = activeThreeCommand;
-            _networkInputData.OnRightClick = rightClickCommand;
-            _networkInputData.OnLeftClick = leftClickCommand;
-            _networkInputData.OnRightClickActive = rightClickActiveCommand;
-            _networkInputData.OnSpace = spaceCommand;
+            _networkInputData.OnActiveOne = _activeOneCommand;
+            _networkInputData.OnActiveTwo = _activeTwoCommand;
+            _networkInputData.OnActiveThree = _activeThreeCommand;
+            _networkInputData.OnRightClick = _rightClickCommand;
+            _networkInputData.OnLeftClick = _leftClickCommand;
+            _networkInputData.OnRightClickActive = _rightClickActiveCommand;
+            _networkInputData.OnSpace = _spaceCommand;
 
             input.Set(_networkInputData);
 
-            activeOneCommand = false;
-            activeTwoCommand = false;
-            activeThreeCommand = false;
-            leftClickCommand = false;
-            rightClickActiveCommand = false;
-            spaceCommand = false;
+            _activeOneCommand = false;
+            _activeTwoCommand = false;
+            _activeThreeCommand = false;
+            _leftClickCommand = false;
+            _rightClickActiveCommand = false;
+            _spaceCommand = false;
         }
 
         public override void FixedUpdateNetwork()
@@ -186,10 +186,10 @@ namespace _ProjectBeta.Scripts.Player
                 OnActiveTwo?.Invoke();
             
             if (input.OnActiveThree)
-                OnActiveTwo?.Invoke();
+                OnActiveThree?.Invoke();
             
             if (input.OnLeftClick)
-                OnActiveTwo?.Invoke();
+                OnLeftClick?.Invoke();
             
             if (input.OnSpace)
                 OnSpace?.Invoke();

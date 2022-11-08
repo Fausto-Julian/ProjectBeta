@@ -11,7 +11,8 @@ namespace _ProjectBeta.Scripts.Abilities
     [CreateAssetMenu(fileName = "TestAbility", menuName = "TestAbility", order = 0)]
     public class TestAbility : Ability
     {
-        [SerializeField] NetworkBehaviour wall;
+        [SerializeField] private NetworkObject wall;
+        
         public override void Activate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
@@ -19,19 +20,19 @@ namespace _ProjectBeta.Scripts.Abilities
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity))
                 return;
 
-
-
-            if (Vector3.Distance(hit.point, model.transform.position) < 6f)
+            if (Vector3.Distance(hit.point, model.transform.position) < model.GetData().DistanceToAttack)
             {
-
                 var rotation = Quaternion.LookRotation(hit.point - model.transform.position);
                 var wallSpawn = model.Runner.Spawn(wall, hit.point, wall.transform.rotation);
+                
                 var wallRotation = wallSpawn.transform;
-                wallRotation.eulerAngles = new Vector3(wallRotation.eulerAngles.x, rotation.eulerAngles.y, wallRotation.eulerAngles.z);
-
+                var eulerAngles = wallRotation.eulerAngles;
+                
+                eulerAngles = new Vector3(eulerAngles.x, rotation.eulerAngles.y, eulerAngles.z);
+                wallRotation.eulerAngles = eulerAngles;
             }
 
-
+            model.SetStopped(false);
         }
 
     }

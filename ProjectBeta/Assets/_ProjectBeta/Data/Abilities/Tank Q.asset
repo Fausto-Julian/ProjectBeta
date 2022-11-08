@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58167a451a404264897148f1d5fecbbb, type: 3}
   m_Name: Tank Q
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 0
-  wall: {fileID: 8152893930438968066, guid: 5d456ad9ac10e724a930ea65cb751467, type: 3}
+  <CooldownTime>k__BackingField: 10
+  wall: {fileID: 7576899355972144103, guid: 5d456ad9ac10e724a930ea65cb751467, type: 3}

@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Classes
 {
-    public class HealthController: MonoBehaviour
+    public class HealthController
     {
-
-        private Stats _stats;
+        private readonly Stats _stats;
         private float _currentHealth;
         private event Action OnDie;
         private event Action OnTakeDamage;
+
+        public float GetMaxHealth() => _stats.MaxHealth;
         
         public HealthController ( Stats stats )
         {
-            this._stats = stats;
+            _stats = stats;
         }
 
-       
         public void TakeDamage(float damage)
         {
             Debug.Log("recibi da�o");

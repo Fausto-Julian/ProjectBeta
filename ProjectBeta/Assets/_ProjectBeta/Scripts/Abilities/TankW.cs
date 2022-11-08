@@ -18,23 +18,23 @@ namespace _ProjectBeta.Scripts.Abilities
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity))
                 return;
 
-
-
             if (Vector3.Distance(hit.point, model.transform.position) < 5f)
             {
-
-                Collider[] colliders = Physics.OverlapSphere(hit.point, 5f);
-                foreach (Collider players in colliders)
+                var colliders = Physics.OverlapSphere(hit.point, 5f);
+                foreach (var player in colliders)
                 {
-                    if (players.TryGetComponent(out PlayerModel playerModel))
-                    {
-                        if (playerModel == model) continue;
-                        playerModel.DoDamage(10f);
-                    }
-
+                    if (!player.TryGetComponent(out PlayerModel playerModel)) 
+                        continue;
+                    
+                    if (playerModel == model) 
+                        continue;
+                    
+                    playerModel.DoDamage(10f);
                 }
-
+                return;
             }
+            
+            model.SetStopped(false);
         }
     }
 

@@ -2,11 +2,13 @@ using _ProjectBeta.Scripts.ScriptableObjects.Player;
 
 namespace _ProjectBeta.Scripts.Player
 {
+    [System.Serializable]
     public class Stats 
     {
         public float MaxHealth { get => _maxHp; private set => _maxHp = value; }
         public float BaseMovementSpeed { get => _baseMovementSpeed; private set => _baseMovementSpeed = value; }
-        public float BaseDefense { get => _baseDefense; private set => _baseDefense = value; }
+        public float BaseDefense { get => _baseDefense;
+            set => _baseDefense = value; }
 
 
 

@@ -1,17 +1,15 @@
 using System;
-using System.Collections;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
-using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 namespace _ProjectBeta.Scripts.Player
 {
-    public class PlayerModel : NetworkBehaviour, IDamageable, IPlayerUIInvoker
+    public class PlayerModel : MonoBehaviour, IDamageable, IPlayerUIInvoker
     {
         public static PlayerModel Local;
 
@@ -30,7 +28,7 @@ namespace _ProjectBeta.Scripts.Player
 
         private Vector3 _destination;
 
-        public override void Spawned()
+        public void Spawned()
         {
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
@@ -45,7 +43,7 @@ namespace _ProjectBeta.Scripts.Player
 
             healthBar.fillAmount = 1;
 
-            if (Object.HasInputAuthority)
+            if (true)
             {
                 Local = this;
                 FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
@@ -61,14 +59,13 @@ namespace _ProjectBeta.Scripts.Player
             Test.Instance.ActiveRespawn(this);
         }
 
-        [Rpc(RpcSources.All, RpcTargets.All)]
         public void RPC_RestoreMaxHealth()
         {
             _healthController.RestoreMaxHealth();
             healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
-        public override void FixedUpdateNetwork()
+        public void FixedUpdateNetwork()
         {
             if (Vector3.Distance(_destination, transform.position) < 0.05f)
             {
@@ -87,7 +84,6 @@ namespace _ProjectBeta.Scripts.Player
             RPC_UpgradeDefense(value);
         }
 
-        [Rpc(RpcSources.All, RpcTargets.All)]
         private void RPC_UpgradeDefense(float value)
         {
             _stats.BaseDefense += value;
@@ -107,7 +103,6 @@ namespace _ProjectBeta.Scripts.Player
             RPC_TakeDamage(damage);
         }
 
-        [Rpc(RpcSources.All, RpcTargets.All)]
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);

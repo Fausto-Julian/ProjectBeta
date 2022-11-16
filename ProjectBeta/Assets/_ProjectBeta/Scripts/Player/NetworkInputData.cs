@@ -1,16 +1,15 @@
-using Fusion;
 using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Player
 {
-    public struct NetworkInputData : INetworkInput
+    public struct NetworkInputData
     {
         public Vector3 OnRightClick;
-        public NetworkBool OnRightClickActive;
-        public NetworkBool OnActiveOne;
-        public NetworkBool OnActiveTwo;
-        public NetworkBool OnActiveThree;
-        public NetworkBool OnLeftClick;
-        public NetworkBool OnSpace;
+        public bool OnRightClickActive;
+        public bool OnActiveOne;
+        public bool OnActiveTwo;
+        public bool OnActiveThree;
+        public bool OnLeftClick;
+        public bool OnSpace;
     }
 }

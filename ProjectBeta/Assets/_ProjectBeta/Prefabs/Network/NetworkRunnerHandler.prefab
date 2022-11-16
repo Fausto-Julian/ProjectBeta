@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkRunnerPrefab: {fileID: -5678903773362090086, guid: a482e73303245ae4fa8721535f40f037, type: 3}
+  inputNameFieldSession: {fileID: 0}
   inputFieldSession: {fileID: 0}
   buttonCreate: {fileID: 0}
   buttonJoin: {fileID: 0}

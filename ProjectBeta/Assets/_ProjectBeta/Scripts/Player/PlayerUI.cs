@@ -1,5 +1,3 @@
-using System;
-using System.Globalization;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;

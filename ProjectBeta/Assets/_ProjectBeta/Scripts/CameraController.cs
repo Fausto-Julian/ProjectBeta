@@ -26,7 +26,7 @@ namespace _ProjectBeta.Scripts
             if (playerController == null)
                 return;
 
-            if (!playerController.Object.HasInputAuthority)
+            if (true) // input autho
             {
                 Destroy(gameObject);
                 return;

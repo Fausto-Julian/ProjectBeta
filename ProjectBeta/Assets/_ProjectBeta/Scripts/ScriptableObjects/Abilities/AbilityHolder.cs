@@ -1,5 +1,5 @@
-using System;
 using _ProjectBeta.Scripts.Player;
+using UnityEngine;
 
 namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 {
@@ -32,7 +32,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
             if (_state != AbilityState.Cooldown)
                 return;
 
-            _currentTime += _player.Runner.DeltaTime;
+            _currentTime += Time.deltaTime;
 
             if (!(_currentTime >= _ability.CooldownTime)) 
                 return;

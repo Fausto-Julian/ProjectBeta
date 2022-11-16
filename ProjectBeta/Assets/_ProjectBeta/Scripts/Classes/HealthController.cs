@@ -1,6 +1,5 @@
 using System;
 using _ProjectBeta.Scripts.Player;
-using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using UnityEngine;
 
 

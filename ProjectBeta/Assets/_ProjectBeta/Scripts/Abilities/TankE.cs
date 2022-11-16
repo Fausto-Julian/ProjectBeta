@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using _ProjectBeta.Scripts.Player;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _ProjectBeta.Scripts.Abilities
 {

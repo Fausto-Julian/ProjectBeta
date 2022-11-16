@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
 using _ProjectBeta.Scripts.Player.Interface;
-using Fusion;
-using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts.Player
 {
-    public class PlayerController : NetworkBehaviour, IPlayerController, INetworkRunnerCallbacks
+    public class PlayerController : MonoBehaviour, IPlayerController
     {
         private PlayerModel _model;
 
@@ -36,11 +33,11 @@ namespace _ProjectBeta.Scripts.Player
         private bool _leftClickCommand;
         private bool _spaceCommand;
 
-        public override void Spawned()
+        public void Spawned()
         {
-            if (Object.HasInputAuthority)
+            if (true)//Object.HasInputAuthority)
             {
-                Runner.AddCallbacks(this);
+                //Runner.AddCallbacks(this);
             }
 
             PlayerInputGetActions();
@@ -58,7 +55,7 @@ namespace _ProjectBeta.Scripts.Player
                 if (!player.TryGetComponent(out PlayerInput input)) 
                     continue;
                 
-                if (player.Object.HasInputAuthority)
+                //if (player.Object.HasInputAuthority)
                 {
                     _model = player;
                     playerInput = input;
@@ -74,8 +71,8 @@ namespace _ProjectBeta.Scripts.Player
                 return;
             }
             
-            if (!Object.HasInputAuthority)
-                return;
+            //if (!Object.HasInputAuthority)
+                //return;
             
             var inputActions = playerInput.actions;
 
@@ -163,7 +160,7 @@ namespace _ProjectBeta.Scripts.Player
             _activeThreeCommand = context.ReadValue<float>() > 0.5f;
         }
         
-        public void OnInput(NetworkRunner runner, NetworkInput input)
+        public void OnInput()
         {
             _networkInputData.OnActiveOne = _activeOneCommand;
             _networkInputData.OnActiveTwo = _activeTwoCommand;
@@ -173,7 +170,6 @@ namespace _ProjectBeta.Scripts.Player
             _networkInputData.OnRightClickActive = _rightClickActiveCommand;
             _networkInputData.OnSpace = _spaceCommand;
 
-            input.Set(_networkInputData);
 
             _activeOneCommand = false;
             _activeTwoCommand = false;
@@ -183,8 +179,8 @@ namespace _ProjectBeta.Scripts.Player
             _spaceCommand = false;
         }
 
-        public override void FixedUpdateNetwork()
-        {
+        public void FixedUpdateNetwork()
+        {/*
             if (!GetInput(out NetworkInputData input)) 
                 return;
 
@@ -204,23 +200,7 @@ namespace _ProjectBeta.Scripts.Player
                 OnLeftClick?.Invoke();
             
             if (input.OnSpace)
-                OnSpace?.Invoke();
+                OnSpace?.Invoke();*/
         }
-
-        public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){ }
-        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player){ }
-        public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input){ }
-        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason){ }
-        public void OnConnectedToServer(NetworkRunner runner){ }
-        public void OnDisconnectedFromServer(NetworkRunner runner){ }
-        public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token){ }
-        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason){ }
-        public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message){ }
-        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList){ }
-        public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data){ }
-        public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken){ }
-        public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data){ }
-        public void OnSceneLoadDone(NetworkRunner runner){ }
-        public void OnSceneLoadStart(NetworkRunner runner) { }
     }
 }

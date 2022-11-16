@@ -1,17 +1,14 @@
 using _ProjectBeta.Scripts.Player;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
-using _ProjectBeta.Scripts.Classes;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Fusion;
-using Fusion.Sockets;
 
 namespace _ProjectBeta.Scripts.Abilities
 {
     [CreateAssetMenu(fileName = "TestAbility", menuName = "TestAbility", order = 0)]
     public class TestAbility : Ability
     {
-        [SerializeField] private NetworkObject wall;
+        [SerializeField] private MonoBehaviour wall;
         
         public override void Activate(PlayerModel model)
         {
@@ -23,7 +20,7 @@ namespace _ProjectBeta.Scripts.Abilities
             if (Vector3.Distance(hit.point, model.transform.position) < model.GetData().DistanceToAttack)
             {
                 var rotation = Quaternion.LookRotation(hit.point - model.transform.position);
-                var wallSpawn = model.Runner.Spawn(wall, hit.point, wall.transform.rotation);
+                var wallSpawn = Instantiate(wall, hit.point, wall.transform.rotation);
                 
                 var wallRotation = wallSpawn.transform;
                 var eulerAngles = wallRotation.eulerAngles;

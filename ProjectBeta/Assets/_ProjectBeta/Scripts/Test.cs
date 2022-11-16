@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _ProjectBeta.Scripts.Player;
 using UnityEngine;

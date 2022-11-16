@@ -8,17 +8,17 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enviroment
   - Water
   - UI
-  - Players
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Players One
+  - Players Two
+  - PlayersCol One
+  - PlayersCol Two
+  - Wall One
+  - Wall Two
+  - Nexo One
+  - Nexo Two
   - 
   - 
   - 

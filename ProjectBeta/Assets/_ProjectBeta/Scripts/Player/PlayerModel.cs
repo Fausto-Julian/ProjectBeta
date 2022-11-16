@@ -1,20 +1,24 @@
 using System;
 using _ProjectBeta.Scripts.Classes;
+using _ProjectBeta.Scripts.Extension;
+using _ProjectBeta.Scripts.Manager;
 using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
+using Photon.Pun;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 namespace _ProjectBeta.Scripts.Player
 {
-    public class PlayerModel : MonoBehaviour, IDamageable, IPlayerUIInvoker
+    public class PlayerModel : MonoBehaviourPun, IDamageable, IPlayerUIInvoker
     {
         public static PlayerModel Local;
 
         [SerializeField] private PlayerData data;
-        [SerializeField] private Image healthBar;
+        //[SerializeField] private Image healthBar;
 
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
@@ -41,7 +45,7 @@ namespace _ProjectBeta.Scripts.Player
 
             _agent.speed = data.BaseMovementSpeed;
 
-            healthBar.fillAmount = 1;
+            //healthBar.fillAmount = 1;
 
             if (true)
             {
@@ -59,10 +63,11 @@ namespace _ProjectBeta.Scripts.Player
             Test.Instance.ActiveRespawn(this);
         }
 
+        [PunRPC]
         public void RPC_RestoreMaxHealth()
         {
             _healthController.RestoreMaxHealth();
-            healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
+            //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
         public void FixedUpdateNetwork()
@@ -84,6 +89,7 @@ namespace _ProjectBeta.Scripts.Player
             RPC_UpgradeDefense(value);
         }
 
+        [PunRPC]
         private void RPC_UpgradeDefense(float value)
         {
             _stats.BaseDefense += value;
@@ -100,13 +106,15 @@ namespace _ProjectBeta.Scripts.Player
 
         public void DoDamage(float damage)
         {
+            //Todo: agregar photonview
             RPC_TakeDamage(damage);
         }
 
+        [PunRPC]
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);
-            healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
+            //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
         private void OnActiveOneAbilityHandler()

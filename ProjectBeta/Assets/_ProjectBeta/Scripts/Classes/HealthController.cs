@@ -10,7 +10,9 @@ namespace _ProjectBeta.Scripts.Classes
         private readonly Stats _stats;
         private float _currentHealth;
         public event Action OnDie;
-        public event Action OnTakeDamage;
+        //                maxLife, current, damage 
+        public event Action<float, float> OnChangeHealth;
+        public event Action<float> OnTakeDamage;
 
         public float GetMaxHealth() => _stats.MaxHealth;
         
@@ -26,7 +28,8 @@ namespace _ProjectBeta.Scripts.Classes
             float mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
             _currentHealth -= mitigationDamage;
 
-            OnTakeDamage?.Invoke();
+            OnTakeDamage?.Invoke(damage);
+            OnChangeHealth?.Invoke(_stats.MaxHealth, _currentHealth);
             
             if (_currentHealth <= 0)
                 OnDie?.Invoke();

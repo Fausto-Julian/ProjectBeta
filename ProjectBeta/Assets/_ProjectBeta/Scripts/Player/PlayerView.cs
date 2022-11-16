@@ -1,9 +1,10 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace _ProjectBeta.Scripts.Player
 {
-    public class PlayerView : MonoBehaviour
+    public class PlayerView : MonoBehaviourPun
     {
         private NavMeshAgent agent;
         private Animator animator;
@@ -11,8 +12,8 @@ namespace _ProjectBeta.Scripts.Player
 
         private void Awake()
         {
-            agent = gameObject.GetComponent<NavMeshAgent>();
-            animator = gameObject.GetComponentInChildren<Animator>();
+            agent = GetComponent<NavMeshAgent>();
+            animator = GetComponentInChildren<Animator>();
         }
 
         private void Update()

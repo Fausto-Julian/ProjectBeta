@@ -1,11 +1,12 @@
 using System;
 using _ProjectBeta.Scripts.Player.Interface;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts.Player
 {
-    public class PlayerController : MonoBehaviour, IPlayerController
+    public class PlayerController : MonoBehaviourPun, IPlayerController
     {
         private PlayerModel _model;
 

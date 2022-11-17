@@ -34,59 +34,84 @@ namespace _ProjectBeta.Scripts.Player
         private bool _leftClickCommand;
         private bool _spaceCommand;
 
-        public void Spawned()
+
+        private void Awake()
         {
-            if (true)//Object.HasInputAuthority)
+            if(!photonView.IsMine)
             {
-                //Runner.AddCallbacks(this);
+                Destroy(this);
             }
 
             PlayerInputGetActions();
 
+        }
+
+        //public void Spawned()
+        //{
+            //if (true)Object.HasInputAuthority)
+            //{
+                //Runner.AddCallbacks(this);
+            //}
+
+            //PlayerInputGetActions();
+
             // _inputAsset = GetComponent<PlayerInput>().actions;
             // _playerControls = _inputAsset.FindActionMap("PlayerControls");
-        }
+        //}
 
         private void PlayerInputGetActions()
         {
-            var playerModels = FindObjectsOfType<PlayerModel>();
-            PlayerInput playerInput = null;
-            foreach (var player in playerModels)
-            {
-                if (!player.TryGetComponent(out PlayerInput input)) 
-                    continue;
-                
-                //if (player.Object.HasInputAuthority)
-                {
-                    _model = player;
-                    playerInput = input;
-                    continue;
-                }
-                
-                Destroy(input);
-            }
 
-            if (playerInput == null)
-            {
-                Debug.LogError("Null player Input");
-                return;
-            }
-            
+            //var playerModels = FindObjectsOfType<PlayerModel>();
+            //PlayerInput playerInput = null;
+            //foreach (var player in playerModels)
+            //{
+            //    if (!player.TryGetComponent(out PlayerInput input))
+            //        continue;
+
+            //    if (player.Object.HasInputAuthority)
+            //    {
+            //        _model = player;
+            //        playerInput = input;
+            //        continue;
+            //    }
+
+            //    Destroy(input);
+            //}
+
+            //if (playerInput == null)
+            //{
+            //    Debug.LogError("Null player Input");
+            //    return;
+            //}
+
             //if (!Object.HasInputAuthority)
-                //return;
-            
-            var inputActions = playerInput.actions;
+            //    return;
 
-            if (inputActions != null)
-            {
-                _abilityInputAction1 = inputActions["Ability1"];
-                _abilityInputAction2 = inputActions["Ability2"];
-                _abilityInputAction3 = inputActions["Ability3"];
-                _spaceInputAction = inputActions["CameraLock"];
+            //var inputActions = playerInput.actions;
 
-                _leftClickInputAction = inputActions["LeftClick"];
-                _rightClickInputAction = inputActions["RightClick"];
-            }
+            //if (inputActions != null)
+            //{
+            //    _abilityInputAction1 = inputActions["Ability1"];
+            //    _abilityInputAction2 = inputActions["Ability2"];
+            //    _abilityInputAction3 = inputActions["Ability3"];
+            //    _spaceInputAction = inputActions["CameraLock"];
+
+            //    _leftClickInputAction = inputActions["LeftClick"];
+            //    _rightClickInputAction = inputActions["RightClick"];
+            //}
+            var input = GetComponent<PlayerInput>();
+            _model = GetComponent<PlayerModel>();
+
+            var inputActions = input.actions;
+
+            _abilityInputAction1 = inputActions["Ability1"];
+            _abilityInputAction2 = inputActions["Ability2"];
+            _abilityInputAction3 = inputActions["Ability3"];
+            _spaceInputAction = inputActions["CameraLock"];
+
+            _leftClickInputAction = inputActions["LeftClick"];
+            _rightClickInputAction = inputActions["RightClick"];
 
             OnPlayerControllersSubscribe();
         }

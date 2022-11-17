@@ -1,5 +1,6 @@
 using System;
 using _ProjectBeta.Scripts.Classes;
+using _ProjectBeta.Scripts.Manager;
 using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;

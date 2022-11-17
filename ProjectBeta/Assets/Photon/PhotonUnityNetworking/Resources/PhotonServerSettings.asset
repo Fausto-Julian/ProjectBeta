@@ -37,6 +37,9 @@ MonoBehaviour:
   - ClickRpc
   - DestroyRpc
   - RPC_SendLayer
+  - RPC_RestoreMaxHealth
+  - RPC_TakeDamage
+  - RPC_UpgradeDefense
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

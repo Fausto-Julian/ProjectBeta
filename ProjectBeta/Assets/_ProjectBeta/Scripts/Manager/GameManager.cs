@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using _ProjectBeta.Scripts.ScriptableObjects;
 using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Manager
@@ -6,9 +8,8 @@ namespace _ProjectBeta.Scripts.Manager
     {
         public static GameManager Instance;
 
-        private TypeTeam _team;
-        private string _playerName;
-        
+        [SerializeField] private List<PlayerSpawnData> playersData;
+
         private void Awake()
         {
             if (Instance != null)
@@ -21,9 +22,7 @@ namespace _ProjectBeta.Scripts.Manager
             DontDestroyOnLoad(gameObject);
         }
 
-        public void SetTeam(TypeTeam value) => _team = value;
-        public TypeTeam GetTeam() => _team;
-        public void SetPlayerName(string value) => _playerName = value;
-        public string GetPlayerName() => _playerName;
+        public List<PlayerSpawnData> GetPlayersData() => playersData;
+
     }
 }

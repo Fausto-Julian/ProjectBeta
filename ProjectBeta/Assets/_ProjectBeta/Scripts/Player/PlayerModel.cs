@@ -1,15 +1,11 @@
 using System;
 using _ProjectBeta.Scripts.Classes;
-using _ProjectBeta.Scripts.Extension;
-using _ProjectBeta.Scripts.Manager;
 using _ProjectBeta.Scripts.Player.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using Photon.Pun;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 namespace _ProjectBeta.Scripts.Player
 {
@@ -31,6 +27,8 @@ namespace _ProjectBeta.Scripts.Player
         private float _rotateVelocity;
 
         private Vector3 _destination;
+
+        public static event Action<PlayerModel> OnDiePlayer;
 
         public void Spawned()
         {
@@ -60,7 +58,7 @@ namespace _ProjectBeta.Scripts.Player
 
         private void HealthControllerOnOnDie()
         {
-            Test.Instance.ActiveRespawn(this);
+            OnDiePlayer?.Invoke(this);
         }
 
         [PunRPC]

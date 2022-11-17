@@ -13,6 +13,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         
         [field: SerializeField] public float DistanceToAttack { get; private set; }
         [field: SerializeField] public float DistanceToBasicAttack { get; private set; }
+        [field: SerializeField] public float RespawnCooldown { get; private set; } = 2;
         
         [field: Header("Abilities")]
         [field: SerializeField] public Ability AbilityOne { get; private set; }

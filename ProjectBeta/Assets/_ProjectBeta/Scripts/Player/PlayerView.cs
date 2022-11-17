@@ -6,20 +6,21 @@ namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerView : MonoBehaviourPun
     {
-        private NavMeshAgent agent;
-        private Animator animator;
-        private float motionSmoothTime = 0.1f;
+        private NavMeshAgent _agent;
+        private Animator _animator;
+        private const float MotionSmoothTime = 0.1f;
+        private static readonly int SpeedId = Animator.StringToHash("Speed");
 
         private void Awake()
         {
-            agent = GetComponent<NavMeshAgent>();
-            animator = GetComponentInChildren<Animator>();
+            _agent = GetComponent<NavMeshAgent>();
+            _animator = GetComponentInChildren<Animator>();
         }
 
         private void Update()
         {
-            float speed = agent.velocity.magnitude / agent.speed;
-            animator.SetFloat("Speed", speed, motionSmoothTime, Time.deltaTime);
+            var speed = _agent.velocity.magnitude / _agent.speed;
+            _animator.SetFloat(SpeedId, speed, MotionSmoothTime, Time.deltaTime);
         }
     }
 }

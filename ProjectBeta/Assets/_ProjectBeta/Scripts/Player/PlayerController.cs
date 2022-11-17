@@ -8,8 +8,6 @@ namespace _ProjectBeta.Scripts.Player
 {
     public class PlayerController : MonoBehaviourPun, IPlayerController
     {
-        private PlayerModel _model;
-
         private InputAction _abilityInputAction1;
         private InputAction _abilityInputAction2;
         private InputAction _abilityInputAction3;
@@ -23,17 +21,6 @@ namespace _ProjectBeta.Scripts.Player
         public event Action<Vector3> OnRightClick;
         public event Action OnLeftClick;
         public event Action OnSpace;
-
-        private NetworkInputData _networkInputData;
-        
-        private Vector3 _rightClickCommand;
-        private bool _rightClickActiveCommand;
-        private bool _activeOneCommand;
-        private bool _activeTwoCommand;
-        private bool _activeThreeCommand;
-        private bool _leftClickCommand;
-        private bool _spaceCommand;
-
 
         private void Awake()
         {
@@ -101,7 +88,7 @@ namespace _ProjectBeta.Scripts.Player
             //    _rightClickInputAction = inputActions["RightClick"];
             //}
             var input = GetComponent<PlayerInput>();
-            _model = GetComponent<PlayerModel>();
+            GetComponent<PlayerModel>();
 
             var inputActions = input.actions;
 
@@ -142,18 +129,17 @@ namespace _ProjectBeta.Scripts.Player
         
         private void SpaceInputAction(InputAction.CallbackContext context)
         {
-            _spaceCommand = context.ReadValue<float>() > 0.5f;
+            OnSpace?.Invoke();
         }
 
         private void LeftClickInputActionInput(InputAction.CallbackContext context)
         {
-            _leftClickCommand = context.ReadValue<float>() > 0.5f;
+            //_leftClickCommand = context.ReadValue<float>() > 0.5f;
+            OnLeftClick?.Invoke();
         }
 
         private void RightClickInputActionInput(InputAction.CallbackContext context)
         {
-            _rightClickActiveCommand = context.ReadValue<float>() > 0.5f;
-            
             var mouse = Mouse.current.position.ReadValue();
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
                 return;
@@ -170,63 +156,23 @@ namespace _ProjectBeta.Scripts.Player
                 }
             }
 
-            _rightClickCommand = hit.point;
+            OnRightClick?.Invoke(hit.point);
         }
 
         private void AbilityInputAction1Input(InputAction.CallbackContext context)
         {
-            _activeOneCommand = context.ReadValue<float>() > 0.5f;
+            //_activeOneCommand = context.ReadValue<float>() > 0.5f;
+            OnActiveOne?.Invoke();
         }
         private void AbilityInputAction2Input(InputAction.CallbackContext context)
         {
-            _activeTwoCommand = context.ReadValue<float>() > 0.5f;
+            //_activeTwoCommand = context.ReadValue<float>() > 0.5f;
+            OnActiveTwo?.Invoke();
         }
         private void AbilityInputAction3Input(InputAction.CallbackContext context)
         {
-            _activeThreeCommand = context.ReadValue<float>() > 0.5f;
-        }
-        
-        public void OnInput()
-        {
-            _networkInputData.OnActiveOne = _activeOneCommand;
-            _networkInputData.OnActiveTwo = _activeTwoCommand;
-            _networkInputData.OnActiveThree = _activeThreeCommand;
-            _networkInputData.OnRightClick = _rightClickCommand;
-            _networkInputData.OnLeftClick = _leftClickCommand;
-            _networkInputData.OnRightClickActive = _rightClickActiveCommand;
-            _networkInputData.OnSpace = _spaceCommand;
-
-
-            _activeOneCommand = false;
-            _activeTwoCommand = false;
-            _activeThreeCommand = false;
-            _leftClickCommand = false;
-            _rightClickActiveCommand = false;
-            _spaceCommand = false;
-        }
-
-        public void FixedUpdateNetwork()
-        {/*
-            if (!GetInput(out NetworkInputData input)) 
-                return;
-
-            if (input.OnRightClickActive)
-                OnRightClick?.Invoke(input.OnRightClick);
-            
-            if (input.OnActiveOne)
-                OnActiveOne?.Invoke();
-
-            if (input.OnActiveTwo)
-                OnActiveTwo?.Invoke();
-            
-            if (input.OnActiveThree)
-                OnActiveThree?.Invoke();
-            
-            if (input.OnLeftClick)
-                OnLeftClick?.Invoke();
-            
-            if (input.OnSpace)
-                OnSpace?.Invoke();*/
+            //_activeThreeCommand = context.ReadValue<float>() > 0.5f;
+            OnActiveThree?.Invoke();
         }
     }
 }

@@ -19,33 +19,22 @@ namespace _ProjectBeta.Scripts
         private IPlayerController _playerController;
         private Transform _target;
 
-        private void Start()
+        public void SetTarget(PlayerController playerController)
         {
-            var playerController = GetComponentInParent<PlayerController>();
-
-            if (playerController == null)
-                return;
-
-            if (true) // input autho
-            {
-                Destroy(gameObject);
-                return;
-            }
-
             _playerController = playerController;
             _target = playerController.transform;
-
+            
             _offset = transform.position - _target.position;
 
             _playerController.OnSpace += CameraLock;
-
             _isCameraLocked = true;
-
-            transform.SetParent(null);
         }
 
         private void LateUpdate()
         {
+            if (_target == default)
+                return;
+            
             if (!_isCameraLocked)
             {
                 var mousePos = Mouse.current.position.ReadValue();

@@ -30,7 +30,7 @@ namespace _ProjectBeta.Scripts.Player
 
         public static event Action<PlayerModel> OnDiePlayer;
 
-        public void Spawned()
+        public void Awake()
         {
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
@@ -45,7 +45,7 @@ namespace _ProjectBeta.Scripts.Player
 
             //healthBar.fillAmount = 1;
 
-            if (true)
+            if (photonView.IsMine)
             {
                 Local = this;
                 FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
@@ -61,14 +61,19 @@ namespace _ProjectBeta.Scripts.Player
             OnDiePlayer?.Invoke(this);
         }
 
+        public void RestoreMaxHealth()
+        {
+            photonView.RPC(nameof(RPC_RestoreMaxHealth), RpcTarget.All);
+        }
+
         [PunRPC]
-        public void RPC_RestoreMaxHealth()
+        private void RPC_RestoreMaxHealth()
         {
             _healthController.RestoreMaxHealth();
             //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
-        public void FixedUpdateNetwork()
+        public void Update()
         {
             if (Vector3.Distance(_destination, transform.position) < 0.05f)
             {
@@ -85,7 +90,7 @@ namespace _ProjectBeta.Scripts.Player
         public void UpgradeDefense(float value)
         {
             //RPC_UpgradeDefense(value);
-            photonView.RPC("RPC_UpgradeDefense", RpcTarget.All, value);
+            photonView.RPC(nameof(RPC_UpgradeDefense), RpcTarget.All, value);
         }
 
         [PunRPC]
@@ -105,9 +110,8 @@ namespace _ProjectBeta.Scripts.Player
 
         public void DoDamage(float damage)
         {
-            //Todo: agregar photonview
             //RPC_TakeDamage(damage);
-            photonView.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+            photonView.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage);
         }
 
         [PunRPC]

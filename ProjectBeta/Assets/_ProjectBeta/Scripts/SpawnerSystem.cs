@@ -1,8 +1,10 @@
 using System.Collections;
+using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.Manager;
 using _ProjectBeta.Scripts.Player;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace _ProjectBeta.Scripts
 {
@@ -10,6 +12,7 @@ namespace _ProjectBeta.Scripts
     {
         [SerializeField] private Transform respawnOne;
         [SerializeField] private Transform respawnTwo;
+        [SerializeField] private CameraController cameraController;
 
         private void Awake()
         {
@@ -26,7 +29,10 @@ namespace _ProjectBeta.Scripts
 
                 var position = (bool)teamBlue ? respawnOne.position : respawnTwo.position;
 
-                PhotonNetwork.Instantiate(playersData[index].Prefab.name, position, Quaternion.identity);
+                var player = PhotonNetworkExtension.Instantiate<PlayerController>(playersData[index].Prefab.name, position, Quaternion.identity);
+                
+                Assert.IsNotNull(player);
+                cameraController.SetTarget(player);
             }
 
             PlayerModel.OnDiePlayer += ActiveRespawn;
@@ -46,7 +52,7 @@ namespace _ProjectBeta.Scripts
         {
             model.gameObject.SetActive(false);
             yield return new WaitForSeconds(model.GetData().RespawnCooldown);
-            model.RPC_RestoreMaxHealth();
+            model.RestoreMaxHealth();
             model.gameObject.SetActive(true);
         }
     }

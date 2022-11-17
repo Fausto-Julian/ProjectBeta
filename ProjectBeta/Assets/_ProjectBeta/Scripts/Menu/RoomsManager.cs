@@ -188,7 +188,7 @@ namespace _ProjectBeta.Scripts.Menu
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
-            PhotonNetwork.LoadLevel("GameMultiplayerScene");
+            PhotonNetwork.LoadLevel("AlenScene");
         }
     
         private static void OnLeaveGameButtonClicked()

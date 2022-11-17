@@ -28,7 +28,8 @@ namespace _ProjectBeta.Scripts
         {
             model.gameObject.SetActive(false);
             yield return new WaitForSeconds(2f);
-            model.RPC_RestoreMaxHealth();
+            model.photonView.RPC("RPC_RestoreMaxHealth", Photon.Pun.RpcTarget.All);
+            //model.RPC_RestoreMaxHealth();
             model.gameObject.SetActive(true);
         }
     }

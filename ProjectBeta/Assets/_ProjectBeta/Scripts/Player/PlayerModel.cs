@@ -86,7 +86,8 @@ namespace _ProjectBeta.Scripts.Player
 
         public void UpgradeDefense(float value)
         {
-            RPC_UpgradeDefense(value);
+            //RPC_UpgradeDefense(value);
+            photonView.RPC("RPC_UpgradeDefense", RpcTarget.All, value);
         }
 
         [PunRPC]
@@ -107,7 +108,8 @@ namespace _ProjectBeta.Scripts.Player
         public void DoDamage(float damage)
         {
             //Todo: agregar photonview
-            RPC_TakeDamage(damage);
+            //RPC_TakeDamage(damage);
+            photonView.RPC("RPC_TakeDamage", RpcTarget.All, damage);
         }
 
         [PunRPC]

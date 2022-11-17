@@ -118,6 +118,7 @@ namespace _ProjectBeta.Scripts.Player
         private void RPC_TakeDamage(float damage)
         {
             _healthController.TakeDamage(damage);
+            FloatingTextManager.Instance.CreateFloatingInt(this, (int)damage, Color.yellow);
             //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 

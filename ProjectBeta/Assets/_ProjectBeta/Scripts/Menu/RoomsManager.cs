@@ -15,7 +15,6 @@ namespace _ProjectBeta.Scripts.Menu
         [Header("MainMenu")]
         [SerializeField] private GameObject main;
         [SerializeField] private TMP_InputField roomName;
-        [SerializeField] private TMP_InputField playerName;
         [SerializeField] private Button joinButton;
         
         [Header("Room")]
@@ -41,14 +40,6 @@ namespace _ProjectBeta.Scripts.Menu
             leaveRoomButton.onClick.AddListener(OnLeaveGameButtonClicked);
             joinButton.onClick.AddListener(OnJoinRoomButtonClicked);
             readyButton.onClick.AddListener(OnReadyButtonClicked);
-            
-            PhotonNetwork.AutomaticallySyncScene = true;
-            if (PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.Disconnect();
-            }
-
-            PhotonNetwork.ConnectUsingSettings();
         }
 
         #region Rooms
@@ -205,7 +196,6 @@ namespace _ProjectBeta.Scripts.Menu
                 { GameSettings.PlayerPrefabId, 0 }
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-            PhotonNetwork.NickName = playerName.text;
             var options = new RoomOptions()
             {
                 MaxPlayers = maxPlayers

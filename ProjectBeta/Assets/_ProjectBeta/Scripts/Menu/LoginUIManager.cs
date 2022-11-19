@@ -52,6 +52,12 @@ namespace _ProjectBeta.Scripts.Menu
         {
             _errorWaitTime = new WaitForSeconds(errorShowTime);
         }
+        private void Start()
+        {
+            menuCanvas.interactable = false;
+            menuCanvas.gameObject.SetActive(false);
+           
+        }
 
         public void Initialize(LoginManager manager)
         {
@@ -100,7 +106,7 @@ namespace _ProjectBeta.Scripts.Menu
             
             show.alpha = 0;
             show.gameObject.SetActive(true);
-            hide.interactable = true;
+            show.interactable = true;
             
             counter = 0f;
             while (counter < fadeTime)

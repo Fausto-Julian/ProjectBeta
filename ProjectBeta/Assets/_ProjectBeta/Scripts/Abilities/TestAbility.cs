@@ -10,26 +10,28 @@ namespace _ProjectBeta.Scripts.Abilities
     {
         [SerializeField] private MonoBehaviour wall;
         
-        public override void Activate(PlayerModel model)
+        public override bool TryActivate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
 
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity))
-                return;
+                return false;
 
-            if (Vector3.Distance(hit.point, model.transform.position) < model.GetData().DistanceToAttack)
-            {
-                var rotation = Quaternion.LookRotation(hit.point - model.transform.position);
-                var wallSpawn = Instantiate(wall, hit.point, wall.transform.rotation);
+            if (!(Vector3.Distance(hit.point, model.transform.position) < model.GetData().DistanceToAttack))
+                return false;
+            
+            var rotation = Quaternion.LookRotation(hit.point - model.transform.position);
+            var wallSpawn = Instantiate(wall, hit.point, wall.transform.rotation);
                 
-                var wallRotation = wallSpawn.transform;
-                var eulerAngles = wallRotation.eulerAngles;
+            var wallRotation = wallSpawn.transform;
+            var eulerAngles = wallRotation.eulerAngles;
                 
-                eulerAngles = new Vector3(eulerAngles.x, rotation.eulerAngles.y, eulerAngles.z);
-                wallRotation.eulerAngles = eulerAngles;
-            }
-
+            eulerAngles = new Vector3(eulerAngles.x, rotation.eulerAngles.y, eulerAngles.z);
+            wallRotation.eulerAngles = eulerAngles;
             model.SetStopped(false);
+            return true;
+            
+
         }
 
     }

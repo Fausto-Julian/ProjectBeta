@@ -54,7 +54,9 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
             if (_state != AbilityState.Active)
                 return;
 
-            _ability.Activate(_player);
+            if (!_ability.TryActivate(_player))
+                return;
+
             _state = AbilityState.Cooldown;
             _currentTime = _ability.CooldownTime;
         }

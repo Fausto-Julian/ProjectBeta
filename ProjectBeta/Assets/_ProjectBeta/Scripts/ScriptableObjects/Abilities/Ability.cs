@@ -12,6 +12,6 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
         /// Active ability action.
         /// </summary>
         /// <param name="model">Player Model to which the action will be performed.</param>
-        public abstract void Activate(PlayerModel model);
+        public abstract bool TryActivate(PlayerModel model);
     }
 }

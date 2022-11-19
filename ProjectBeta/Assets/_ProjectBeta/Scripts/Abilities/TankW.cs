@@ -1,4 +1,4 @@
-using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine.InputSystem;
 using UnityEngine;
@@ -26,7 +26,7 @@ namespace _ProjectBeta.Scripts.Abilities
                     if (playerModel == model) 
                         continue;
                     
-                    playerModel.DoDamage(10f);
+                    playerModel.DoDamage(10f, model.photonView.Owner);
                 }
                 return;
             }

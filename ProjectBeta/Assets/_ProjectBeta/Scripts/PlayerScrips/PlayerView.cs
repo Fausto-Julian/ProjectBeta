@@ -2,7 +2,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _ProjectBeta.Scripts.Player
+namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerView : MonoBehaviourPun
     {

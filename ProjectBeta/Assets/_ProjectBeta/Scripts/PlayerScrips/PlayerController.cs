@@ -1,10 +1,10 @@
 using System;
-using _ProjectBeta.Scripts.Player.Interface;
+using _ProjectBeta.Scripts.PlayerScrips.Interface;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _ProjectBeta.Scripts.Player
+namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerController : MonoBehaviourPun, IPlayerController
     {
@@ -144,13 +144,15 @@ namespace _ProjectBeta.Scripts.Player
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
                 return;
 
-            if (Vector3.Distance(hit.point, transform.position) < PlayerModel.Local.GetData().DistanceToBasicAttack)
+            var localModel = PlayerModel.Local;
+
+            if (Vector3.Distance(hit.point, transform.position) < localModel.GetData().DistanceToBasicAttack)
             {
                 if (hit.collider.TryGetComponent(out PlayerModel model))
                 {
-                    if (model != PlayerModel.Local)
+                    if (model != localModel)
                     {
-                        model.DoDamage(10);
+                        model.DoDamage(10, localModel.photonView.Owner);
                         return;
                     }
                 }

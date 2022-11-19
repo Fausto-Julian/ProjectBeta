@@ -1,6 +1,6 @@
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 
-namespace _ProjectBeta.Scripts.Player
+namespace _ProjectBeta.Scripts.PlayerScrips
 {
     [System.Serializable]
     public class Stats 

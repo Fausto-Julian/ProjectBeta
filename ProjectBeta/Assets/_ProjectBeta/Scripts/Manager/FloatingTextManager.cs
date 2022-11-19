@@ -1,6 +1,4 @@
-using System;
-using System.ComponentModel.Design.Serialization;
-using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.PlayerScrips;
 using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Manager

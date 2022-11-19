@@ -1,4 +1,3 @@
-using System;
 using _ProjectBeta.Scripts.Manager;
 using Photon.Pun;
 using UnityEngine;

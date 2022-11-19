@@ -1,6 +1,4 @@
-using System;
-using _ProjectBeta.Scripts.Player;
-using ExitGames.Client.Photon.StructWrapping;
+using _ProjectBeta.Scripts.PlayerScrips;
 using TMPro;
 using UnityEngine;
 

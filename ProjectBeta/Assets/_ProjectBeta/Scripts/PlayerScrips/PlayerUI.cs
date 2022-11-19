@@ -1,11 +1,11 @@
 using _ProjectBeta.Scripts.Classes;
-using _ProjectBeta.Scripts.Player.Interface;
+using _ProjectBeta.Scripts.PlayerScrips.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _ProjectBeta.Scripts.Player
+namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerUI : MonoBehaviour
     {

@@ -37,10 +37,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player> OnTakeDamageStatics; 
         public event Action OnDieStatics;
 
-        private static readonly LayerMask PlayerOneLayerMask = LayerMask.GetMask("Players One");
-        private static readonly LayerMask PlayerTwoLayerMask = LayerMask.GetMask("Players Two");
-        private static readonly LayerMask PlayerColOneLayerMask = LayerMask.GetMask("PlayersCol One");
-        private static readonly LayerMask PlayerColTwoLayerMask = LayerMask.GetMask("PlayersCol Two");
+        private static LayerMask PlayerOneLayerMask;
+        private static LayerMask PlayerTwoLayerMask;
+        private static LayerMask PlayerColOneLayerMask;
+        private static LayerMask PlayerColTwoLayerMask;
 
         private LayerMask _currentPlayerLayerMask;
         private LayerMask _currentProjectileLayerMask;
@@ -71,6 +71,11 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             _agent.speed = data.BaseMovementSpeed;
 
+            PlayerOneLayerMask = LayerMask.GetMask("Players One");
+            PlayerTwoLayerMask = LayerMask.GetMask("Players Two");
+            PlayerColOneLayerMask = LayerMask.GetMask("PlayersCol One");
+            PlayerColTwoLayerMask = LayerMask.GetMask("PlayersCol Two");
+
             //healthBar.fillAmount = 1;
 
             if (photonView.IsMine)
@@ -82,8 +87,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                 {
                     var isTeamOne = (bool)value;
 
-                    var playerLayer = isTeamOne ? PlayerOneLayerMask : PlayerTwoLayerMask;
-                    var projectileLayer = isTeamOne ? PlayerColTwoLayerMask : PlayerColOneLayerMask;
+                    int playerLayer = isTeamOne ? PlayerOneLayerMask : PlayerTwoLayerMask;
+                    int projectileLayer = isTeamOne ? PlayerColTwoLayerMask : PlayerColOneLayerMask;
 
                     photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, projectileLayer);
                 }
@@ -95,7 +100,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
 
         [PunRPC]
-        private void SetLayers(LayerMask playerLayerMask, LayerMask projectileLayerMask)
+        private void SetLayers(int playerLayerMask, int projectileLayerMask)
         {
             _currentPlayerLayerMask = playerLayerMask;
             _currentProjectileLayerMask = projectileLayerMask;

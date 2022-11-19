@@ -5,6 +5,7 @@ using _ProjectBeta.Scripts.Manager;
 using Photon.Pun;
 using UnityEngine;
 using Photon.Realtime;
+using UnityEngine.Assertions;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
 {
@@ -43,7 +44,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             if (!photonView.IsMine)
                 return;
-                
+            
             for (var i = 0; i < _assistanceList.Count; i++)
             {
                 _assistanceList[i].SendAssistance();
@@ -69,6 +70,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                 return;
 
             var playerStatics = model.GetStatisticsController();
+            Assert.IsNotNull(playerStatics);
             
             if (_lastHit != default)
                 if (_lastHit != playerStatics)

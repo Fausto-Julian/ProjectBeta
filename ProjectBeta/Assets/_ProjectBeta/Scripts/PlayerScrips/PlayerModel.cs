@@ -61,7 +61,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             {
                 _playerController = GetComponent<PlayerController>();
                 Local = this;
-                FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
             }
 
             _healthController.OnDie += HealthControllerOnOnDie;
@@ -70,6 +69,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
 
         public StatisticsController GetStatisticsController() => _statisticsController;
+        public HealthController GetHealthController() => _healthController;
 
         private void HealthControllerOnOnDie()
         {

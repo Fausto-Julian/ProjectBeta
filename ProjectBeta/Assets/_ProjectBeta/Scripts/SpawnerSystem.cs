@@ -1,7 +1,7 @@
 using System.Collections;
 using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.Manager;
-using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.PlayerScrips;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Assertions;

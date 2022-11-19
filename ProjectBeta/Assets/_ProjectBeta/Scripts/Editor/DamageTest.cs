@@ -1,4 +1,4 @@
-using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.PlayerScrips;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ namespace _ProjectBeta.Scripts.Editor
 
             if (GUILayout.Button("TakeDamage"))
             {
-                _model.DoDamage(_damage);
+                _model.DoDamage(_damage, default);
             }
         }
     }

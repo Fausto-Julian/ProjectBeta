@@ -1,5 +1,5 @@
 using System;
-using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.PlayerScrips;
 using UnityEngine;
 
 
@@ -16,7 +16,7 @@ namespace _ProjectBeta.Scripts.Classes
 
         public float GetMaxHealth() => _stats.MaxHealth;
         
-        public HealthController ( Stats stats )
+        public HealthController (Stats stats )
         {
             _stats = stats;
             _currentHealth = _stats.MaxHealth;

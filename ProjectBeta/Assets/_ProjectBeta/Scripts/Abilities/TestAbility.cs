@@ -1,4 +1,4 @@
-using _ProjectBeta.Scripts.Player;
+using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -84,6 +84,8 @@ namespace _ProjectBeta.Scripts.Menu
                 props[GameSettings.IsTeamOneId] = team;
 
                 var entry = Instantiate(playerListPrefab, team ? playerListLeft : playerListRight, true);
+                entry.transform.localScale = Vector3.one;
+                
                 entry.Initialize(player.NickName);
 
                 if (props.TryGetValue(GameSettings.ReadyId, out var isPlayerReady))
@@ -133,6 +135,8 @@ namespace _ProjectBeta.Scripts.Menu
             var team = (bool)newPlayer.CustomProperties[GameSettings.IsTeamOneId];
             
             var entry = Instantiate(playerListPrefab,team ? playerListLeft : playerListRight, true);
+            entry.transform.localScale = Vector3.one;
+            
             entry.Initialize(newPlayer.NickName);
             
             if (newPlayer.CustomProperties.TryGetValue(GameSettings.PlayerPrefabId, out var index))

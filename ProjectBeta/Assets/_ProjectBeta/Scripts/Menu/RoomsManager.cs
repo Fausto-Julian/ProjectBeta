@@ -4,6 +4,7 @@ using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -30,7 +31,10 @@ namespace _ProjectBeta.Scripts.Menu
         [SerializeField] private byte maxPlayers;
         [SerializeField] private PlayerListController playerListPrefab;
         [SerializeField] private ChampionsButtonController championsButtonPrefab;
-        
+
+        [Header("StartGameSetting")] 
+        [SerializeField] private string sceneToLoad;
+
         private readonly Dictionary<int, PlayerListController> _playerList = new();
         private readonly List<ChampionsButtonController> _championsCache = new();
 
@@ -174,12 +178,12 @@ namespace _ProjectBeta.Scripts.Menu
 
         #region Buttons
 
-        private static void OnStartGameButtonClicked()
+        private void OnStartGameButtonClicked()
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
-            PhotonNetwork.LoadLevel("NicolasScene");
+            PhotonNetwork.LoadLevel(sceneToLoad);
         }
     
         private static void OnLeaveGameButtonClicked()

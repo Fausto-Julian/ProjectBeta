@@ -94,12 +94,14 @@ namespace _ProjectBeta.Scripts.Menu
             if (hide.alpha <= 0.1)
             {
                 hide.gameObject.SetActive(false);
+                hide.interactable = false;
                 hide.alpha = 0;
             }
             
             show.alpha = 0;
             show.gameObject.SetActive(true);
-
+            hide.interactable = true;
+            
             counter = 0f;
             while (counter < fadeTime)
             {
@@ -173,6 +175,7 @@ namespace _ProjectBeta.Scripts.Menu
 
         public void ActiveVerificationEmail()
         {
+            Clear();
             emailVerificationPanel.SetActive(true);
             backToLoginPanelButton2.interactable = true;
         }

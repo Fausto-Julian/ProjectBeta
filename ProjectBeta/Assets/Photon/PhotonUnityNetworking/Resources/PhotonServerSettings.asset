@@ -40,6 +40,9 @@ MonoBehaviour:
   - RPC_RestoreMaxHealth
   - RPC_TakeDamage
   - RPC_UpgradeDefense
+  - RPC_SendAssistance
+  - RPC_SendDeath
+  - RPC_SendKill
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

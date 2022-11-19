@@ -13,6 +13,7 @@ namespace _ProjectBeta.Scripts
         [SerializeField] private Transform respawnOne;
         [SerializeField] private Transform respawnTwo;
         [SerializeField] private CameraController cameraController;
+        [SerializeField] private PlayerUI playerUI;
 
         private void Awake()
         {
@@ -33,6 +34,11 @@ namespace _ProjectBeta.Scripts
                 
                 Assert.IsNotNull(player);
                 cameraController.SetTarget(player);
+
+                var model = player.GetComponent<PlayerModel>();
+                Assert.IsNotNull(model);
+                
+                playerUI.Initialized(model.GetHealthController(), model.GetData(), model);
             }
 
             PlayerModel.OnDiePlayer += ActiveRespawn;

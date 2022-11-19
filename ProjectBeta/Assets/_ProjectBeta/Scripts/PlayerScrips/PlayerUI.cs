@@ -3,6 +3,7 @@ using _ProjectBeta.Scripts.PlayerScrips.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
@@ -29,6 +30,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Initialized(HealthController healthController, PlayerData data, IPlayerUIInvoker playerUIInvoker)
         {
+            Assert.IsNotNull(healthController);
+            Assert.IsNotNull(playerUIInvoker);
+            Assert.IsNotNull(data);
+            
             _playerHealthController = healthController;
 
             abilityHolderOne.image.sprite = data.AbilityOneIcon;

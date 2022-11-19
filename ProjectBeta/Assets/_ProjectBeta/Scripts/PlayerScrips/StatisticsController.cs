@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _ProjectBeta.Scripts.Manager;
 using Photon.Pun;
 using UnityEngine;
 using Photon.Realtime;
@@ -11,10 +12,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     {
         [SerializeField] private float timeLifeLastHit;
         [SerializeField] private float timeLifeAssistance;
-        
-        private Player _owner;
-        private Player _lastHit;
-        private List<Player> _assistanceList;
+
+        private StatisticsController _lastHit;
+        private readonly List<StatisticsController> _assistanceList = new List<StatisticsController>();
 
         private WaitForSeconds _waitTimeLastHit;
         private WaitForSeconds _waitTimeAssistance;
@@ -35,40 +35,49 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Initialize(PlayerModel model)
         {
-            _owner = model.photonView.Owner;
-            
             model.OnTakeDamageStatics += ModelOnOnTakeDamageStatics;
-            model.OnDieStatics += ModelOnOnDieStatics;
+            model.OnDieStatics += OnDieStatics;
         }
 
-        private void ModelOnOnDieStatics()
+        private void OnDieStatics()
         {
+            if (!photonView.IsMine)
+                return;
+                
             for (var i = 0; i < _assistanceList.Count; i++)
             {
-                photonView.RPC(nameof(RPC_SendAssistance), _assistanceList[i]);
+                _assistanceList[i].SendAssistance();
             }
+
+            SendDeath();
+
+            if (_lastHit == default) 
+                return;
             
-            photonView.RPC(nameof(RPC_SendDeath), _owner);
-            
-            if (_lastHit != default)
-                photonView.RPC(nameof(RPC_SendKill), _lastHit);
+            _lastHit.SendKill();
         }
 
-        private void ModelOnOnTakeDamageStatics(Player model)
+        private void ModelOnOnTakeDamageStatics(Player playerId)
         {
             if (!photonView.IsMine)
                 return;
             
-            if (Equals(model, _owner))
+            if (Equals(playerId, photonView.Owner))
+                return;
+            
+            if (!GameManager.Instance.TryGetPlayer(playerId, out var model))
                 return;
 
+            var playerStatics = model.GetStatisticsController();
+            
             if (_lastHit != default)
-                StartCoroutine(AssistanceCoroutine(_lastHit));
+                if (_lastHit != playerStatics)
+                    StartCoroutine(AssistanceCoroutine(_lastHit));
 
-            StartCoroutine(LastHitCoroutine(model));
+            StartCoroutine(LastHitCoroutine(playerStatics));
         }
 
-        private IEnumerator AssistanceCoroutine(Player model)
+        private IEnumerator AssistanceCoroutine(StatisticsController model)
         {
             if (_assistanceList.Contains(model))
                 yield break;
@@ -81,9 +90,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                 _assistanceList.Remove(model);
         }
         
-        private IEnumerator LastHitCoroutine(Player model)
+        private IEnumerator LastHitCoroutine(StatisticsController player)
         {
-            _lastHit = model;
+            _lastHit = player;
 
             yield return _waitTimeLastHit;
 
@@ -91,18 +100,36 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _assistanceList.Clear();
         }
 
+        public void SendKill()
+        {
+            photonView.RPC(nameof(RPC_SendKill), RpcTarget.All);
+        }
+        
+        public void SendAssistance()
+        {
+            photonView.RPC(nameof(RPC_SendAssistance), RpcTarget.All);
+        }
+        
+        private void SendDeath()
+        {
+            photonView.RPC(nameof(RPC_SendDeath), RpcTarget.All);
+        }
+        
+        [PunRPC]
         private void RPC_SendKill()
         {
             _killCount++;
             OnKillChange?.Invoke(_killCount);
         }
-
+        
+        [PunRPC]
         private void RPC_SendAssistance()
         {
             _assistanceCount++;
             OnAssistanceChange?.Invoke(_assistanceCount);
         }
-
+        
+        [PunRPC]
         private void RPC_SendDeath()
         {
             _deathCount++;

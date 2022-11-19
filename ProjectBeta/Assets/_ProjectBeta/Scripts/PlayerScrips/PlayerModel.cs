@@ -39,11 +39,13 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Awake()
         {
+            GameManager.Instance.AddPlayer(this);
+            
             _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
             _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
             _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
 
-            _playerController = GetComponent<PlayerController>();
+            
             _agent = GetComponent<NavMeshAgent>();
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
@@ -57,6 +59,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             if (photonView.IsMine)
             {
+                _playerController = GetComponent<PlayerController>();
                 Local = this;
                 FindObjectOfType<PlayerUI>()?.Initialized(_healthController, data, this);
             }
@@ -162,6 +165,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private void SubscribePlayerController()
         {
+            if (_playerController == default)
+                return;
+            
             _playerController.OnActiveOne += OnActiveOneAbilityHandler;
             _playerController.OnActiveTwo += OnActiveTwoAbilityHandler;
             _playerController.OnActiveThree += OnActiveThreeAbilityHandler;

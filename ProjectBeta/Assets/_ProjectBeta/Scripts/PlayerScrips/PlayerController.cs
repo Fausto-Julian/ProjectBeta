@@ -22,15 +22,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action OnLeftClick;
         public event Action OnSpace;
 
+        private PlayerModel _model;
+
         private void Awake()
         {
-            if(!photonView.IsMine)
+            if(photonView.IsMine)
             {
-                Destroy(this);
+                PlayerInputGetActions();
             }
-
-            PlayerInputGetActions();
-
         }
 
         //public void Spawned()
@@ -88,7 +87,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             //    _rightClickInputAction = inputActions["RightClick"];
             //}
             var input = GetComponent<PlayerInput>();
-            GetComponent<PlayerModel>();
+            _model = GetComponent<PlayerModel>();
 
             var inputActions = input.actions;
 
@@ -115,18 +114,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _spaceInputAction.performed += SpaceInputAction;
         }
 
-        
 
-        private void OnPlayerControllersUnsubscribe()
-        {
-            _abilityInputAction1.performed -= AbilityInputAction1Input;
-            _abilityInputAction2.performed -= AbilityInputAction2Input;
-            _abilityInputAction3.performed -= AbilityInputAction3Input;
-
-            _leftClickInputAction.performed -= LeftClickInputActionInput;
-            _rightClickInputAction.performed -= RightClickInputActionInput;
-        }
-        
         private void SpaceInputAction(InputAction.CallbackContext context)
         {
             OnSpace?.Invoke();
@@ -144,15 +132,13 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
                 return;
 
-            var localModel = PlayerModel.Local;
-
-            if (Vector3.Distance(hit.point, transform.position) < localModel.GetData().DistanceToBasicAttack)
+            if (hit.collider.TryGetComponent(out PlayerModel model))
             {
-                if (hit.collider.TryGetComponent(out PlayerModel model))
+                if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack)
                 {
-                    if (model != localModel)
+                    if (model != _model)
                     {
-                        model.DoDamage(10, localModel.photonView.Owner);
+                        model.DoDamage(10, _model.photonView.Owner);
                         return;
                     }
                 }

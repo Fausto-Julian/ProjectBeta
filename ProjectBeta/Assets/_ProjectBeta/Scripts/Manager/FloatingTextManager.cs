@@ -1,3 +1,4 @@
+using System;
 using _ProjectBeta.Scripts.PlayerScrips;
 using UnityEngine;
 
@@ -6,15 +7,27 @@ namespace _ProjectBeta.Scripts.Manager
     public class FloatingTextManager : MonoBehaviour
     {
         public static FloatingTextManager Instance;
-        [SerializeField] private GameObject floatingTextPrefab;
+        [SerializeField] private FloatingText floatingTextPrefab;
 
-        
+
+        private void Awake()
+        {
+            if (Instance != default)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
+
         public void CreateFloatingInt(PlayerModel affectedModel, int textInt, Color color)
         {
             var floatingText = Instantiate(floatingTextPrefab, affectedModel.transform.position, Quaternion.identity);
-            floatingText.GetComponent<FloatingText>().InstanciateInt(affectedModel, textInt, color);
+            floatingText.InstanciateInt(affectedModel, textInt, color);
         }
 
+        /*
 
 
         [SerializeField] private PlayerModel _playerModel;
@@ -37,6 +50,6 @@ namespace _ProjectBeta.Scripts.Manager
                 timer = 2;
             }
             
-        }
+        }*/
     }
 }

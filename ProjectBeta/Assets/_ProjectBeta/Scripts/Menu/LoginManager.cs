@@ -49,12 +49,11 @@ namespace _ProjectBeta.Scripts.Menu
             _auth = FirebaseAuth.DefaultInstance;
 
             _auth.StateChanged += AuthOnStateChanged;
-            AuthOnStateChanged(this, null);
         }
 
         private void AuthOnStateChanged(object sender, EventArgs e)
         {
-            if (_auth.CurrentUser == null || _auth.CurrentUser == _user)
+            if (_auth.CurrentUser == default || _auth.CurrentUser == _user)
                 return;
 
             _user = _auth.CurrentUser;
@@ -92,6 +91,8 @@ namespace _ProjectBeta.Scripts.Menu
             {
                 PhotonNetwork.NickName = _user.DisplayName;
 
+                PhotonNetwork.AutomaticallySyncScene = true;
+
                 var props = PhotonNetwork.LocalPlayer.CustomProperties;
                 props[GameSettings.ReadyId] = false;
                 PhotonNetwork.LocalPlayer.SetCustomProperties(props);
@@ -109,7 +110,7 @@ namespace _ProjectBeta.Scripts.Menu
             loginUIManager.SetActiveRegisterButtons(false);
             loginUIManager.ClearOutput();
 
-            if (email == string.Empty)
+            if (string.IsNullOrWhiteSpace(email))
             {
                 loginUIManager.SendUserError(UserError.EmailNotEnter);
                 loginUIManager.SetActiveRegisterButtons(true);

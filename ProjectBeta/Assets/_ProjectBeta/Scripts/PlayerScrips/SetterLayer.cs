@@ -2,7 +2,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace _ProjectBeta.Scripts.Player
+namespace _ProjectBeta.Scripts.PlayerScrips
 {
     [RequireComponent(typeof(PhotonView))]
     public class SetterLayer : MonoBehaviour

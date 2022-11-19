@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _ProjectBeta.Scripts.Player.Interface
+namespace _ProjectBeta.Scripts.PlayerScrips.Interface
 {
     public interface IPlayerController
     {

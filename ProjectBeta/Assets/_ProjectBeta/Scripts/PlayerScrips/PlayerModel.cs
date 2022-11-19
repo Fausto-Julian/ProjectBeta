@@ -1,14 +1,15 @@
 using System;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.Manager;
-using _ProjectBeta.Scripts.Player.Interface;
+using _ProjectBeta.Scripts.PlayerScrips.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _ProjectBeta.Scripts.Player
+namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerModel : MonoBehaviourPun, IDamageable, IPlayerUIInvoker
     {
@@ -29,7 +30,12 @@ namespace _ProjectBeta.Scripts.Player
 
         private Vector3 _destination;
 
+        private StatisticsController _statisticsController;
+
         public static event Action<PlayerModel> OnDiePlayer;
+
+        public event Action<Player> OnTakeDamageStatics; 
+        public event Action OnDieStatics;
 
         public void Awake()
         {
@@ -41,6 +47,9 @@ namespace _ProjectBeta.Scripts.Player
             _agent = GetComponent<NavMeshAgent>();
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
+            
+            _statisticsController = GetComponent<StatisticsController>();
+            _statisticsController.Initialize(this);
 
             _agent.speed = data.BaseMovementSpeed;
 
@@ -57,8 +66,11 @@ namespace _ProjectBeta.Scripts.Player
             SubscribePlayerController();
         }
 
+        public StatisticsController GetStatisticsController() => _statisticsController;
+
         private void HealthControllerOnOnDie()
         {
+            OnDieStatics?.Invoke();
             OnDiePlayer?.Invoke(this);
         }
 
@@ -109,15 +121,17 @@ namespace _ProjectBeta.Scripts.Player
             _agent.SetDestination(_destination);
         }
 
-        public void DoDamage(float damage)
+        public void DoDamage(float damage, Player doesTheDamage)
         {
             //RPC_TakeDamage(damage);
-            photonView.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage);
+            photonView.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage, doesTheDamage);
         }
 
         [PunRPC]
-        private void RPC_TakeDamage(float damage)
+        private void RPC_TakeDamage(float damage, Player doesTheDamage)
         {
+            if (doesTheDamage != null)
+                OnTakeDamageStatics?.Invoke(doesTheDamage);
             _healthController.TakeDamage(damage);
             FloatingTextManager.Instance.CreateFloatingInt(this, (int)damage, Color.yellow);
             //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
@@ -152,14 +166,6 @@ namespace _ProjectBeta.Scripts.Player
             _playerController.OnActiveTwo += OnActiveTwoAbilityHandler;
             _playerController.OnActiveThree += OnActiveThreeAbilityHandler;
             _playerController.OnRightClick += Movement;
-        }
-
-        private void UnSubscribePlayerController()
-        {
-            _playerController.OnActiveOne -= _abilityHolderOne.Activate;
-            _playerController.OnActiveTwo -= _abilityHolderTwo.Activate;
-            _playerController.OnActiveThree -= _abilityHolderThree.Activate;
-            _playerController.OnRightClick -= Movement;
         }
 
 #if UNITY_EDITOR

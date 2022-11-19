@@ -11,6 +11,9 @@ namespace _ProjectBeta.Scripts
         [SerializeField] private float borderThickness;
         [SerializeField] private float smoothness;
 
+        [SerializeField] private float offsetZ;
+        [SerializeField] private float offsetY;
+        
         private Vector3 _offset;
         private Vector3 _pos;
 
@@ -23,8 +26,13 @@ namespace _ProjectBeta.Scripts
         {
             _playerController = playerController;
             _target = playerController.transform;
-            
-            _offset = transform.position - _target.position;
+
+
+            var targetPosition = _target.position;
+            var position = new Vector3(targetPosition.x, offsetY, targetPosition.z - offsetZ);
+            transform.position = position;
+
+            _offset = position - targetPosition;
 
             _playerController.OnSpace += CameraLock;
             _isCameraLocked = true;

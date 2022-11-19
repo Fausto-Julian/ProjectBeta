@@ -179,7 +179,7 @@ namespace _ProjectBeta.Scripts.Menu
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
-            PhotonNetwork.LoadLevel("AlenScene");
+            PhotonNetwork.LoadLevel("NicolasScene");
         }
     
         private static void OnLeaveGameButtonClicked()

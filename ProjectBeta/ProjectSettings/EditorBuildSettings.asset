@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_ProjectBeta/Scenes/AlenScene/AlenScene.unity
     guid: 1d054139d2783014a87f964fe5d3b5ca
+  - enabled: 1
+    path: Assets/_ProjectBeta/Scenes/NicolasScene.unity
+    guid: 3199c55f61959894e9fdd0cd3be64b06
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b0e315a2c6f893449803f40658c10bf1, type: 2}

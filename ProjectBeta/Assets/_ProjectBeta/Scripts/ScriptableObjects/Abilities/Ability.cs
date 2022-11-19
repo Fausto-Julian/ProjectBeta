@@ -6,6 +6,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
     public abstract class Ability : ScriptableObject
     {
         [field: SerializeField] public float CooldownTime { get; private set; }
+        [field: SerializeField] public Sprite Sprite { get; private set; }
 
         /// <summary>
         /// Active ability action.

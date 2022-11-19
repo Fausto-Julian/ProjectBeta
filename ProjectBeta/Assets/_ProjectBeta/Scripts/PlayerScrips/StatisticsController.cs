@@ -15,11 +15,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [SerializeField] private float timeLifeLastHit;
         [SerializeField] private float timeLifeAssistance;
         
-        [Header("Statistics")]
-        [SerializeField] private TextMeshProUGUI destroyedWallsCount;
-        [SerializeField] private TextMeshProUGUI killsCountText;
-        [SerializeField] private TextMeshProUGUI assistsCountText;
-        [SerializeField] private TextMeshProUGUI deathCountText;
 
         private StatisticsController _lastHit;
         private readonly List<StatisticsController> _assistanceList = new List<StatisticsController>();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthBarSlider : MonoBehaviour
+public class LookAtMainCamera : MonoBehaviour
 {
     private void LateUpdate()
     {

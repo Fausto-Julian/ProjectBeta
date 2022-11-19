@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 6416456579521408248}
   - component: {fileID: 1180698061183810989}
   - component: {fileID: 6024519512862708432}
+  - component: {fileID: 3543279196052020757}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -405,6 +406,20 @@ MonoBehaviour:
   killsCountText: {fileID: 0}
   assistsCountText: {fileID: 0}
   deathCountText: {fileID: 0}
+--- !u!114 &3543279196052020757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734709936710267456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba6e670b8ed44819f0161a459986810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 7999616965552534937}
+  floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!1 &4264053876075363412
 GameObject:
   m_ObjectHideFlags: 0

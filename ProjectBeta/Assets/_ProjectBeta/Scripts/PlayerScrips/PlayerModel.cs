@@ -8,6 +8,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
 {
@@ -16,8 +17,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public static PlayerModel Local;
 
         [SerializeField] private PlayerData data;
-        //[SerializeField] private Image healthBar;
 
+        
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
         private AbilityHolder _abilityHolderThree;
@@ -35,6 +36,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public static event Action<PlayerModel> OnDiePlayer;
 
         public event Action<Player> OnTakeDamageStatics; 
+        public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
         public void Awake()
@@ -55,11 +57,17 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             _agent.speed = data.BaseMovementSpeed;
 
-            //healthBar.fillAmount = 1;
+            
+            
 
             if (photonView.IsMine)
             {
                 _playerController = GetComponent<PlayerController>();
+                var playerHeadUI = GetComponent<PlayerHeadUI>();
+                Assert.IsNotNull(playerHeadUI);
+                playerHeadUI.Initialize(this);
+                
+                
                 Local = this;
             }
 
@@ -86,7 +94,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void RPC_RestoreMaxHealth()
         {
             _healthController.RestoreMaxHealth();
-            //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
         }
 
         public void Update()
@@ -137,11 +144,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [PunRPC]
         private void RPC_TakeDamage(float damage, Player doesTheDamage)
         {
-            if (doesTheDamage != null)
+            if (doesTheDamage != default)
+            {
                 OnTakeDamageStatics?.Invoke(doesTheDamage);
+                OnTakeDamageUI?.Invoke(doesTheDamage, damage);
+            }
+            
             _healthController.TakeDamage(damage);
-            FloatingTextManager.Instance.CreateFloatingInt(this, (int)damage, Color.yellow);
-            //healthBar.fillAmount = _healthController.GetCurrentHealth() / _healthController.GetMaxHealth();
+            
         }
 
         private void OnActiveOneAbilityHandler()

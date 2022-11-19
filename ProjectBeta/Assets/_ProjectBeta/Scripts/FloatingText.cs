@@ -12,28 +12,26 @@ namespace _ProjectBeta.Scripts
 
         private PlayerModel _model;
         private TextMeshPro _textMeshPro;
-
+        private float _currentTime;
 
         private void Awake()
         {
-            _textMeshPro = gameObject.GetComponent<TextMeshPro>();
+            _textMeshPro = GetComponent<TextMeshPro>();
+            lifeTime = Time.time + lifeTime;
         }
 
-        public void InstanciateInt(PlayerModel model, int textInt, Color color)
+        public void InstanciateInt(Vector3 position, int textInt, Color color)
         {
-            _model = model;
-            
             _textMeshPro.text = textInt.ToString();
             _textMeshPro.color = color;
-            gameObject.transform.position = model.transform.position + Vector3.up;
+            gameObject.transform.position = position + Vector3.up;
         }
 
 
         private void Update()
         {
-            lifeTime -= Time.deltaTime;
 
-            if (lifeTime > 0)
+            if (lifeTime >= Time.time)
             {
                 gameObject.transform.position += Vector3.up * (Time.deltaTime * speed);
                 _textMeshPro.alpha -= 1f * (Time.deltaTime * fadeSpeed);

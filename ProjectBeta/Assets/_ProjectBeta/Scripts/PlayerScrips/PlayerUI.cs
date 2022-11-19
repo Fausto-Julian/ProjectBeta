@@ -29,9 +29,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private float _startTime;
         
-        private int _killCount;
-        private int _assistanceCount;
-        private int _deathCount;
 
         private bool _one;
         private bool _two;
@@ -91,23 +88,11 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             abilityHolderThreeText.text = ((int)time).ToString();
         }
         
-        private void UpdateKillStatUI(int kills)
-        {
-            _killCount += kills;
-            killsCountText.text = _killCount.ToString();
-        }
-        private void UpdateAssistanceUI(int assist)
-        {
-            _assistanceCount += assist;
-            assistsCountText.text = _assistanceCount.ToString();
-        }
-        
-        private void UpdateDeathsStatUI(int deaths)
-        {
-            _deathCount += deaths;
-            deathCountText.text = _deathCount.ToString();
-        }
-        
+        private void UpdateKillStatUI(int kills) => killsCountText.text = kills.ToString();
+        private void UpdateAssistanceUI(int assist) => assistsCountText.text = assist.ToString();
+
+        private void UpdateDeathsStatUI(int deaths) => deathCountText.text = deaths.ToString();
+
         private void UpdateTimer()
         {
             float timerControl = Time.time - _startTime;

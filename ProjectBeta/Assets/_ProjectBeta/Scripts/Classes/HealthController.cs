@@ -25,7 +25,7 @@ namespace _ProjectBeta.Scripts.Classes
         public void TakeDamage(float damage)
         {
             Debug.Log("recibi da�o");
-            float mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
+            var mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
             _currentHealth -= mitigationDamage;
 
             OnTakeDamage?.Invoke(damage);
@@ -47,7 +47,8 @@ namespace _ProjectBeta.Scripts.Classes
 
         public void RestoreMaxHealth()
         {
-            _currentHealth += _stats.MaxHealth;
+            _currentHealth = _stats.MaxHealth;
+            OnChangeHealth?.Invoke(_stats.MaxHealth, _currentHealth);
         }
 
         public float GetCurrentHealth() => _currentHealth;

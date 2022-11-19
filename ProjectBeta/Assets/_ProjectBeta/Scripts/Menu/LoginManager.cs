@@ -28,6 +28,8 @@ namespace _ProjectBeta.Scripts.Menu
 
         private async void CheckAndFixDependenciesCoroutine()
         {
+            loginUIManager.SetActiveLoginButtons(false);
+            
             var task = FirebaseApp.CheckAndFixDependenciesAsync();
             await task;
 
@@ -38,6 +40,8 @@ namespace _ProjectBeta.Scripts.Menu
             }
 
             InitializeFireBase();
+            
+            loginUIManager.SetActiveLoginButtons(true);
         }
 
         private void InitializeFireBase()

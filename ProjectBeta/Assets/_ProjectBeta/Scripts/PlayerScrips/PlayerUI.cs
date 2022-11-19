@@ -1,5 +1,6 @@
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.PlayerScrips.Interface;
+using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using TMPro;
 using UnityEngine;
@@ -11,129 +12,129 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     public class PlayerUI : MonoBehaviour
     {
         [SerializeField] private Image lifeBar;
-        [SerializeField] private Button abilityHolderOne;
-        [SerializeField] private Button abilityHolderTwo;
-        [SerializeField] private Button abilityHolderThree;
+        
+        [Header("Abilities")]
+        [SerializeField] private Button abilityHolderOneButton;
+        [SerializeField] private Button abilityHolderTwoButton;
+        [SerializeField] private Button abilityHolderThreeButton;
         [SerializeField] private TextMeshProUGUI abilityHolderOneText;
         [SerializeField] private TextMeshProUGUI abilityHolderTwoText;
         [SerializeField] private TextMeshProUGUI abilityHolderThreeText;
+        [Header("Statistics")]
+        [SerializeField] private TextMeshProUGUI timerText;
+        [SerializeField] private TextMeshProUGUI destroyedWallsCount;
+        [SerializeField] private TextMeshProUGUI killsCountText;
+        [SerializeField] private TextMeshProUGUI assistsCountText;
+        [SerializeField] private TextMeshProUGUI deathCountText;
 
-        private HealthController _playerHealthController;
-
-        private float _currentTimeOne;
-        private float _currentTimeTwo;
-        private float _currentTimeThree;
+        private float _startTime;
         
+        private int _killCount;
+        private int _assistanceCount;
+        private int _deathCount;
+
         private bool _one;
         private bool _two;
         private bool _three;
 
-        public void Initialized(HealthController healthController, PlayerData data, IPlayerUIInvoker playerUIInvoker)
+        public void Initialized(PlayerModel playerModel, AbilityHolder abilityHolderOne, AbilityHolder abilityHolderTwo, AbilityHolder abilityHolderThree)
         {
+            var statisticController = playerModel.GetStatisticsController();
+            Assert.IsNotNull(statisticController);
+            var healthController = playerModel.GetHealthController();
             Assert.IsNotNull(healthController);
-            Assert.IsNotNull(playerUIInvoker);
+
+            var data = playerModel.GetData();
             Assert.IsNotNull(data);
             
-            _playerHealthController = healthController;
-
-            abilityHolderOne.image.sprite = data.AbilityOneIcon;
-            abilityHolderTwo.image.sprite = data.AbilityTwoIcon;
-            abilityHolderThree.image.sprite = data.AbilityThreeIcon;
             
-            playerUIInvoker.ActiveAbilityOne += PlayerUIInvokerOnActiveAbilityOne;
-            playerUIInvoker.ActiveAbilityTwo += PlayerUIInvokerOnActiveAbilityTwo;
-            playerUIInvoker.ActiveAbilityThree += PlayerUIInvokerOnActiveAbilityThree;
+            abilityHolderOneButton.image.sprite = abilityHolderOne.GetAbilitySprite();
+            abilityHolderTwoButton.image.sprite = abilityHolderTwo.GetAbilitySprite();
+            abilityHolderThreeButton.image.sprite = abilityHolderThree.GetAbilitySprite();
+
+            abilityHolderOne.OnChangeCooldownTime += UpdateAbilityOne;
+            abilityHolderTwo.OnChangeCooldownTime += UpdateAbilityTwo;
+            abilityHolderThree.OnChangeCooldownTime += UpdateAbilityThree;
+            
+            
+            abilityHolderOne.OnActiveAbility += PlayerUIInvokerOnActiveAbilityOne;
+            abilityHolderTwo.OnActiveAbility += PlayerUIInvokerOnActiveAbilityTwo;
+            abilityHolderThree.OnActiveAbility += PlayerUIInvokerOnActiveAbilityThree;
+
+            statisticController.OnKillChange += UpdateKillStatUI;
+            statisticController.OnAssistanceChange += UpdateAssistanceUI;
+            statisticController.OnDeathChange += UpdateDeathsStatUI;
+            
+            healthController.OnChangeHealth += UpdateLife;
         }
         
         private void Update()
         {
-            UpdateLife();
-
-            UpdateAbilityOne();
-            UpdateAbilityTwo();
-            UpdateAbilityThree();
+            UpdateTimer();
         }
 
-        private void UpdateLife()
+        private void UpdateLife(float maxHealth, float currentHealth)
         {
-            if (_playerHealthController == default)
-                return;
-            var value = _playerHealthController.GetCurrentHealth() / _playerHealthController.GetMaxHealth();
+            var value = currentHealth / maxHealth;
             lifeBar.fillAmount = value;
         }
-
-        private void UpdateAbilityOne()
+        private void UpdateAbilityOne(float time)
         {
-            if (!_one)
-                return;
-
-            _currentTimeOne -= Time.deltaTime;
-
-            abilityHolderOneText.text = ((int)_currentTimeOne).ToString();
-            
-            if (_currentTimeOne > 0)
-                return;
-
-            _one = false;
-            abilityHolderOneText.gameObject.SetActive(false);
-            abilityHolderOne.interactable = true;
+            abilityHolderOneText.text = ((int)time).ToString();
         }
-        private void UpdateAbilityTwo()
+        private void UpdateAbilityTwo(float time)
         {
-            if (!_two)
-                return;
-
-            _currentTimeTwo -= Time.deltaTime;
-
-            abilityHolderTwoText.text = ((int)_currentTimeTwo).ToString();
-            
-            if (_currentTimeTwo > 0)
-                return;
-
-            _two = false;
-            abilityHolderTwoText.gameObject.SetActive(false);
-            abilityHolderTwo.interactable = true;
+            abilityHolderTwoText.text = ((int)time).ToString();
         }
-        private void UpdateAbilityThree()
+        private void UpdateAbilityThree(float time)
         {
-            if (!_three)
-                return;
+            abilityHolderThreeText.text = ((int)time).ToString();
+        }
+        
+        private void UpdateKillStatUI(int kills)
+        {
+            _killCount += kills;
+            killsCountText.text = _killCount.ToString();
+        }
+        private void UpdateAssistanceUI(int assist)
+        {
+            _assistanceCount += assist;
+            assistsCountText.text = _assistanceCount.ToString();
+        }
+        
+        private void UpdateDeathsStatUI(int deaths)
+        {
+            _deathCount += deaths;
+            deathCountText.text = _deathCount.ToString();
+        }
+        
+        private void UpdateTimer()
+        {
+            float timerControl = Time.time - _startTime;
+            string mins = ((int)timerControl / 60).ToString("00");
+            string segs = (timerControl % 60).ToString("00");
+        
 
-            _currentTimeThree -= Time.deltaTime;
-
-            abilityHolderThreeText.text = ((int)_currentTimeThree).ToString();
-            
-            if (_currentTimeThree > 0)
-                return;
-
-            _three = false;
-            abilityHolderThreeText.gameObject.SetActive(false);
-            abilityHolderThree.interactable = true;
+            timerText.text = string.Format("{00}:{01}", mins, segs);
         }
 
 
-        private void PlayerUIInvokerOnActiveAbilityOne(float time)
+        private void PlayerUIInvokerOnActiveAbilityOne()
         {
-            abilityHolderOne.interactable = false;
-            _currentTimeOne = time;
+            abilityHolderOneButton.interactable = false;
             abilityHolderOneText.gameObject.SetActive(true);
-            _one = true;
         }
         
-        private void PlayerUIInvokerOnActiveAbilityTwo(float time)
+        private void PlayerUIInvokerOnActiveAbilityTwo()
         {
-            abilityHolderTwo.interactable = false;
-            _currentTimeTwo = time;
+            abilityHolderTwoButton.interactable = false;
             abilityHolderTwoText.gameObject.SetActive(true);
-            _two = true;
         }
         
-        private void PlayerUIInvokerOnActiveAbilityThree(float time)
+        private void PlayerUIInvokerOnActiveAbilityThree()
         {
-            abilityHolderThree.interactable = false;
-            _currentTimeThree = time;
+            abilityHolderThreeButton.interactable = false;
             abilityHolderThreeText.gameObject.SetActive(true);
-            _three = true;
         }
     }
 }

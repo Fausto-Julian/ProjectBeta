@@ -5,6 +5,7 @@ using _ProjectBeta.Scripts.Manager;
 using Photon.Pun;
 using UnityEngine;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine.Assertions;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
@@ -13,6 +14,12 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     {
         [SerializeField] private float timeLifeLastHit;
         [SerializeField] private float timeLifeAssistance;
+        
+        [Header("Statistics")]
+        [SerializeField] private TextMeshProUGUI destroyedWallsCount;
+        [SerializeField] private TextMeshProUGUI killsCountText;
+        [SerializeField] private TextMeshProUGUI assistsCountText;
+        [SerializeField] private TextMeshProUGUI deathCountText;
 
         private StatisticsController _lastHit;
         private readonly List<StatisticsController> _assistanceList = new List<StatisticsController>();
@@ -20,6 +27,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private WaitForSeconds _waitTimeLastHit;
         private WaitForSeconds _waitTimeAssistance;
 
+        private float _startTime;
         private int _killCount;
         private int _assistanceCount;
         private int _deathCount;
@@ -102,6 +110,11 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _assistanceList.Clear();
         }
 
+
+        
+
+        
+        
         public void SendKill()
         {
             photonView.RPC(nameof(RPC_SendKill), RpcTarget.All);

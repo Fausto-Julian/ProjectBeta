@@ -1,3 +1,4 @@
+using System;
 using _ProjectBeta.Scripts.PlayerScrips;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 
         private AbilityState _state;
 
+        public event Action<float> OnChangeCooldownTime;
+        public event Action OnActiveAbility;
         public AbilityHolder(Ability ability, PlayerModel model)
         {
             _ability = ability;
@@ -32,13 +35,15 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
             if (_state != AbilityState.Cooldown)
                 return;
 
-            _currentTime += Time.deltaTime;
+            _currentTime -= Time.deltaTime;
 
-            if (!(_currentTime >= _ability.CooldownTime)) 
+            OnChangeCooldownTime?.Invoke(_currentTime);
+            
+            if (!(_currentTime < 0)) 
                 return;
             
             _state = AbilityState.Active;
-            _currentTime = 0;
+            
         }
 
         /// <summary>
@@ -51,6 +56,9 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 
             _ability.Activate(_player);
             _state = AbilityState.Cooldown;
+            _currentTime = _ability.CooldownTime;
         }
+
+        public Sprite GetAbilitySprite() => _ability.Sprite;
     }
 }

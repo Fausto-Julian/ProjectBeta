@@ -401,6 +401,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLifeLastHit: 10
   timeLifeAssistance: 6
+  destroyedWallsCount: {fileID: 0}
+  killsCountText: {fileID: 0}
+  assistsCountText: {fileID: 0}
+  deathCountText: {fileID: 0}
 --- !u!1 &4264053876075363412
 GameObject:
   m_ObjectHideFlags: 0

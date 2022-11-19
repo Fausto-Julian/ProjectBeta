@@ -68,6 +68,30 @@ crashlytics-build.properties
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 /ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_0_1.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_1.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_2.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_3.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_4.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_5.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_6.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_7.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_8.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_9.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_1_10.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_0.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_1.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_2.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_3.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_4.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_5.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_6.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_7.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_8.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_9.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_2_10.bundle
+/ProjectBeta/[Aa]ssets/[Ff]irebase/[Pp]lugins/x86_64/[Ff]irebaseCppApp-10_3_0.bundle
+
+
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta

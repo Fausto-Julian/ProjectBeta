@@ -10,6 +10,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         [field: SerializeField] public float MaxHealth { get; private set; }
         [field: SerializeField] public float BaseMovementSpeed { get; private set; }
         [field: SerializeField] public float BaseDefense { get; private set; }
+        [field: SerializeField] public float BaseDamage { get; private set; }
         
         [field: SerializeField] public float DistanceToAttack { get; private set; }
         [field: SerializeField] public float DistanceToBasicAttack { get; private set; }

@@ -41,7 +41,7 @@ namespace _ProjectBeta.Scripts.Abilities
 
             var projectile = PhotonNetworkExtension.Instantiate<Projectile>(projectilePrefab.name, model.transform.position, projectilePrefab.transform.rotation, layer);
 
-            projectile.Initialize(speed, lifeTimeProjectile, damage, target.transform.position - model.transform.position);
+            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().BaseDamage, target.transform.position - model.transform.position);
 
             model.SetStopped(false);
             return true;

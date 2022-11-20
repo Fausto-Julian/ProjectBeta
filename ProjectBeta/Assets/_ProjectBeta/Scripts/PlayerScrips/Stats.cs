@@ -7,6 +7,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     {
         public float MaxHealth { get => _maxHp; private set => _maxHp = value; }
         public float BaseMovementSpeed { get => _baseMovementSpeed; private set => _baseMovementSpeed = value; }
+        public float BaseDamage { get => _baseDamage;  set => _baseDamage = value; }
         public float BaseDefense { get => _baseDefense;
             set => _baseDefense = value; }
 
@@ -15,6 +16,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private float _maxHp;
         private float _baseMovementSpeed;
         private float _baseDefense;
+        private float _baseDamage;
 
 
 
@@ -23,6 +25,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _maxHp = data.MaxHealth;
             _baseMovementSpeed = data.BaseMovementSpeed;
             _baseDefense = data.BaseDefense;
+            _baseDamage = data.BaseDamage;
         }
 
         public Stats(float maxHealth, float baseDefense, float baseMovementSpeed = 0)

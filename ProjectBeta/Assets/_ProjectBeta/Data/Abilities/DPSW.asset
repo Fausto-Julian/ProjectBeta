@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58167a451a404264897148f1d5fecbbb, type: 3}
-  m_Name: DPSQ
+  m_Script: {fileID: 11500000, guid: cdf6bb562fa80ff4289fbedf31d9c2d2, type: 3}
+  m_Name: DPSW
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 2
-  <Sprite>k__BackingField: {fileID: 0}
+  <CooldownTime>k__BackingField: 5
+  <Sprite>k__BackingField: {fileID: 21300000, guid: beff0132a56cbe14da15c3aa39e7aeff, type: 3}
   projectilePrefab: {fileID: 3113588162276556394, guid: cbb56b50e1f0a8c45b57c2091ebe5899, type: 3}
-  speed: 5
-  lifeTimeProjectile: 3
-  damage: 20
-  isSpawnBody: 1
+  speed: 15
+  lifeTimeProjectile: 2
+  damage: 5
+  range: 15

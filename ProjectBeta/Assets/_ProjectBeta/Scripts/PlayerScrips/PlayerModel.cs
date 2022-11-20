@@ -155,6 +155,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void RPC_UpgradeDefense(float value)
         {
             _stats.BaseDefense += value;
+        } 
+        public void UpgradeDamage(float value)
+        {
+            photonView.RPC(nameof(RPC_UpgradeDamage), RpcTarget.All, value);
+        }
+
+        [PunRPC]
+        private void RPC_UpgradeDamage(float value)
+        {
+            _stats.BaseDamage += value;
         }
 
         public Stats GetStats() => _stats;

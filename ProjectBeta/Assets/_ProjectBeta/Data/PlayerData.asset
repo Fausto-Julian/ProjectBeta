@@ -15,12 +15,13 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <BaseMovementSpeed>k__BackingField: 3.5
   <BaseDefense>k__BackingField: 40
+  <BaseDamage>k__BackingField: 20
   <DistanceToAttack>k__BackingField: 8
   <DistanceToBasicAttack>k__BackingField: 5
   <RespawnCooldown>k__BackingField: 2
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: e5d81ccfc69dcd143a9dcebcf09ce90a, type: 2}
-  <AbilityTwo>k__BackingField: {fileID: 11400000, guid: fc0830bdee1bfe44ab6ab1e63e0aa7ff, type: 2}
-  <AbilityThree>k__BackingField: {fileID: 11400000, guid: c7e4868878a1ca540a87f482178c4a68, type: 2}
+  <AbilityTwo>k__BackingField: {fileID: 11400000, guid: d8306d6d17b5ee449bcd7a679655ada6, type: 2}
+  <AbilityThree>k__BackingField: {fileID: 11400000, guid: 3bc8db787a9a78e419dd7da9389bb6ed, type: 2}
   <AbilityOneIcon>k__BackingField: {fileID: 21300000, guid: c21f94d3c253d9e49bbce8b1fcfaae4c, type: 3}
   <AbilityTwoIcon>k__BackingField: {fileID: 21300000, guid: beff0132a56cbe14da15c3aa39e7aeff, type: 3}
   <AbilityThreeIcon>k__BackingField: {fileID: 21300000, guid: 3db496306c0f26a4f98b6604db2f110e, type: 3}

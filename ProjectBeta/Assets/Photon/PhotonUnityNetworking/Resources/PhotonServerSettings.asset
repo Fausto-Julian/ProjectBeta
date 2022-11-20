@@ -44,6 +44,8 @@ MonoBehaviour:
   - RPC_SendDeath
   - RPC_SendKill
   - RPC_UpdateUI
+  - SetLayers
+  - RPC_UpgradeDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

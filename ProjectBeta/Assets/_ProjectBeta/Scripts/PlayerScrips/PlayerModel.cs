@@ -39,6 +39,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
+        private float _currentTimeRegen;
+        private float _cooldownRegen = 1;
+
         private static int PlayerOneLayerMask;
         private static int PlayerTwoLayerMask;
         private static int PlayerColOneLayerMask;
@@ -67,7 +70,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent = GetComponent<NavMeshAgent>();
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
-            
+            _currentTimeRegen = _cooldownRegen;
+
             _statisticsController = GetComponent<StatisticsController>();
             _statisticsController.Initialize(this);
 
@@ -133,6 +137,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Update()
         {
+
+            print(_healthController.GetCurrentHealth() + gameObject.name);
+            _currentTimeRegen -= Time.deltaTime;
+
+            if (_currentTimeRegen <= 0)
+            {
+                _currentTimeRegen = _cooldownRegen;
+                _healthController.HealthRegen();
+            }
+
             if (Vector3.Distance(_destination, transform.position) < 0.05f)
             {
                 _agent.isStopped = true;
@@ -156,6 +170,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             _stats.BaseDefense += value;
         }
+        public void ApplyRegeneration(float value)
+        {
+            photonView.RPC(nameof(RPC_ApplyRegeneration), RpcTarget.All, value);
+        }
+        [PunRPC]
+        private void RPC_ApplyRegeneration(float value)
+        {
+            _healthController.ModifyRegen(value);
+        }
+
 
         public Stats GetStats() => _stats;
 

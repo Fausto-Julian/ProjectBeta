@@ -59,6 +59,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
 
             _state = AbilityState.Cooldown;
             _currentTime = _ability.CooldownTime;
+            OnActiveAbility?.Invoke();
         }
 
         public Sprite GetAbilitySprite() => _ability.Sprite;

@@ -154,7 +154,7 @@ namespace _ProjectBeta.Scripts.Menu
                 var addr = new System.Net.Mail.MailAddress(proposedEmail);
                 return addr.Address == proposedEmail;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

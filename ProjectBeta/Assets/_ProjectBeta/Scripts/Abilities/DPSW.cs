@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine;
@@ -14,8 +15,6 @@ namespace _ProjectBeta.Scripts.Abilities
         [SerializeField] private float lifeTimeProjectile;
         [SerializeField] private float damage;
         [SerializeField] private float range;
-        private PlayerModel target;
-        private Collider[] colliders = new Collider[1];
 
         public override bool TryActivate(PlayerModel model)
         {
@@ -27,21 +26,20 @@ namespace _ProjectBeta.Scripts.Abilities
             if (!(Vector3.Distance(hit.point, model.transform.position) < range))
                 return false;
 
+            var colliders = new Collider[1];
+            var layerEnemy = model.GetEnemyLayerMask();
+            
             //agregar layer enemy al overlap
-            Physics.OverlapSphereNonAlloc(model.transform.position, range, colliders);
+            Physics.OverlapSphereNonAlloc(model.transform.position, range, colliders, layerEnemy);
+            
             if (!colliders[0].TryGetComponent(out PlayerModel playerModel))
-            {
                 return false;
-            }
-            else
-            {
-                target = playerModel;
-            }
-            int layer = model.GetProjectileLayerMask();
+            
+            var layer = model.GetProjectileLayerMask();
 
             var projectile = PhotonNetworkExtension.Instantiate<Projectile>(projectilePrefab.name, model.transform.position, projectilePrefab.transform.rotation, layer);
 
-            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().BaseDamage, target.transform.position - model.transform.position);
+            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().BaseDamage, playerModel.transform.position - model.transform.position);
 
             model.SetStopped(false);
             return true;

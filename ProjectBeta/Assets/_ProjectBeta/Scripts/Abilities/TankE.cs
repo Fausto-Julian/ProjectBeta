@@ -11,10 +11,11 @@ namespace _ProjectBeta.Scripts.Abilities
         [SerializeField] private float timeDuration;
         [SerializeField] private float percentageUpgrade;
 
-        public override void Activate(PlayerModel model)
+        public override bool TryActivate(PlayerModel model)
         {
             model.SetStopped(false);
             model.StartCoroutine(AbilityCoroutine(model));
+            return true;
         }
 
         private IEnumerator AbilityCoroutine(PlayerModel model)

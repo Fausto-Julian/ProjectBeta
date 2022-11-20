@@ -8,15 +8,16 @@ namespace _ProjectBeta.Scripts.Abilities
     [CreateAssetMenu(fileName = "TankW", menuName = "TankW", order = 1)]
     public class TankW : Ability
     {
-        public override void Activate(PlayerModel model)
+        public override bool TryActivate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
 
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity))
-                return;
+                return false;
 
-            if (Vector3.Distance(hit.point, model.transform.position) < 5f)
-            {
+            if (!(Vector3.Distance(hit.point, model.transform.position) < 5f))
+                return false;
+            
                 var colliders = Physics.OverlapSphere(hit.point, 5f);
                 foreach (var player in colliders)
                 {
@@ -28,10 +29,10 @@ namespace _ProjectBeta.Scripts.Abilities
                     
                     playerModel.DoDamage(10f, model.photonView.Owner);
                 }
-                return;
-            }
+                model.SetStopped(false);
+                return true;
             
-            model.SetStopped(false);
+            
         }
     }
 

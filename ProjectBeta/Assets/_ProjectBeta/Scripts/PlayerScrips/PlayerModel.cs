@@ -39,6 +39,22 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
+        private static int PlayerOneLayerMask;
+        private static int PlayerTwoLayerMask;
+        private static int PlayerColOneLayerMask;
+        private static int PlayerColTwoLayerMask;  
+
+        private LayerMask _currentPlayerLayerMask;
+        private LayerMask _currentProjectileLayerMask;
+
+        public LayerMask GetPlayerLayerMask() => _currentPlayerLayerMask;
+        public LayerMask GetProjectileLayerMask() => _currentProjectileLayerMask;
+        public StatisticsController GetStatisticsController() => _statisticsController;
+        public HealthController GetHealthController() => _healthController;
+
+
+
+
         public void Awake()
         {
             GameManager.Instance.AddPlayer(this);
@@ -69,6 +85,21 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                 
                 
                 Local = this;
+                PlayerOneLayerMask = LayerMask.NameToLayer("Players One");
+                PlayerTwoLayerMask = LayerMask.NameToLayer("Players Two");
+                PlayerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
+                PlayerColTwoLayerMask = LayerMask.NameToLayer("PlayersCol Two");
+
+                if (photonView.Owner.CustomProperties.TryGetValue(GameSettings.IsTeamOneId, out var value))
+                {
+                    var isTeamOne = (bool)value;
+                    
+                    
+                    int playerLayer = isTeamOne ? PlayerOneLayerMask : PlayerTwoLayerMask;
+                    int projectileLayer = isTeamOne ? PlayerColOneLayerMask : PlayerColTwoLayerMask;
+
+                    photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, projectileLayer);
+                }
             }
 
             _healthController.OnDie += HealthControllerOnOnDie;
@@ -76,8 +107,12 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             SubscribePlayerController();
         }
 
-        public StatisticsController GetStatisticsController() => _statisticsController;
-        public HealthController GetHealthController() => _healthController;
+        [PunRPC]
+        private void SetLayers(int playerLayerMask, int projectileLayerMask)
+        {
+            _currentPlayerLayerMask = playerLayerMask;
+            _currentProjectileLayerMask = projectileLayerMask;
+        }
 
         private void HealthControllerOnOnDie()
         {

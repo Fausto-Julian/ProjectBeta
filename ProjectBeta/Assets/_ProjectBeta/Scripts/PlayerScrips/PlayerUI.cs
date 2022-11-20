@@ -1,3 +1,4 @@
+using System;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.PlayerScrips.Interface;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
@@ -34,10 +35,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private bool _two;
         private bool _three;
 
+        private void Awake()
+        {
+            _startTime = Time.time;
+        }
+
         public void Initialized(PlayerModel playerModel, AbilityHolder abilityHolderOne, AbilityHolder abilityHolderTwo, AbilityHolder abilityHolderThree)
         {
             var statisticController = playerModel.GetStatisticsController();
             Assert.IsNotNull(statisticController);
+            
             var healthController = playerModel.GetHealthController();
             Assert.IsNotNull(healthController);
 
@@ -95,12 +102,12 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private void UpdateTimer()
         {
-            float timerControl = Time.time - _startTime;
-            string mins = ((int)timerControl / 60).ToString("00");
-            string segs = (timerControl % 60).ToString("00");
+            var timerControl = Time.time - _startTime;
+            var mins = ((int)timerControl / 60).ToString("00");
+            var segs = (timerControl % 60).ToString("00");
         
 
-            timerText.text = string.Format("{00}:{01}", mins, segs);
+            timerText.text = $"{mins}:{segs}";
         }
 
 

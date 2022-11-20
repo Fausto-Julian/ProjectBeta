@@ -1,6 +1,7 @@
 using _ProjectBeta.Scripts.Classes;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     public class PlayerHeadUI : MonoBehaviourPun
     {
         [SerializeField] private Image healthBar;
+        [SerializeField] private TextMeshProUGUI playerNameText;
         [SerializeField] private FloatingText floatingTextPrefab;
 
         private void Awake()
         {
             healthBar.fillAmount = 1;
+
+            playerNameText.text = photonView.Owner.NickName;
         }
 
         public void Initialize(PlayerModel model)

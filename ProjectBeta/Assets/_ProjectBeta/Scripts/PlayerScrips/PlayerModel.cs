@@ -124,9 +124,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public Stats GetStats() => _stats;
 
-        public AbilityHolder GetAbilityHolderOne => _abilityHolderOne;
-        public AbilityHolder GetAbilityHolderTwo => _abilityHolderTwo;
-        public AbilityHolder GetAbilityHolderThree => _abilityHolderThree;
+        public AbilityHolder GetAbilityHolderOne() => _abilityHolderOne;
+        public AbilityHolder GetAbilityHolderTwo() => _abilityHolderTwo;
+        public AbilityHolder GetAbilityHolderThree() => _abilityHolderThree;
         
         private void Movement(Vector3 destination)
         {

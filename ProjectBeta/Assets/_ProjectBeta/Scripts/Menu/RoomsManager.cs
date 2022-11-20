@@ -169,7 +169,7 @@ namespace _ProjectBeta.Scripts.Menu
                     entry.SetPlayerReady((bool) isPlayerReady);
                 
                 if (changedProps.TryGetValue(GameSettings.IsTeamOneId, out var team))
-                    entry.transform.parent = ((bool)team) ? playerListLeft : playerListRight;
+                    entry.transform.SetParent(((bool)team) ? playerListLeft : playerListRight, false);
                 
                 if (changedProps.TryGetValue(GameSettings.PlayerPrefabId, out var index))
                     entry.SetIcon((int)index);

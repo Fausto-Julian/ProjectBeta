@@ -38,7 +38,7 @@ namespace _ProjectBeta.Scripts
                 var model = player.GetComponent<PlayerModel>();
                 Assert.IsNotNull(model);
                 
-                playerUI.Initialized(model, model.GetAbilityHolderOne,model.GetAbilityHolderTwo, model.GetAbilityHolderThree);
+                playerUI.Initialized(model, model.GetAbilityHolderOne(), model.GetAbilityHolderTwo(), model.GetAbilityHolderThree());
             }
 
             PlayerModel.OnDiePlayer += ActiveRespawn;

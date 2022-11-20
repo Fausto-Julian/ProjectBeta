@@ -37,10 +37,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player> OnTakeDamageStatics; 
         public event Action OnDieStatics;
 
-        private static LayerMask PlayerOneLayerMask;
-        private static LayerMask PlayerTwoLayerMask;
-        private static LayerMask PlayerColOneLayerMask;
-        private static LayerMask PlayerColTwoLayerMask;
+        private static int PlayerOneLayerMask;
+        private static int PlayerTwoLayerMask;
+        private static int PlayerColOneLayerMask;
+        private static int PlayerColTwoLayerMask;  
 
         private LayerMask _currentPlayerLayerMask;
         private LayerMask _currentProjectileLayerMask;
@@ -71,10 +71,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             _agent.speed = data.BaseMovementSpeed;
 
-            PlayerOneLayerMask = LayerMask.GetMask("Players One");
-            PlayerTwoLayerMask = LayerMask.GetMask("Players Two");
-            PlayerColOneLayerMask = LayerMask.GetMask("PlayersCol One");
-            PlayerColTwoLayerMask = LayerMask.GetMask("PlayersCol Two");
+            
 
             //healthBar.fillAmount = 1;
 
@@ -82,13 +79,18 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             {
                 _playerController = GetComponent<PlayerController>();
                 Local = this;
+                PlayerOneLayerMask = LayerMask.NameToLayer("Players One");
+                PlayerTwoLayerMask = LayerMask.NameToLayer("Players Two");
+                PlayerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
+                PlayerColTwoLayerMask = LayerMask.NameToLayer("PlayersCol Two");
 
-                if(photonView.Owner.CustomProperties.TryGetValue(GameSettings.IsTeamOneId, out var value))
+                if (photonView.Owner.CustomProperties.TryGetValue(GameSettings.IsTeamOneId, out var value))
                 {
                     var isTeamOne = (bool)value;
-
+                    
+                    
                     int playerLayer = isTeamOne ? PlayerOneLayerMask : PlayerTwoLayerMask;
-                    int projectileLayer = isTeamOne ? PlayerColTwoLayerMask : PlayerColOneLayerMask;
+                    int projectileLayer = isTeamOne ? PlayerColOneLayerMask : PlayerColTwoLayerMask;
 
                     photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, projectileLayer);
                 }

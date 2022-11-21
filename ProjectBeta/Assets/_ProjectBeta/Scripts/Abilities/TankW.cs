@@ -29,7 +29,7 @@ namespace _ProjectBeta.Scripts.Abilities
                 playerModel.DoDamage(10f, model.photonView.Owner);
             }
             var particles = GameObject.Instantiate(particlesPrefab, position, Quaternion.identity);
-            particles.Initialice(model.transform, particlesLifetime, particleSize);
+            particles.Initialize(model.transform, particlesLifetime, particleSize);
             
             model.SetStopped(false);
             return true;

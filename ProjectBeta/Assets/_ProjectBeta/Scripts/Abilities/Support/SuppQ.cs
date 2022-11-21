@@ -23,7 +23,7 @@ namespace _ProjectBeta.Scripts.Abilities.Support
             var colliders = Physics.OverlapSphere(position, radius, layer);
             
             var particles = Instantiate(particlesPrefab, position, Quaternion.identity);
-            particles.Initialice(model.transform, particlesLifetime, particleSize, true);
+            particles.Initialize(model.transform, particlesLifetime, particleSize, true);
             
             foreach (var player in colliders)
             {

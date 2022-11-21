@@ -29504,7 +29504,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2065389342713777508}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -29522,7 +29523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1
 --- !u!1 &8972727850563377177
 GameObject:

@@ -24,7 +24,7 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         {
             
             var particles = Instantiate(particlesPrefab, model.transform.position, Quaternion.identity);
-            particles.Initialice(model.transform, particlesLifetime, particleSize, true);
+            particles.Initialize(model.transform, particlesLifetime, particleSize, true);
             
             model.StartCoroutine(AbilityCoroutine(model));
             

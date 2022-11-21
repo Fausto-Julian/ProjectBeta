@@ -28,11 +28,13 @@ namespace _ProjectBeta.Scripts.Abilities
             if (!(Vector3.Distance(hit.point, position) < range))
                 return false;
 
-            var colliders = new Collider[1];
             var layerEnemy = model.GetEnemyLayerMask();
             
             //agregar layer enemy al overlap
-            Physics.OverlapSphereNonAlloc(position, range, colliders, layerEnemy);
+            var colliders = Physics.OverlapSphere(position, range, layerEnemy);
+
+            if (colliders[0] == default)
+                return false;
             
             if (!colliders[0].TryGetComponent(out PlayerModel playerModel))
                 return false;

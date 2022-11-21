@@ -16,10 +16,7 @@ namespace _ProjectBeta.Scripts.Abilities
         public override bool TryActivate(PlayerModel model)
         {
             var position = model.transform.position;
-            
-            var particles = GameObject.Instantiate(particlesPrefab, position, Quaternion.identity);
-            particles.Initialice(model.transform, particlesLifetime, particleSize);
-            
+
             var colliders = Physics.OverlapSphere(position, range);
             foreach (var player in colliders)
             {
@@ -31,6 +28,9 @@ namespace _ProjectBeta.Scripts.Abilities
                 
                 playerModel.DoDamage(10f, model.photonView.Owner);
             }
+            var particles = GameObject.Instantiate(particlesPrefab, position, Quaternion.identity);
+            particles.Initialice(model.transform, particlesLifetime, particleSize);
+            
             model.SetStopped(false);
             return true;
         

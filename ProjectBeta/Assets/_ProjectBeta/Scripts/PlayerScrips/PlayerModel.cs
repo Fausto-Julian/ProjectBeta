@@ -168,7 +168,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Update()
         {
-            if (Vector3.Distance(_destination, transform.position) < 0.05f)
+            if (Vector3.Distance(_destination, transform.position) < 0.1f)
                 _agent.isStopped = true;
 
             _abilityHolderOne.Update();

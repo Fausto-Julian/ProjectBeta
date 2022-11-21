@@ -10,10 +10,12 @@ namespace _ProjectBeta.Scripts.Abilities
     {
         [SerializeField] private float timeDuration;
         [SerializeField] private float percentageUpgrade;
+        [SerializeField] private GameObject particlesPrefab;
 
         public override bool TryActivate(PlayerModel model)
         {
             model.SetStopped(false);
+            Instantiate(particlesPrefab, model.transform.position, Quaternion.identity);
             model.StartCoroutine(AbilityCoroutine(model));
             return true;
         }

@@ -8,6 +8,8 @@ namespace _ProjectBeta.Scripts.Abilities
     [CreateAssetMenu(fileName = "TankW", menuName = "TankW", order = 1)]
     public class TankW : Ability
     {
+        [SerializeField] private GameObject particlesPrefab;
+        
         public override bool TryActivate(PlayerModel model)
         {
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
@@ -17,7 +19,8 @@ namespace _ProjectBeta.Scripts.Abilities
 
             if (!(Vector3.Distance(hit.point, model.transform.position) < 5f))
                 return false;
-            
+
+            Instantiate(particlesPrefab, hit.point, Quaternion.identity);
                 var colliders = Physics.OverlapSphere(hit.point, 5f);
                 foreach (var player in colliders)
                 {

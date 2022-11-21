@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -165,7 +165,7 @@ MonoBehaviour:
   maxPlayers: 6
   playerListPrefab: {fileID: 4907113437751846200, guid: 9e96e670b948fe748b56990ea5afc2d5, type: 3}
   championsButtonPrefab: {fileID: 1332041204200088728, guid: a81f765fea03f174bbc04064648c134d, type: 3}
-  sceneToLoad: AlenScene
+  sceneToLoad: NicolasScene
 --- !u!4 &123269081
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,7 +1325,7 @@ RectTransform:
   - {fileID: 130303618}
   - {fileID: 756499132}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2371,7 +2371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6890292424606842301, guid: a1e6182bfe35b834b8e75234e83e1b01, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6890292424606842301, guid: a1e6182bfe35b834b8e75234e83e1b01, type: 3}
       propertyPath: m_AnchorMax.x

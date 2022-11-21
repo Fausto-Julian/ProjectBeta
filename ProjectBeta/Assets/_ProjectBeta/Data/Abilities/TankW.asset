@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: TankW
   m_EditorClassIdentifier: 
   <CooldownTime>k__BackingField: 15
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 62943b184a88d29469872063d605802b, type: 3}
+  particlesPrefab: {fileID: 443653445314069269, guid: 7e3e8e2f6ecdbb04a982af0a14f2d887, type: 3}

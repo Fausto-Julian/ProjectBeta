@@ -56,6 +56,7 @@ MonoBehaviour:
   - TakeDamage
   - RPC_ClampCurrentHealth
   - RPC_GetHeal
+  - RPC_ChangeHit
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

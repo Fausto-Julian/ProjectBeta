@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 982263989259126060}
   - component: {fileID: -3731573622508394281}
   - component: {fileID: 3879433162986928513}
+  - component: {fileID: -7324178456526909088}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6158955046711995969}
+  - {fileID: -7324178456526909088}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -175,6 +177,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6637953ca8a3a46bf2b6a290f6aded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7324178456526909088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3113588162276556394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &5185558907857931848
 PrefabInstance:
   m_ObjectHideFlags: 0

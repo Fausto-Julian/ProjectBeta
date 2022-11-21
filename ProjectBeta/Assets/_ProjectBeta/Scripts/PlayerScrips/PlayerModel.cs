@@ -10,6 +10,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
 
+#if UNITY_EDITOR
+using UnityEngine.InputSystem;
+#endif
+
 namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerModel : MonoBehaviourPun, IDamageable, IPlayerUIInvoker
@@ -46,10 +50,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private float _currentTimeRegen;
         private float _cooldownRegen = 1;
 
-        private static int PlayerOneLayerMask;
-        private static int PlayerTwoLayerMask;
-        private static int PlayerColOneLayerMask;
-        private static int PlayerColTwoLayerMask;
+        private static int _playerOneLayerMask;
+        private static int _playerTwoLayerMask;
+        private static int _playerColOneLayerMask;
+        private static int _playerColTwoLayerMask;
 
         private int _currentPlayerLayerMask;
         private int _currentEnemyLayerMask;
@@ -120,6 +124,17 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _healthController.OnDie += HealthControllerOnOnDie;
         }
 
+        public void ClampCurrentHealth()
+        {
+            photonView.RPC(nameof(RPC_ClampCurrentHealth), RpcTarget.All);
+        }
+        
+        [PunRPC]
+        public void RPC_ClampCurrentHealth()
+        {
+            _healthController.ClampCurrentHealth();
+        }
+
         public void UpgradeSpeed(float value)
         {
             _upgradeController.UpgradeSpeed(value);
@@ -157,18 +172,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Update()
         {
-            int layer = GetPlayerLayerMask();
-            print(layer);
-
-            _debugCurrentHealth = GetHealthController().GetCurrentHealth();
-            _currentTimeRegen -= Time.deltaTime;
-
-            if (_currentTimeRegen <= 0)
-            {
-                _currentTimeRegen = _cooldownRegen;
-                _healthController.HealthRegen();
-            }
-
             if (Vector3.Distance(_destination, transform.position) < 0.05f)
                 _agent.isStopped = true;
 
@@ -176,22 +179,21 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _abilityHolderTwo.Update();
             _abilityHolderThree.Update();
             
-            _healthController.Heal(data.HealthForSecond * Time.deltaTime);
+            GetHeal(data.HealthForSecond * Time.deltaTime);
         }
 
         public PlayerData GetData() => data;
 
-        public void UpgradeDefense(float value)
+        public void GetHeal(float heal)
         {
-            //RPC_UpgradeDefense(value);
-            photonView.RPC(nameof(RPC_UpgradeDefense), RpcTarget.All, value);
+            photonView.RPC(nameof(RPC_GetHeal), RpcTarget.All, heal);
         }
 
-        [PunRPC]
-        private void RPC_UpgradeDefense(float value)
+        private void RPC_GetHeal(float heal)
         {
-            _stats.BaseDefense += value;
+            _healthController.Heal(heal);
         }
+
         public void ApplyRegeneration(float value)
         {
             photonView.RPC(nameof(RPC_ApplyRegeneration), RpcTarget.All, value);
@@ -202,16 +204,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _healthController.ModifyRegen(value);
         }
 
-        public void Impulse(Vector3 _transform,float value)
+        public void Impulse(Vector3 value)
         {
-            photonView.RPC(nameof(RPC_Impulse), RpcTarget.All,_transform,value);
+            photonView.RPC(nameof(RPC_Impulse), RpcTarget.All, value);
         }
 
         [PunRPC]
-        private void RPC_Impulse(Vector3 _transform , float value)
+        private void RPC_Impulse(Vector3 value)
         {
             _rb.isKinematic = false;
-            _rb.AddForce(_transform * value, ForceMode.Impulse);
+            _rb.AddForce(value, ForceMode.Impulse);
           
         }
 
@@ -230,7 +232,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void DoDamage(float damage, Player doesTheDamage)
         {
-            //RPC_TakeDamage(damage);
             photonView.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage, doesTheDamage);
         }
 
@@ -267,19 +268,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             ActiveAbilityThree?.Invoke(data.AbilityThree.CooldownTime);
             _abilityHolderThree.Activate();
         }
-        private void OnDrawGizmos()
-        {
-            var mousePos = (Vector3)Mouse.current.position.ReadValue();
-            Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
-
-            Gizmos.DrawWireSphere(hit.point, 5f);
-            //var mousePos = (Vector3)Mouse.current.position.ReadValue();
-            //Ray ray = Camera.current.ScreenPointToRay(mousePos);
-            //RaycastHit hit;
-            //Physics.Raycast(ray, out hit, Mathf.Infinity);
-            //Gizmos.DrawWireSphere(hit.point, 5);
-            //Gizmos.color = Color.red;
-        }
 
         public void SetStopped(bool value) => _agent.isStopped = value;
         public void ZeroMovement() => _agent.speed= 0f;
@@ -295,6 +283,20 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
 
 #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
+
+            Gizmos.DrawWireSphere(hit.point, 5f);
+            //var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            //Ray ray = Camera.current.ScreenPointToRay(mousePos);
+            //RaycastHit hit;
+            //Physics.Raycast(ray, out hit, Mathf.Infinity);
+            //Gizmos.DrawWireSphere(hit.point, 5);
+            //Gizmos.color = Color.red;
+        }
+        
         [ContextMenu("ActiveQ")]
         private void ActiveQ() => _abilityHolderOne.Activate();
 

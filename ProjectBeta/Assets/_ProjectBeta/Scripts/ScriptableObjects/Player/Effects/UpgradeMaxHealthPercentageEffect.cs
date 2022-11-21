@@ -28,6 +28,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player.Effects
 
             var upgradeController = model.GetUpgradeController();
             upgradeController.UpgradeMaxHealth(-value);
+            model.ClampCurrentHealth();
         }
     }
 }

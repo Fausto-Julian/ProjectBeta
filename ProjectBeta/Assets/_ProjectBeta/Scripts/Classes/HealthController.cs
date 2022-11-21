@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Classes
 {
+    [System.Serializable]
     public class HealthController
     {
         private readonly Stats _stats;
@@ -18,7 +19,7 @@ namespace _ProjectBeta.Scripts.Classes
         public HealthController (Stats stats )
         {
             _stats = stats;
-            _currentHealth = _stats.MaxHealth;
+            _currentHealth = _stats.maxHealth;
             _healthRegBase = 0;
         }
 
@@ -36,13 +37,23 @@ namespace _ProjectBeta.Scripts.Classes
 
         public void Heal(float healAmount)
         {
+            if (_currentHealth >= _stats.maxHealth)
+                return;
+            
             _currentHealth += healAmount;
 
             if (_currentHealth > _stats.maxHealth)
-            {
                 _currentHealth = _stats.maxHealth;
-            }
             
+            OnChangeHealth?.Invoke(_stats.maxHealth, _currentHealth);
+        }
+
+        public void ClampCurrentHealth()
+        {
+            if (!(_currentHealth >= _stats.maxHealth)) 
+                return;
+            
+            _currentHealth = _stats.maxHealth;
             OnChangeHealth?.Invoke(_stats.maxHealth, _currentHealth);
         }
 
@@ -53,22 +64,6 @@ namespace _ProjectBeta.Scripts.Classes
         }
 
         public float GetCurrentHealth() => _currentHealth;
-
-        public void HealthRegen()
-        {
-            //float regPercent = (_stats.MaxHealth * percentHealth) / 100;             
-            if (_currentHealth == _stats.MaxHealth) return;
-
-            if (_currentHealth < _stats.MaxHealth)
-            {
-                _currentHealth += _healthRegBase; // = 1
-                OnChangeHealth?.Invoke(_stats.MaxHealth, _currentHealth);
-            }
-            else
-            {
-                _currentHealth = _stats.MaxHealth;
-            }
-        }
 
         public void ModifyRegen(float modifiedReg)
         {

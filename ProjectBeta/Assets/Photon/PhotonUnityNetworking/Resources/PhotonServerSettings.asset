@@ -49,6 +49,12 @@ MonoBehaviour:
   - RPC_UpdateKillStreakLevel
   - RPC_ApplyRegeneration
   - RPC_Impulse
+  - RPC_SetSizeParticle
+  - RPC_UpgradeMaxHealth
+  - RPC_UpgradePercentageReduceCooldownAbilities
+  - RPC_UpgradeSpeed
+  - TakeDamage
+  - RPC_ClampCurrentHealth
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

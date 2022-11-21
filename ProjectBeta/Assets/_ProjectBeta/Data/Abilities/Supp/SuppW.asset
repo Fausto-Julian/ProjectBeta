@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d118a139865224aab592e0c0f4c42f, type: 3}
-  m_Name: SuppE
+  m_Script: {fileID: 11500000, guid: 38e037ca62e98664b881b4405da6673a, type: 3}
+  m_Name: SuppW
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 1
+  <CooldownTime>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 0}
-  timeDuration: 7
-  percentageReg: 8
-  _radius: 3.5
-  _damage: 30
+  radius: 5
+  impulse: 5
+  particlesPrefab: {fileID: 4973235868035889519, guid: 7485f90679d1e6e46bd6e61f98ee1955, type: 3}
+  particlesLifetime: 0

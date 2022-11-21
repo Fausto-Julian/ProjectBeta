@@ -9,9 +9,15 @@ namespace _ProjectBeta.Scripts.Abilities.Support
     {
         [SerializeField] private float radius = 5f;
         [SerializeField] private float impulse = 5f;
+        [SerializeField] private ParticleController particlesPrefab;
+        [SerializeField] private float particlesLifetime;
+        
         public override bool TryActivate(PlayerModel model)
         {
             var layer = model.GetEnemyLayerMask();
+            
+            var particles = Instantiate(particlesPrefab, model.transform.position, Quaternion.identity);
+            particles.Initialice(model.transform, particlesLifetime, Vector3.one);
             
             var colliders = Physics.OverlapSphere(model.transform.position, radius, layer);
             foreach (var player in colliders)

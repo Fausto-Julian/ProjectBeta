@@ -11,12 +11,20 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         [SerializeField] private float timeDuration = 7;
         [SerializeField] private float percentageReg;
         [SerializeField] private float radius = 3.5f;
+        [SerializeField] private ParticleController particlesPrefab;
+        [SerializeField] private float particlesLifetime;
+        [SerializeField] private Vector3 particleSize;
 
         private readonly WaitForSecondsRealtime _waitForOneSecond = new WaitForSecondsRealtime(1);
         public override bool TryActivate(PlayerModel model)
         {
+            var position = model.transform.position;
             var layer = model.GetPlayerLayerMask();
-            var colliders = Physics.OverlapSphere(model.transform.position, radius, layer);
+            var colliders = Physics.OverlapSphere(position, radius, layer);
+            
+            var particles = Instantiate(particlesPrefab, position, Quaternion.identity);
+            particles.Initialice(model.transform, particlesLifetime, particleSize, true);
+            
             foreach (var player in colliders)
             {
                 if (!player.TryGetComponent(out PlayerModel playerModel))

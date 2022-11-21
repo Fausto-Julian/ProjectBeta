@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d118a139865224aab592e0c0f4c42f, type: 3}
+  m_Name: SuppE
+  m_EditorClassIdentifier: 
+  <CooldownTime>k__BackingField: 1
+  <Sprite>k__BackingField: {fileID: 0}
+  layersToAffect:
+    serializedVersion: 2
+    m_Bits: 0
+  timeDuration: 7
+  healing: 0
+  radius: 3.5
+  damage: 30
+  particlesPrefab: {fileID: 3038107805917784223, guid: e1f56d16328036e4795e4f7cacc27f5e, type: 3}
+  particlesLifetime: 0
+  particleSize: {x: 0, y: 0, z: 0}

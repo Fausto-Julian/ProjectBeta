@@ -13,11 +13,22 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         [SerializeField] private float healing;
         [SerializeField] private float radius = 3.5f;
         [SerializeField] private float damage = 30f;
+        [SerializeField] private ParticleController particlesPrefab;
+        [SerializeField] private float particlesLifetime;
+        [SerializeField] private Vector3 particleSize;
+        
+        
         private readonly WaitForSecondsRealtime _waitForOneSecond = new WaitForSecondsRealtime(1);
         
         public override bool TryActivate(PlayerModel model)
         {
+            
+            var particles = Instantiate(particlesPrefab, model.transform.position, Quaternion.identity);
+            particles.Initialice(model.transform, particlesLifetime, particleSize, true);
+            
             model.StartCoroutine(AbilityCoroutine(model));
+            
+            
             return true;
         }
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Tank Q
   m_EditorClassIdentifier: 
   <CooldownTime>k__BackingField: 10
-  <Sprite>k__BackingField: {fileID: 0}
-  projectilePrefab: {fileID: 8936469822338204345, guid: 5d456ad9ac10e724a930ea65cb751467, type: 3}
-  speed: 0
+  <Sprite>k__BackingField: {fileID: 21300018, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  projectilePrefab: {fileID: -3731573622508394281, guid: cbb56b50e1f0a8c45b57c2091ebe5899, type: 3}
+  speed: 5
   lifeTimeProjectile: 5
-  damage: 0
-  isSpawnBody: 0
+  damage: 20
+  isSpawnBody: 1

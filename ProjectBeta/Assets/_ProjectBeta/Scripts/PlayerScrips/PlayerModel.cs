@@ -184,7 +184,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             photonView.RPC(nameof(RPC_GetHeal), RpcTarget.All, heal);
         }
-
+        
+        [PunRPC]
         private void RPC_GetHeal(float heal)
         {
             _healthController.Heal(heal);

@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae5b731ec93f8b4a89528aca9f28e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rangeVisual: 0
 --- !u!114 &9059577074333152348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1054373417959345566}
   playerNameText: {fileID: 3829349442544229038}
+  killStreakText: {fileID: 0}
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!1 &2666961599649126420
 GameObject:

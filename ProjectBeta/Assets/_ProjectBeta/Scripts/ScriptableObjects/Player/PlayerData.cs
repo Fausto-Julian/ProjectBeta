@@ -8,6 +8,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
     {
         [field: Header("Stats")]
         [field: SerializeField] public float MaxHealth { get; private set; }
+        [field: SerializeField] public float HealthForSecond { get; private set; }
         [field: SerializeField] public float BaseMovementSpeed { get; private set; }
         [field: SerializeField] public float BaseDefense { get; private set; }
         [field: SerializeField] public float BaseDamage { get; private set; }
@@ -16,13 +17,12 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         [field: SerializeField] public float DistanceToBasicAttack { get; private set; }
         [field: SerializeField] public float RespawnCooldown { get; private set; } = 2;
         
+        [field: SerializeField] public KillStreakData KillStreakData { get; private set; }
+        
         [field: Header("Abilities")]
+        [field: SerializeField] public float PercentageReduceCooldownAbilities { get; private set; }
         [field: SerializeField] public Ability AbilityOne { get; private set; }
         [field: SerializeField] public Ability AbilityTwo { get; private set; }
         [field: SerializeField] public Ability AbilityThree { get; private set; }
-        
-        [field: SerializeField] public Sprite AbilityOneIcon { get; private set; }
-        [field: SerializeField] public Sprite AbilityTwoIcon { get; private set; }
-        [field: SerializeField] public Sprite AbilityThreeIcon { get; private set; }
     }
 }

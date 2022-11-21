@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Extension
 {
-    public class PhotonNetworkExtension
+    public static class PhotonNetworkExtension
     {
-        public static GameObject Instantiate(string prefabName, Vector3 position, Quaternion rotation, int layer, byte group = 0, object[] data = null)
+        public static GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation, int layer, byte group = 0, object[] data = null)
         {
-            var obj = PhotonNetwork.Instantiate(prefabName, position, rotation, group, data);
+            var obj = PhotonNetwork.Instantiate(prefab.name, position, rotation, group, data);
 
             if (obj.TryGetComponent(out SetterLayer setter))
             {
@@ -16,24 +16,20 @@ namespace _ProjectBeta.Scripts.Extension
             }
             else
             {
-                Debug.LogError($"Prefab without Setter Layer: {prefabName}");
+                Debug.LogError($"Prefab without Setter Layer: {prefab}");
             }
 
             return obj;
         }
         
-        public static T Instantiate<T>(string prefabName, Vector3 position, Quaternion rotation, int layer, byte group = 0, object[] data = null)
+        public static T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, int layer, byte group = 0, object[] data = null) where T : Object
         {
-            var obj = PhotonNetworkExtension.Instantiate(prefabName, position, rotation, layer, group, data);
-
-            return obj.TryGetComponent(out T component) ? component : default;
+            return PhotonNetworkExtension.Instantiate(prefab, position, rotation, layer, group, data) as T;
         }
         
-        public static T Instantiate<T>(string prefabName, Vector3 position, Quaternion rotation, byte group = 0, object[] data = null)
+        public static T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, byte group = 0, object[] data = null) where T : Object
         {
-            var obj = PhotonNetwork.Instantiate(prefabName, position, rotation, group, data);
-
-            return obj.TryGetComponent(out T component) ? component : default;
+            return PhotonNetwork.Instantiate(prefab.name, position, rotation, group, data) as T;
         }
     }
 }

@@ -20,10 +20,11 @@ namespace _ProjectBeta.Scripts.Abilities
 
         private IEnumerator AbilityCoroutine(PlayerModel model)
         {
-            var defense = (model.GetStats().BaseDefense * percentageUpgrade) / 100;
-            model.UpgradeDefense(defense);
+            var defense = (model.GetStats().defense * percentageUpgrade) / 100;
+            var upgradeController = model.GetUpgradeController();
+            upgradeController.UpgradeDefense(defense);
             yield return new WaitForSeconds(timeDuration);
-            model.UpgradeDefense(-defense);
+            upgradeController.UpgradeDefense(-defense);
         }
     }
 }

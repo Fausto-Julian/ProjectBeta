@@ -1,6 +1,8 @@
 using System.Collections;
+using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
+using Photon.Pun;
 using UnityEngine;
 
 namespace _ProjectBeta.Scripts.Abilities
@@ -20,10 +22,12 @@ namespace _ProjectBeta.Scripts.Abilities
 
         private IEnumerator AbilityCoroutine(PlayerModel model)
         {
-            var damage = (model.GetStats().BaseDamage * percentageUpgrade) / 100;
-            model.UpgradeDamage(damage);
+            var damage = (model.GetStats().damage * percentageUpgrade) / 100;
+            var upgradeController = model.GetUpgradeController();
+            upgradeController.UpgradeDamage(damage);
+
             yield return new WaitForSeconds(timeDuration);
-            model.UpgradeDamage(-damage);
+            upgradeController.UpgradeDamage(-damage);
         }
     }
 }

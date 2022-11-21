@@ -30,15 +30,15 @@ namespace _ProjectBeta.Scripts
 
                 var position = (bool)teamBlue ? respawnOne.position : respawnTwo.position;
 
-                var player = PhotonNetworkExtension.Instantiate<PlayerController>(playersData[index].Prefab.name, position, Quaternion.identity);
+                var player = PhotonNetworkExtension.Instantiate<PlayerModel>(playersData[index].Prefab, position, Quaternion.identity);
+
+                var controller = player.GetComponent<PlayerController>();
                 
                 Assert.IsNotNull(player);
-                cameraController.SetTarget(player);
+                cameraController.SetTarget(controller);
 
-                var model = player.GetComponent<PlayerModel>();
-                Assert.IsNotNull(model);
-                
-                playerUI.Initialized(model, model.GetAbilityHolderOne(), model.GetAbilityHolderTwo(), model.GetAbilityHolderThree());
+                Assert.IsNotNull(player);
+                playerUI.Initialized(player);
             }
 
             PlayerModel.OnDiePlayer += ActiveRespawn;

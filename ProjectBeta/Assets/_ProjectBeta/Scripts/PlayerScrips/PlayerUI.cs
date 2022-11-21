@@ -1,7 +1,6 @@
 using System;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.PlayerScrips.Interface;
-using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using TMPro;
 using UnityEngine;
@@ -28,8 +27,12 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [SerializeField] private TextMeshProUGUI assistsCountText;
         [SerializeField] private TextMeshProUGUI deathCountText;
 
+        [Header("KillStreak")] 
+        [SerializeField] private float maxExperienceBar;
+        [SerializeField] private Image experienceBar;
+        [SerializeField] private TextMeshProUGUI levelText;
+
         private float _startTime;
-        
 
         private bool _one;
         private bool _two;
@@ -40,7 +43,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _startTime = Time.time;
         }
 
-        public void Initialized(PlayerModel playerModel, AbilityHolder abilityHolderOne, AbilityHolder abilityHolderTwo, AbilityHolder abilityHolderThree)
+        public void Initialized(PlayerModel playerModel)
         {
             var statisticController = playerModel.GetStatisticsController();
             Assert.IsNotNull(statisticController);
@@ -50,7 +53,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             var data = playerModel.GetData();
             Assert.IsNotNull(data);
+
+            var abilityHolderOne = playerModel.GetAbilityHolderOne();
+            var abilityHolderTwo = playerModel.GetAbilityHolderTwo();
+            var abilityHolderThree = playerModel.GetAbilityHolderThree();
             
+            Assert.IsNotNull(abilityHolderOne);
+            Assert.IsNotNull(abilityHolderTwo);
+            Assert.IsNotNull(abilityHolderThree);
             
             abilityHolderOneButton.image.sprite = abilityHolderOne.GetAbilitySprite();
             abilityHolderTwoButton.image.sprite = abilityHolderTwo.GetAbilitySprite();
@@ -70,8 +80,22 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             statisticController.OnDeathChange += UpdateDeathsStatUI;
             
             healthController.OnChangeHealth += UpdateLife;
+
+            var killStreakSystem = playerModel.GetKillStreakSystem();
+            killStreakSystem.OnChangePoints += OnChangeKillStreakPointsHandler;
+            killStreakSystem.OnChangeLevel += OnChangeKillStreakLevelHandler;
         }
-        
+
+        private void OnChangeKillStreakLevelHandler(int newLevel)
+        {
+            levelText.text = newLevel.ToString();
+        }
+
+        private void OnChangeKillStreakPointsHandler(float currentPoints, float maxPoint)
+        {
+            experienceBar.fillAmount = currentPoints / (maxPoint / maxExperienceBar);
+        }
+
         private void Update()
         {
             UpdateTimer();
@@ -85,14 +109,17 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void UpdateAbilityOne(float time)
         {
             abilityHolderOneText.text = ((int)time).ToString();
+            abilityHolderOneText.gameObject.SetActive(time > 0);
         }
         private void UpdateAbilityTwo(float time)
         {
             abilityHolderTwoText.text = ((int)time).ToString();
+            abilityHolderTwoText.gameObject.SetActive(time > 0);
         }
         private void UpdateAbilityThree(float time)
         {
             abilityHolderThreeText.text = ((int)time).ToString();
+            abilityHolderThreeText.gameObject.SetActive(time > 0);
         }
         
         private void UpdateKillStatUI(int kills) => killsCountText.text = kills.ToString();

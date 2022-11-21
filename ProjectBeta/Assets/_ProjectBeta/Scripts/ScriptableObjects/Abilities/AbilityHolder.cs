@@ -57,8 +57,11 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
             if (!_ability.TryActivate(_player))
                 return;
 
+            var stats = _player.GetStats();
+
             _state = AbilityState.Cooldown;
-            _currentTime = _ability.CooldownTime;
+            var cooldownTimeReduce = _ability.CooldownTime * (_player.GetStats().percentageReduceCooldownAbilities / 100);
+            _currentTime = _ability.CooldownTime - cooldownTimeReduce;
             OnActiveAbility?.Invoke();
         }
 

@@ -10,7 +10,7 @@ namespace _ProjectBeta.Scripts.Abilities
     [CreateAssetMenu(menuName = "DPSW")]
     public class DPSW : Ability
     {
-        [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private Projectile projectilePrefab;
         [SerializeField] private float speed;
         [SerializeField] private float lifeTimeProjectile;
         [SerializeField] private float damage;
@@ -22,24 +22,25 @@ namespace _ProjectBeta.Scripts.Abilities
 
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity))
                 return false;
-
-            if (!(Vector3.Distance(hit.point, model.transform.position) < range))
+            
+            var position = model.transform.position;
+            if (!(Vector3.Distance(hit.point, position) < range))
                 return false;
 
             var colliders = new Collider[1];
             var layerEnemy = model.GetEnemyLayerMask();
             
             //agregar layer enemy al overlap
-            Physics.OverlapSphereNonAlloc(model.transform.position, range, colliders, layerEnemy);
+            Physics.OverlapSphereNonAlloc(position, range, colliders, layerEnemy);
             
             if (!colliders[0].TryGetComponent(out PlayerModel playerModel))
                 return false;
             
             var layer = model.GetProjectileLayerMask();
 
-            var projectile = PhotonNetworkExtension.Instantiate<Projectile>(projectilePrefab.name, model.transform.position, projectilePrefab.transform.rotation, layer);
+            var projectile = PhotonNetworkExtension.Instantiate<Projectile>(projectilePrefab, position, projectilePrefab.transform.rotation, layer);
 
-            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().BaseDamage, playerModel.transform.position - model.transform.position);
+            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().damage, playerModel.transform.position - position);
 
             model.SetStopped(false);
             return true;

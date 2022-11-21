@@ -13,23 +13,20 @@ namespace _ProjectBeta.Scripts.Classes
         //                maxLife, current, damage 
         public event Action<float, float> OnChangeHealth;
         public event Action<float> OnTakeDamage;
-
-        public float GetMaxHealth() => _stats.MaxHealth;
         
         public HealthController (Stats stats )
         {
             _stats = stats;
-            _currentHealth = _stats.MaxHealth;
+            _currentHealth = _stats.maxHealth;
         }
 
         public void TakeDamage(float damage)
         {
-            Debug.Log("recibi da�o");
-            var mitigationDamage = (damage / (1 + (_stats.BaseDefense / 100)));
+            var mitigationDamage = (damage / (1 + (_stats.defense / 100)));
             _currentHealth -= mitigationDamage;
 
             OnTakeDamage?.Invoke(damage);
-            OnChangeHealth?.Invoke(_stats.MaxHealth, _currentHealth);
+            OnChangeHealth?.Invoke(_stats.maxHealth, _currentHealth);
             
             if (_currentHealth <= 0)
                 OnDie?.Invoke();
@@ -39,16 +36,18 @@ namespace _ProjectBeta.Scripts.Classes
         {
             _currentHealth += healAmount;
 
-            if (_currentHealth > _stats.MaxHealth)
+            if (_currentHealth > _stats.maxHealth)
             {
-                _currentHealth = _stats.MaxHealth;
+                _currentHealth = _stats.maxHealth;
             }
+            
+            OnChangeHealth?.Invoke(_stats.maxHealth, _currentHealth);
         }
 
         public void RestoreMaxHealth()
         {
-            _currentHealth = _stats.MaxHealth;
-            OnChangeHealth?.Invoke(_stats.MaxHealth, _currentHealth);
+            _currentHealth = _stats.maxHealth;
+            OnChangeHealth?.Invoke(_stats.maxHealth, _currentHealth);
         }
 
         public float GetCurrentHealth() => _currentHealth;

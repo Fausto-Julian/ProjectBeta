@@ -32,6 +32,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private Vector3 _destination;
 
         private StatisticsController _statisticsController;
+        private KillStreakSystem _killStreakSystem;
+        private UpgradeController _upgradeController;
 
         public static event Action<PlayerModel> OnDiePlayer;
 
@@ -39,22 +41,22 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
-        private static int PlayerOneLayerMask;
-        private static int PlayerTwoLayerMask;
-        private static int PlayerColOneLayerMask;
-        private static int PlayerColTwoLayerMask;  
+        private static int _playerOneLayerMask;
+        private static int _playerTwoLayerMask;
+        private static int _playerColOneLayerMask;
+        private static int _playerColTwoLayerMask;  
 
         private int _currentPlayerLayerMask;
         private int _currentEnemyLayerMask;
         private int _currentProjectileLayerMask;
 
         public int GetPlayerLayerMask() => _currentPlayerLayerMask;
-        public int GetEnemyLayerMask() => _currentPlayerLayerMask;
+        public int GetEnemyLayerMask() => _currentEnemyLayerMask;
         public int GetProjectileLayerMask() => _currentProjectileLayerMask;
         public StatisticsController GetStatisticsController() => _statisticsController;
+        public KillStreakSystem GetKillStreakSystem() => _killStreakSystem;
         public HealthController GetHealthController() => _healthController;
-
-
+        public UpgradeController GetUpgradeController() => _upgradeController;
 
 
         public void Awake()
@@ -68,41 +70,55 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent = GetComponent<NavMeshAgent>();
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
+
+            _upgradeController = GetComponent<UpgradeController>();
+            Assert.IsNotNull(_upgradeController);
+            _upgradeController.Initialize(_stats);
             
             _statisticsController = GetComponent<StatisticsController>();
             _statisticsController.Initialize(this);
 
-            _agent.speed = data.BaseMovementSpeed;
+            _agent.speed = _stats.movementSpeed;
 
             if (photonView.IsMine)
             {
+                _killStreakSystem = GetComponent<KillStreakSystem>();
+                Assert.IsNotNull(_killStreakSystem);
+                _killStreakSystem.Initialize(this);
+                
                 _playerController = GetComponent<PlayerController>();
+                
                 var playerHeadUI = GetComponent<PlayerHeadUI>();
                 Assert.IsNotNull(playerHeadUI);
                 playerHeadUI.Initialize(this);
-                
-                
+
                 Local = this;
-                PlayerOneLayerMask = LayerMask.NameToLayer("Players One");
-                PlayerTwoLayerMask = LayerMask.NameToLayer("Players Two");
-                PlayerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
-                PlayerColTwoLayerMask = LayerMask.NameToLayer("PlayersCol Two");
+                _playerOneLayerMask = LayerMask.NameToLayer("Players One");
+                _playerTwoLayerMask = LayerMask.NameToLayer("Players Two");
+                _playerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
+                _playerColTwoLayerMask = LayerMask.NameToLayer("PlayersCol Two");
 
                 if (photonView.Owner.CustomProperties.TryGetValue(GameSettings.IsTeamOneId, out var value))
                 {
                     var isTeamOne = (bool)value;
 
-                    var playerLayer = isTeamOne ? PlayerOneLayerMask : PlayerTwoLayerMask;
-                    var enemyLayer = isTeamOne ? PlayerTwoLayerMask : PlayerOneLayerMask;
-                    var projectileLayer = isTeamOne ? PlayerColOneLayerMask : PlayerColTwoLayerMask;
+                    var playerLayer = isTeamOne ? _playerOneLayerMask : _playerTwoLayerMask;
+                    var enemyLayer = isTeamOne ? _playerTwoLayerMask : _playerOneLayerMask;
+                    var projectileLayer = isTeamOne ? _playerColOneLayerMask : _playerColTwoLayerMask;
 
                     photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, enemyLayer, projectileLayer);
                 }
+                
+                SubscribePlayerController();
             }
 
             _healthController.OnDie += HealthControllerOnOnDie;
+        }
 
-            SubscribePlayerController();
+        public void UpgradeSpeed(float value)
+        {
+            _upgradeController.UpgradeSpeed(value);
+            _agent.speed = _stats.movementSpeed;
         }
 
         [PunRPC]
@@ -133,38 +149,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public void Update()
         {
             if (Vector3.Distance(_destination, transform.position) < 0.05f)
-            {
                 _agent.isStopped = true;
-            }
 
             _abilityHolderOne.Update();
             _abilityHolderTwo.Update();
             _abilityHolderThree.Update();
+            
+            _healthController.Heal(data.HealthForSecond * Time.deltaTime);
         }
 
         public PlayerData GetData() => data;
-
-        public void UpgradeDefense(float value)
-        {
-            //RPC_UpgradeDefense(value);
-            photonView.RPC(nameof(RPC_UpgradeDefense), RpcTarget.All, value);
-        }
-
-        [PunRPC]
-        private void RPC_UpgradeDefense(float value)
-        {
-            _stats.BaseDefense += value;
-        } 
-        public void UpgradeDamage(float value)
-        {
-            photonView.RPC(nameof(RPC_UpgradeDamage), RpcTarget.All, value);
-        }
-
-        [PunRPC]
-        private void RPC_UpgradeDamage(float value)
-        {
-            _stats.BaseDamage += value;
-        }
 
         public Stats GetStats() => _stats;
 
@@ -223,9 +217,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private void SubscribePlayerController()
         {
-            if (_playerController == default)
-                return;
-            
             _playerController.OnActiveOne += OnActiveOneAbilityHandler;
             _playerController.OnActiveTwo += OnActiveTwoAbilityHandler;
             _playerController.OnActiveThree += OnActiveThreeAbilityHandler;

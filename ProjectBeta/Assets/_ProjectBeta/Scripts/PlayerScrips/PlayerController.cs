@@ -138,7 +138,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                 {
                     if (model != _model)
                     {
-                        model.DoDamage(10, _model.photonView.Owner);
+                        var damage = _model.GetStats().damage;
+                        model.DoDamage(damage, _model.photonView.Owner);
                         return;
                     }
                 }

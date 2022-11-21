@@ -1,4 +1,3 @@
-using _ProjectBeta.Scripts.Classes;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -11,6 +10,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     {
         [SerializeField] private Image healthBar;
         [SerializeField] private TextMeshProUGUI playerNameText;
+        [SerializeField] private TextMeshProUGUI killStreakText;
         [SerializeField] private FloatingText floatingTextPrefab;
 
         private void Awake()
@@ -18,6 +18,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             healthBar.fillAmount = 1;
 
             playerNameText.text = photonView.Owner.NickName;
+            killStreakText.text = "0";
         }
 
         public void Initialize(PlayerModel model)
@@ -27,6 +28,16 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             healthController.OnChangeHealth += OnChangeHealthHandler;
             model.OnTakeDamageUI += OnTakeDamageHandler;
 
+            var killStreakSystem = model.GetKillStreakSystem();
+            killStreakSystem.OnChangeLevel += OnChangeKillStreakLevelHandler;
+
+        }
+
+        private void OnChangeKillStreakLevelHandler(int newLevel)
+        {
+            if(!photonView.IsMine) return;
+            
+            photonView.RPC(nameof(RPC_UpdateKillStreakLevel), RpcTarget.All, newLevel);
         }
 
         private void OnTakeDamageHandler(Player doesToDamage, float damage)
@@ -65,7 +76,11 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             CreateFloatingInt((int) damage, Color.red);
         }
-        
-        
+
+        [PunRPC]
+        private void RPC_UpdateKillStreakLevel(int newLevel)
+        {
+            killStreakText.text = newLevel.ToString();
+        }
     }
 }

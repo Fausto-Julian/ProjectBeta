@@ -8,11 +8,10 @@ namespace _ProjectBeta.Scripts.Classes
     public class HealthController
     {
         private readonly Stats _stats;
-        public float _currentHealth;
+        private float _currentHealth; //TODO
         private float _healthRegBase;
 
         public event Action OnDie;
-        //                maxLife, current, damage 
         public event Action<float, float> OnChangeHealth;
         public event Action<float> OnTakeDamage;
 
@@ -22,7 +21,7 @@ namespace _ProjectBeta.Scripts.Classes
         {
             _stats = stats;
             _currentHealth = _stats.MaxHealth;
-            _healthRegBase = 1;
+            _healthRegBase = 0;
         }
 
         public void TakeDamage(float damage)
@@ -63,6 +62,7 @@ namespace _ProjectBeta.Scripts.Classes
             if (_currentHealth < _stats.MaxHealth)
             {
                 _currentHealth += _healthRegBase; // = 1
+                OnChangeHealth?.Invoke(_stats.MaxHealth, _currentHealth);
             }
             else
             {

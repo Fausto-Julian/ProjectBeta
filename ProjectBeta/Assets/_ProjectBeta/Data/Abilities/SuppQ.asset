@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cb0c163ec29a2438d94259c389d2c4, type: 3}
   m_Name: SuppQ
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 5
+  <CooldownTime>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 0}
   timeDuration: 7
-  percentageReg: 2
+  percentageReg: 5

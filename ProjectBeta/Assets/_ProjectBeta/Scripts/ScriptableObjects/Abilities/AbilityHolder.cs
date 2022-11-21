@@ -32,6 +32,8 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
         /// </summary>
         public void Update()
         {
+          
+
             if (_state != AbilityState.Cooldown)
                 return;
 

@@ -9,6 +9,7 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
 {
@@ -16,8 +17,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
     {
         public static PlayerModel Local;
 
-        [SerializeField] private PlayerData data;
+        public PlayerView PlayerView { get; private set; }
 
+        [SerializeField] private PlayerData data;
         
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
@@ -39,6 +41,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
+        private float _debugCurrentHealth;
         private float _currentTimeRegen;
         private float _cooldownRegen = 1;
 
@@ -70,6 +73,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent = GetComponent<NavMeshAgent>();
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
+            PlayerView = GetComponent<PlayerView>();
             _currentTimeRegen = _cooldownRegen;
 
             _statisticsController = GetComponent<StatisticsController>();
@@ -128,6 +132,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             photonView.RPC(nameof(RPC_RestoreMaxHealth), RpcTarget.All);
         }
+        public LayerMask GetLayers()
+        {
+           return gameObject.layer;
+        }
 
         [PunRPC]
         private void RPC_RestoreMaxHealth()
@@ -137,8 +145,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Update()
         {
+            int layer = GetPlayerLayerMask();
+            print(layer);
 
-            print(_healthController.GetCurrentHealth() + gameObject.name);
+            _debugCurrentHealth = GetHealthController().GetCurrentHealth();
             _currentTimeRegen -= Time.deltaTime;
 
             if (_currentTimeRegen <= 0)
@@ -176,7 +186,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
         [PunRPC]
         private void RPC_ApplyRegeneration(float value)
-        {
+        {     
             _healthController.ModifyRegen(value);
         }
 
@@ -232,6 +242,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent.isStopped = true;
             ActiveAbilityThree?.Invoke(data.AbilityThree.CooldownTime);
             _abilityHolderThree.Activate();
+        }
+        private void OnDrawGizmos()
+        {
+            var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
+
+            Gizmos.DrawWireSphere(transform.position, 3.5f);
+            Gizmos.color = Color.red;
         }
 
         public void SetStopped(bool value) => _agent.isStopped = value;

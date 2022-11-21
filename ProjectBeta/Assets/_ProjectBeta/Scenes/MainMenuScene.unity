@@ -760,6 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersData:
   - {fileID: 11400000, guid: e67b50f652cc2824c8589998180fa293, type: 2}
+  - {fileID: 11400000, guid: 693f7185138d2304e956745de0893906, type: 2}
 --- !u!4 &989832390
 Transform:
   m_ObjectHideFlags: 0

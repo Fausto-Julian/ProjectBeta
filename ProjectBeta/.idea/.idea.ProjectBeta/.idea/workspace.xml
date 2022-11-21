@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/DestroyOverLifetime.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/DestroyOverLifetime.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FireIceProjectileExplosion/Prefabs/FX_Explosion_Blue.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FireIceProjectileExplosion/Prefabs/FX_Explosion_Blue.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Magic Misc/CFXR3 Magic Aura A (Runic).prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Magic Misc/CFXR3 Magic Aura A (Runic).prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Arrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Arrow.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Tank E.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Tank E.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/TankW.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/TankW.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/PlayerData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/PlayerData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/NicolasScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/NicolasScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/TankE.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/TankE.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/TankW.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/TankW.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/DestroyOverLifetime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/ParticleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/DestroyOverLifetime.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/ParticleController.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +114,7 @@
       <workItem from="1668897056838" duration="2316000" />
       <workItem from="1668975748630" duration="3698000" />
       <workItem from="1669041957077" duration="1991000" />
+      <workItem from="1669053116328" duration="2767000" />
     </task>
     <servers />
   </component>

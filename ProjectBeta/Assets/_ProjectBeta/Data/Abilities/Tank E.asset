@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9e00d3c5ea4a08a2636482052b9c27, type: 3}
   m_Name: Tank E
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 60
+  <CooldownTime>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: 21300000, guid: 73d3951e67767ab4683ecbedd7e8b47f, type: 3}
   timeDuration: 10
   percentageUpgrade: 20
-  particlesPrefab: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+  particlesPrefab: {fileID: 3431636481967145942, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+  particlesLifetime: 5

@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb865273849f294e8193344f2c69c8d, type: 3}
   m_Name: CampeonBase
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 1000
+  <MaxHealth>k__BackingField: 2
   <BaseMovementSpeed>k__BackingField: 200
   <BaseDefense>k__BackingField: 25
+  <DistanceToAttack>k__BackingField: 0
+  <DistanceToBasicAttack>k__BackingField: 0
+  <RespawnCooldown>k__BackingField: 2
   <AbilityOne>k__BackingField: {fileID: 0}
   <AbilityTwo>k__BackingField: {fileID: 0}
   <AbilityThree>k__BackingField: {fileID: 0}
+  <AbilityOneIcon>k__BackingField: {fileID: 0}
+  <AbilityTwoIcon>k__BackingField: {fileID: 0}
+  <AbilityThreeIcon>k__BackingField: {fileID: 0}

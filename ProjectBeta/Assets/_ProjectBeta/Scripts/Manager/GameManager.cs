@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects;
 using Photon.Realtime;
@@ -25,6 +26,7 @@ namespace _ProjectBeta.Scripts.Manager
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
 
         public List<PlayerSpawnData> GetPlayersData() => playersData;
 

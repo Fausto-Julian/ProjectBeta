@@ -25,6 +25,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private Stats _stats;
         private HealthController _healthController;
+        private Rigidbody _rb;
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;
@@ -41,10 +42,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
-        private static int _playerOneLayerMask;
-        private static int _playerTwoLayerMask;
-        private static int _playerColOneLayerMask;
-        private static int _playerColTwoLayerMask;  
+        private float _debugCurrentHealth;
+        private float _currentTimeRegen;
+        private float _cooldownRegen = 1;
+
+        private static int PlayerOneLayerMask;
+        private static int PlayerTwoLayerMask;
+        private static int PlayerColOneLayerMask;
+        private static int PlayerColTwoLayerMask;
 
         private int _currentPlayerLayerMask;
         private int _currentEnemyLayerMask;
@@ -139,6 +144,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             photonView.RPC(nameof(RPC_RestoreMaxHealth), RpcTarget.All);
         }
+        public LayerMask GetLayers()
+        {
+           return gameObject.layer;
+        }
 
         [PunRPC]
         private void RPC_RestoreMaxHealth()
@@ -148,6 +157,18 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Update()
         {
+            int layer = GetPlayerLayerMask();
+            print(layer);
+
+            _debugCurrentHealth = GetHealthController().GetCurrentHealth();
+            _currentTimeRegen -= Time.deltaTime;
+
+            if (_currentTimeRegen <= 0)
+            {
+                _currentTimeRegen = _cooldownRegen;
+                _healthController.HealthRegen();
+            }
+
             if (Vector3.Distance(_destination, transform.position) < 0.05f)
                 _agent.isStopped = true;
 
@@ -159,6 +180,40 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
 
         public PlayerData GetData() => data;
+
+        public void UpgradeDefense(float value)
+        {
+            //RPC_UpgradeDefense(value);
+            photonView.RPC(nameof(RPC_UpgradeDefense), RpcTarget.All, value);
+        }
+
+        [PunRPC]
+        private void RPC_UpgradeDefense(float value)
+        {
+            _stats.BaseDefense += value;
+        }
+        public void ApplyRegeneration(float value)
+        {
+            photonView.RPC(nameof(RPC_ApplyRegeneration), RpcTarget.All, value);
+        }
+        [PunRPC]
+        private void RPC_ApplyRegeneration(float value)
+        {     
+            _healthController.ModifyRegen(value);
+        }
+
+        public void Impulse(Vector3 _transform,float value)
+        {
+            photonView.RPC(nameof(RPC_Impulse), RpcTarget.All,_transform,value);
+        }
+
+        [PunRPC]
+        private void RPC_Impulse(Vector3 _transform , float value)
+        {
+            _rb.isKinematic = false;
+            _rb.AddForce(_transform * value, ForceMode.Impulse);
+          
+        }
 
         public Stats GetStats() => _stats;
 
@@ -212,8 +267,24 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             ActiveAbilityThree?.Invoke(data.AbilityThree.CooldownTime);
             _abilityHolderThree.Activate();
         }
+        private void OnDrawGizmos()
+        {
+            var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
+
+            Gizmos.DrawWireSphere(hit.point, 5f);
+            //var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            //Ray ray = Camera.current.ScreenPointToRay(mousePos);
+            //RaycastHit hit;
+            //Physics.Raycast(ray, out hit, Mathf.Infinity);
+            //Gizmos.DrawWireSphere(hit.point, 5);
+            //Gizmos.color = Color.red;
+        }
 
         public void SetStopped(bool value) => _agent.isStopped = value;
+        public void ZeroMovement() => _agent.speed= 0f;
+        public void RecoveryMovement() => _agent.speed = data.BaseMovementSpeed;
+        public void RbZero() => _rb.isKinematic=true;
 
         private void SubscribePlayerController()
         {

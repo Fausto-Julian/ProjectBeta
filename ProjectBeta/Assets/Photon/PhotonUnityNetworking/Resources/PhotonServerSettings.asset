@@ -47,6 +47,8 @@ MonoBehaviour:
   - SetLayers
   - RPC_UpgradeDamage
   - RPC_UpdateKillStreakLevel
+  - RPC_ApplyRegeneration
+  - RPC_Impulse
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

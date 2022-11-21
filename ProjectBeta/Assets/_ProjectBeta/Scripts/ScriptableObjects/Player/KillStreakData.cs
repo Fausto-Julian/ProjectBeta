@@ -11,6 +11,6 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         [field: SerializeField] public float InactiveTime { get; private set; }
         [field: SerializeField] public float PointToRemoveInactiveTime { get; private set; }
         [field: SerializeField] public List<float> ExperiencePointNeededToLevelUp { get; private set; }
-        [field: SerializeField] public List<PlayerEffect> Effects { get; private set; }
+        [field: SerializeField] public List<KillStreakLevelData> LevelsData { get; private set; }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using _ProjectBeta.Scripts.ScriptableObjects.Player;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -97,10 +98,13 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private void LevelUp()
         {
-            var effect = _data.Effects[_index];
-            effect.ActivateEffect(_model);
-            
-            _effectsApplications.Add(effect);
+            var levelData = _data.LevelsData[_index];
+            foreach (var effect in levelData.Effects)
+            {
+                effect.ActivateEffect(_model);
+                _effectsApplications.Add(effect);
+            }
+
             _index++;
             OnChangeLevel?.Invoke(_index);
         }
@@ -114,12 +118,13 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             var maxLevel = _index >= _data.ExperiencePointNeededToLevelUp.Count;
             var index = maxLevel ? _data.ExperiencePointNeededToLevelUp.Count - 1 : _index;
-            var effect = _data.Effects[index];
             
-            effect.RemoveEffect(_model);
-
-            if (_effectsApplications.Contains(effect))
+            var levelData = _data.LevelsData[index];
+            foreach (var effect in levelData.Effects.Where(effect => _effectsApplications.Contains(effect)))
+            {
+                effect.RemoveEffect(_model);
                 _effectsApplications.Remove(effect);
+            }
 
             _index = maxLevel ? _index - 2 : _index--;
             OnChangeLevel?.Invoke(_index);

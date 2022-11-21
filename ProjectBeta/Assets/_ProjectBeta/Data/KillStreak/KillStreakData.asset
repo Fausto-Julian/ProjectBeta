@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab6ccd8a3d74901aab50c097c46d9c6, type: 3}
+  m_Name: KillStreakData
+  m_EditorClassIdentifier: 
+  <PointToAddKills>k__BackingField: 20
+  <PointToAddAssistance>k__BackingField: 10
+  <InactiveTime>k__BackingField: 15
+  <PointToRemoveInactiveTime>k__BackingField: 10
+  <ExperiencePointNeededToLevelUp>k__BackingField:
+  - 100
+  - 200
+  - 300
+  - 400
+  - 500
+  <LevelsData>k__BackingField:
+  - {fileID: 11400000, guid: 39c96eb671a8a7c40bcaf02bc57d82c9, type: 2}
+  - {fileID: 11400000, guid: 846ef7d51fa5c444d82c6aa066470bc7, type: 2}
+  - {fileID: 11400000, guid: 3a9a25fe5eb609843ad6920d754238a1, type: 2}
+  - {fileID: 11400000, guid: 6ab6f9b4592bab84eac16a8ab79caa27, type: 2}
+  - {fileID: 11400000, guid: 0a9b4a3307f99e744ae649bf6a3a63fb, type: 2}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f73cb96c2fa4386aaef1cfa5f5a1c47, type: 3}
+  m_Name: Kill Streak Level Data 3
+  m_EditorClassIdentifier: 
+  <Effects>k__BackingField:
+  - {fileID: 11400000, guid: 6e8d8329905b6814cb1fafaee0865c2c, type: 2}
+  - {fileID: 11400000, guid: d79c99b7dac2e78459b33ca93c70d00f, type: 2}

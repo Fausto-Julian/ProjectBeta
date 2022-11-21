@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: MageData
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
+  <HealthForSecond>k__BackingField: 0
   <BaseMovementSpeed>k__BackingField: 5
   <BaseDefense>k__BackingField: 20
   <BaseDamage>k__BackingField: 40
   <DistanceToAttack>k__BackingField: 12
   <DistanceToBasicAttack>k__BackingField: 8
   <RespawnCooldown>k__BackingField: 2
+  <KillStreakData>k__BackingField: {fileID: 11400000, guid: 7f829ba164427b84a9b2082b9398ee0e, type: 2}
+  <PercentageReduceCooldownAbilities>k__BackingField: 0
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: e5d81ccfc69dcd143a9dcebcf09ce90a, type: 2}
   <AbilityTwo>k__BackingField: {fileID: 11400000, guid: d8306d6d17b5ee449bcd7a679655ada6, type: 2}
   <AbilityThree>k__BackingField: {fileID: 11400000, guid: 3bc8db787a9a78e419dd7da9389bb6ed, type: 2}
-  <AbilityOneIcon>k__BackingField: {fileID: 21300000, guid: 62943b184a88d29469872063d605802b, type: 3}
-  <AbilityTwoIcon>k__BackingField: {fileID: 21300000, guid: 62943b184a88d29469872063d605802b, type: 3}
-  <AbilityThreeIcon>k__BackingField: {fileID: 21300000, guid: 62943b184a88d29469872063d605802b, type: 3}

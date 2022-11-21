@@ -422,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 7999616965552534937}
   playerNameText: {fileID: 3482490244017690817}
+  killStreakText: {fileID: 0}
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!120 &973642157678032179
 LineRenderer:

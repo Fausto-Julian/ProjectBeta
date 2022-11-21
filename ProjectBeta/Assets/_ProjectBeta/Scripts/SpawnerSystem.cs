@@ -22,22 +22,23 @@ namespace _ProjectBeta.Scripts
             if (props.TryGetValue(GameSettings.PlayerPrefabId, out var obj) && 
                 props.TryGetValue(GameSettings.IsTeamOneId, out var teamBlue))
             {
-                var playersData = GameManager.Instance.GetPlayersData();
                 var index = (int)obj;
+                var playersData = GameManager.Instance.GetPlayerSpawnData(index);
+
+                var isTeamOne = (bool)teamBlue;
+
+                var position = isTeamOne ? respawnOne.position : respawnTwo.position;
+
+                var layer = isTeamOne ? LayerMask.NameToLayer("Players One") : LayerMask.NameToLayer("Players Two");
                 
-                if (index >= playersData.Count)
-                    index = playersData.Count - 1;
-
-                var position = (bool)teamBlue ? respawnOne.position : respawnTwo.position;
-
-                var player = PhotonNetworkExtension.Instantiate<PlayerModel>(playersData[index].Prefab, position, Quaternion.identity);
+                var player = PhotonNetworkExtension.Instantiate<PlayerModel>(playersData.Prefab, position, Quaternion.identity, layer);
+                Assert.IsNotNull(player);
 
                 var controller = player.GetComponent<PlayerController>();
                 
-                Assert.IsNotNull(player);
+                Assert.IsNotNull(controller);
                 cameraController.SetTarget(controller);
 
-                Assert.IsNotNull(player);
                 playerUI.Initialized(player);
             }
 

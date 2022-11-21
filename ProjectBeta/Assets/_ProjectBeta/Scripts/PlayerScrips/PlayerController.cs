@@ -1,5 +1,6 @@
 using System;
 using _ProjectBeta.Scripts.PlayerScrips.Interface;
+using _ProjectBeta.Scripts.Structure;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -132,16 +133,21 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
                 return;
 
-            if (hit.collider.TryGetComponent(out PlayerModel model))
+            if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack)
             {
-                if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack)
+                if (hit.collider.TryGetComponent(out PlayerModel model))
                 {
                     if (model != _model)
                     {
-                        var damage = _model.GetStats().damage;
-                        model.DoDamage(damage, _model.photonView.Owner);
+                        model.DoDamage(_model.GetStats().damage, _model.photonView.Owner);
                         return;
                     }
+                }
+
+                if (hit.collider.TryGetComponent(out StructureModel structureModel))
+                {
+                    structureModel.DoDamage(_model.GetStats().damage);
+                    return;
                 }
             }
 

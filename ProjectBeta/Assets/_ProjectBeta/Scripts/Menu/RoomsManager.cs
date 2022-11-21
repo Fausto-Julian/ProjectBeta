@@ -188,6 +188,7 @@ namespace _ProjectBeta.Scripts.Menu
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
             PhotonNetwork.LoadLevel(sceneToLoad);
+            GameManager.Instance.StartGame();
         }
     
         private static void OnLeaveGameButtonClicked()

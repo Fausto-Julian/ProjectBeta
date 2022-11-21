@@ -3,6 +3,7 @@ using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using _ProjectBeta.Scripts.Extension;
+using _ProjectBeta.Scripts.Projectiles;
 
 namespace _ProjectBeta.Scripts.Abilities
 {

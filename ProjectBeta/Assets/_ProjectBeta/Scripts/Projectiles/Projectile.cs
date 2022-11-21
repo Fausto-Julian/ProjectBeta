@@ -1,54 +1,129 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
+using System;
 using _ProjectBeta.Scripts.PlayerScrips;
+using _ProjectBeta.Scripts.Structure;
+using Photon.Pun;
+using UnityEngine;
 
-public class Projectile : MonoBehaviourPun
+namespace _ProjectBeta.Scripts.Projectiles
 {
-    private float damage;
-    private float speed;
-    private float lifeTime;
-    private Rigidbody rb;
-
-    private void Awake()
+    public class Projectile : MonoBehaviourPun
     {
-        rb = GetComponent<Rigidbody>();
-        lifeTime = 99999999;
-    } 
+        private float _damage;
+        private float _speed;
+        private float _lifeTime;
+        private Rigidbody _rb;
+        private int _countHits;
 
-    private void Update()
-    {
-        Move();
-        if(lifeTime <= Time.time)
+        private void Awake()
         {
-            PhotonNetwork.Destroy(this.gameObject);
-        }
-    }
+            _rb = GetComponent<Rigidbody>();
+            _lifeTime = 99999999;
+        } 
 
-    public void Initialize(float speed, float lifeTime, float damage, Vector3 position)
-    {
-        this.speed = speed;
-        this.lifeTime = lifeTime + Time.time;
-        this.damage = damage;
-
-        var rotation = Quaternion.LookRotation(position);
-        var eulerAngles = transform.eulerAngles;
-
-        eulerAngles = new Vector3(eulerAngles.x, rotation.eulerAngles.y, eulerAngles.z);
-        transform.eulerAngles = eulerAngles;
-    }
-
-    private void Move()
-    {
-        rb.velocity = transform.forward * speed;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent<PlayerModel>(out var model))
+        private void Update()
         {
-            model.DoDamage(damage, photonView.Owner);
+            if (!photonView.IsMine)
+                return;
+        
+            Move();
+            if(_lifeTime <= Time.time)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
+
+        public void Initialize(float speed, float lifeTime, float damage, Vector3 position, int countHits = 0)
+        {
+            _speed = speed;
+            _lifeTime = lifeTime + Time.time;
+            _damage = damage;
+
+            var rotation = Quaternion.LookRotation(position);
+            var eulerAngles = transform.eulerAngles;
+
+            eulerAngles = new Vector3(eulerAngles.x, rotation.eulerAngles.y, eulerAngles.z);
+            transform.eulerAngles = eulerAngles;
+
+            _countHits = countHits;
+        }
+
+        private void Move()
+        {
+            _rb.velocity = transform.forward * _speed;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine)
+            {
+                model.DoDamage(_damage, photonView.Owner);
+
+                photonView.RPC(nameof(RPC_ChangeHit), photonView.Owner);
+                return;
+            }
+
+            if (other.TryGetComponent(out StructureModel structureModel) && structureModel.photonView.IsMine)
+            {
+                if (structureModel.GetIsAcceptProjectileDamage())
+                    structureModel.DoDamage(_damage);
+            }
+            
+            photonView.RPC(nameof(RPC_DestroyObjectRemote), photonView.Owner);
+        }
+
+        private void RPC_DestroyObjectRemote()
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+
+        [PunRPC]
+        private void RPC_ChangeHit()
+        {
+            _countHits--;
+            if (_countHits > 0)
+                return;
+            
+            PhotonNetwork.Destroy(gameObject);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }

@@ -23,14 +23,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private WaitForSeconds _waitTimeAssistance;
 
         private float _startTime;
-        private int _killCount;
-        private int _assistanceCount;
-        private int _deathCount;
+        private PlayerResult _result;
 
         public event Action<int> OnKillChange; 
         public event Action<int> OnAssistanceChange; 
-        public event Action<int> OnDeathChange; 
+        public event Action<int> OnDeathChange;
 
+        public PlayerResult GetResults => _result;
+        
         private void Awake()
         {
             _waitTimeLastHit = new WaitForSeconds(timeLifeLastHit);
@@ -105,11 +105,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _assistanceList.Clear();
         }
 
-
-        
-
-        
-        
         public void SendKill()
         {
             photonView.RPC(nameof(RPC_SendKill), RpcTarget.All);
@@ -128,22 +123,22 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [PunRPC]
         private void RPC_SendKill()
         {
-            _killCount++;
-            OnKillChange?.Invoke(_killCount);
+            _result.kills++;
+            OnKillChange?.Invoke(_result.kills);
         }
         
         [PunRPC]
         private void RPC_SendAssistance()
         {
-            _assistanceCount++;
-            OnAssistanceChange?.Invoke(_assistanceCount);
+            _result.assistance++;
+            OnAssistanceChange?.Invoke(_result.assistance);
         }
         
         [PunRPC]
         private void RPC_SendDeath()
         {
-            _deathCount++;
-            OnDeathChange?.Invoke(_deathCount);
+            _result.death++;
+            OnDeathChange?.Invoke(_result.death);
         }
     }
 }

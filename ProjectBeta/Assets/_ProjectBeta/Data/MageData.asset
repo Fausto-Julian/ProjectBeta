@@ -21,6 +21,12 @@ MonoBehaviour:
   <DistanceToBasicAttack>k__BackingField: 8
   <RespawnCooldown>k__BackingField: 2
   <KillStreakData>k__BackingField: {fileID: 11400000, guid: 7f829ba164427b84a9b2082b9398ee0e, type: 2}
+  <ClickRightLayerMaskTeamOne>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 10376
+  <ClickRightLayerMaskTeamTwo>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 5192
   <PercentageReduceCooldownAbilities>k__BackingField: 0
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: e5d81ccfc69dcd143a9dcebcf09ce90a, type: 2}
   <AbilityTwo>k__BackingField: {fileID: 11400000, guid: d8306d6d17b5ee449bcd7a679655ada6, type: 2}

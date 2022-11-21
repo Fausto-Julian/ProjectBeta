@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 151574262}
   - component: {fileID: 151574261}
   - component: {fileID: 151574260}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,6 +1339,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7802bbfdfa9c3e141b3e76e4e35e4de3, type: 3}
+--- !u!1 &285759341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 451961741540377046, guid: 7802bbfdfa9c3e141b3e76e4e35e4de3, type: 3}
+  m_PrefabInstance: {fileID: 285759340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &285759342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285759341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042842f02ffe4724b20bc337cbbc582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5000
+  defense: 0
+  isAcceptProjectileDamage: 1
 --- !u!1 &300221999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1506,7 @@ GameObject:
   - component: {fileID: 315569834}
   - component: {fileID: 315569833}
   - component: {fileID: 315569832}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2357,6 +2377,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7802bbfdfa9c3e141b3e76e4e35e4de3, type: 3}
+--- !u!1 &476827198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 451961741540377046, guid: 7802bbfdfa9c3e141b3e76e4e35e4de3, type: 3}
+  m_PrefabInstance: {fileID: 476827197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &476827199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476827198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042842f02ffe4724b20bc337cbbc582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2500
+  defense: 0
+  isAcceptProjectileDamage: 1
 --- !u!1001 &480711427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2509,7 +2549,7 @@ GameObject:
   - component: {fileID: 490021871}
   - component: {fileID: 490021870}
   - component: {fileID: 490021869}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3007,6 +3047,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+--- !u!1 &574764136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7924452156982343015, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+  m_PrefabInstance: {fileID: 574764135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &574764137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574764136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042842f02ffe4724b20bc337cbbc582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2500
+  defense: 0
+  isAcceptProjectileDamage: 1
 --- !u!1001 &601937962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3299,7 +3359,8 @@ GameObject:
   - component: {fileID: 619045718}
   - component: {fileID: 619045717}
   - component: {fileID: 619045716}
-  m_Layer: 0
+  - component: {fileID: 619045719}
+  m_Layer: 13
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3385,6 +3446,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619045714}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &619045719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619045714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042842f02ffe4724b20bc337cbbc582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 8500
+  defense: 0
+  isAcceptProjectileDamage: 0
 --- !u!1 &624508271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,7 +3951,7 @@ GameObject:
   - component: {fileID: 671392796}
   - component: {fileID: 671392795}
   - component: {fileID: 671392794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpawnTeamTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4812,6 +4888,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 550749511122384726, guid: c37df0d209b5c9b4a9020af45615fbc2, type: 3}
   m_PrefabInstance: {fileID: 894036032}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &907289110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 907289112}
+  - component: {fileID: 907289111}
+  m_Layer: 0
+  m_Name: SizeControllerOne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &907289111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907289110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e03323445c84f2da23799b8bc85000d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTeamOne: 1
+  structuresList:
+  - {fileID: 574764137}
+  - {fileID: 1823014322}
+  - {fileID: 2086890164}
+--- !u!4 &907289112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907289110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &908626355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5517,8 +5642,7 @@ GameObject:
   - component: {fileID: 1016992831}
   - component: {fileID: 1016992834}
   - component: {fileID: 1016992833}
-  - component: {fileID: 1016992832}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5540,19 +5664,6 @@ Transform:
   m_Father: {fileID: 2086890160}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1016992832
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016992830}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1016992833
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5603,6 +5714,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016992830}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1017148190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1017148192}
+  - component: {fileID: 1017148191}
+  m_Layer: 0
+  m_Name: SizeControllerTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1017148191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017148190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e03323445c84f2da23799b8bc85000d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTeamOne: 0
+  structuresList:
+  - {fileID: 285759342}
+  - {fileID: 476827199}
+--- !u!4 &1017148192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017148190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1050995116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9355,6 +9514,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+--- !u!1 &1823014321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7924452156982343015, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+  m_PrefabInstance: {fileID: 1823014320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1823014322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823014321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042842f02ffe4724b20bc337cbbc582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5000
+  defense: 0
+  isAcceptProjectileDamage: 1
 --- !u!1001 &1840741878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10687,8 +10866,8 @@ GameObject:
   - component: {fileID: 1998059629}
   - component: {fileID: 1998059632}
   - component: {fileID: 1998059631}
-  - component: {fileID: 1998059630}
-  m_Layer: 0
+  - component: {fileID: 1998059633}
+  m_Layer: 3
   m_Name: SpawnTeamOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10710,19 +10889,6 @@ Transform:
   m_Father: {fileID: 100916380}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1998059630
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998059628}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1998059631
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10773,6 +10939,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998059628}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1998059633
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998059628}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1001 &2000749266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11288,7 +11467,7 @@ GameObject:
   - component: {fileID: 2079444480}
   - component: {fileID: 2079444479}
   - component: {fileID: 2079444478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11525,7 +11704,8 @@ GameObject:
   - component: {fileID: 2086890163}
   - component: {fileID: 2086890162}
   - component: {fileID: 2086890161}
-  m_Layer: 0
+  - component: {fileID: 2086890164}
+  m_Layer: 12
   m_Name: Core (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11611,6 +11791,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086890159}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2086890164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086890159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042842f02ffe4724b20bc337cbbc582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 8500
+  defense: 0
+  isAcceptProjectileDamage: 0
 --- !u!1001 &2093714254
 PrefabInstance:
   m_ObjectHideFlags: 0

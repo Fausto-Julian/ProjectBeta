@@ -18,11 +18,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerModel : MonoBehaviourPun, IDamageable, IPlayerUIInvoker
     {
-        public static PlayerModel Local;
-
         [SerializeField] private PlayerData data;
 
-        
         private AbilityHolder _abilityHolderOne;
         private AbilityHolder _abilityHolderTwo;
         private AbilityHolder _abilityHolderThree;
@@ -55,6 +52,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private int _currentEnemyLayerMask;
         private int _currentProjectileLayerMask;
 
+        private LayerMask _basicLayerMask;
+
+        public LayerMask GetBasicLayerMask() => _basicLayerMask;
         public int GetPlayerLayerMask() => _currentPlayerLayerMask;
         public int GetEnemyLayerMask() => _currentEnemyLayerMask;
         public int GetProjectileLayerMask() => _currentProjectileLayerMask;
@@ -97,7 +97,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                 Assert.IsNotNull(playerHeadUI);
                 playerHeadUI.Initialize(this);
 
-                Local = this;
                 _playerOneLayerMask = LayerMask.NameToLayer("Players One");
                 _playerTwoLayerMask = LayerMask.NameToLayer("Players Two");
                 _playerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
@@ -110,6 +109,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                     var playerLayer = isTeamOne ? _playerOneLayerMask : _playerTwoLayerMask;
                     var enemyLayer = isTeamOne ? _playerTwoLayerMask : _playerOneLayerMask;
                     var projectileLayer = isTeamOne ? _playerColOneLayerMask : _playerColTwoLayerMask;
+                    
+                    _basicLayerMask = isTeamOne ? data.ClickRightLayerMaskTeamOne : data.ClickRightLayerMaskTeamTwo;
 
                     photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, enemyLayer, projectileLayer);
                 }

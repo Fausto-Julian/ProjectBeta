@@ -130,9 +130,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void RightClickInputActionInput(InputAction.CallbackContext context)
         {
             var mouse = Mouse.current.position.ReadValue();
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity)) 
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity, _model.GetBasicLayerMask())) 
                 return;
-
+            
             if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack)
             {
                 if (hit.collider.TryGetComponent(out PlayerModel model))

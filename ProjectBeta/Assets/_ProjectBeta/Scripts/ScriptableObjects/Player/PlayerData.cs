@@ -18,6 +18,8 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         [field: SerializeField] public float RespawnCooldown { get; private set; } = 2;
         
         [field: SerializeField] public KillStreakData KillStreakData { get; private set; }
+        [field: SerializeField] public LayerMask ClickRightLayerMaskTeamOne { get; private set; }
+        [field: SerializeField] public LayerMask ClickRightLayerMaskTeamTwo { get; private set; }
         
         [field: Header("Abilities")]
         [field: SerializeField] public float PercentageReduceCooldownAbilities { get; private set; }

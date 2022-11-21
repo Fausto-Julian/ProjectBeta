@@ -46,10 +46,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<Player, float> OnTakeDamageUI; 
         public event Action OnDieStatics;
 
-        private float _debugCurrentHealth;
-        private float _currentTimeRegen;
-        private float _cooldownRegen = 1;
-
         private static int _playerOneLayerMask;
         private static int _playerTwoLayerMask;
         private static int _playerColOneLayerMask;

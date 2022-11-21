@@ -17,22 +17,23 @@ namespace _ProjectBeta.Scripts.Abilities
 
             if (!(Vector3.Distance(hit.point, model.transform.position) < 5f))
                 return false;
-            
-                var colliders = Physics.OverlapSphere(hit.point, 5f);
-                foreach (var player in colliders)
-                {
-                    if (!player.TryGetComponent(out PlayerModel playerModel)) 
-                        continue;
-                    
-                    if (playerModel == model) 
-                        continue;
-                    
-                    playerModel.DoDamage(10f, model.photonView.Owner);
-                }
-                model.SetStopped(false);
-                return true;
-            
-            
+
+            var colliders = Physics.OverlapSphere(hit.point, 5f);
+            foreach (var player in colliders)
+            {
+                if (!player.TryGetComponent(out PlayerModel playerModel))
+                    continue;
+
+                if (playerModel == model)
+                    continue;
+
+
+
+            }
+            model.SetStopped(false);
+            return true;
+
+
         }
 
         

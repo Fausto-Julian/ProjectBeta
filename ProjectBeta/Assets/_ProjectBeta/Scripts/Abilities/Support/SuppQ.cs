@@ -15,7 +15,6 @@ namespace _ProjectBeta.Scripts.Abilities
         [SerializeField] private float _radius = 3.5f;
         public override bool TryActivate(PlayerModel model)
         {
-            Debug.Log("SUPP Q");
             model.StartCoroutine(model.PlayerView.CircleLineRenderer(Color.cyan,Color.cyan));
             var colliders = Physics.OverlapSphere(model.transform.position, _radius);
             int layer = model.GetPlayerLayerMask();
@@ -23,30 +22,14 @@ namespace _ProjectBeta.Scripts.Abilities
             {
                 if (!player.TryGetComponent(out PlayerModel playerModel))
                 continue;
-              
-                if (playerModel != model)
-                {
-                    int temp = playerModel.GetLayers();
-                    Debug.Log(temp + "TOUCH");
-                }
-                //CO
-
-                //if(temp!=6)
-                //    Debug.Log("SOY ENEMIGO");
-                //else
-                //    Debug.Log("SOY AMIGO");
-            
-                //if (model.GetPlayerLayerMask() != playerModel.GetPlayerLayerMask())
-                //    Debug.Log("DAÑE A TEAM ENEMY");
-                //else
-                //    Debug.Log("DAÑE A TEAM PLAYER");
-
-                //model.StartCoroutine(AbilityCoroutine(playerModel,model));
-
+                int othersLayer = playerModel.GetPlayerLayerMask();
+                if (othersLayer != layer)
+                    continue;
+                model.StartCoroutine(AbilityCoroutine(playerModel));
             }
             return true;
         }
-        public IEnumerator AbilityCoroutine(PlayerModel allModels, PlayerModel model)
+        public IEnumerator AbilityCoroutine(PlayerModel allModels)
         {
             var healthReg = (allModels.GetStats().MaxHealth * percentageReg) / 100;
             allModels.ApplyRegeneration(healthReg);      
@@ -54,7 +37,5 @@ namespace _ProjectBeta.Scripts.Abilities
             allModels.ApplyRegeneration(-healthReg);
 
         }
-
-
     }
 }

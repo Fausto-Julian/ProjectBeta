@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerModel : MonoBehaviourPun, IDamageable, IPlayerUIInvoker
     {
         public static PlayerModel Local;
@@ -27,6 +28,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private Stats _stats;
         private HealthController _healthController;
+        private Rigidbody _rb;
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;
@@ -74,6 +76,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _stats = new Stats(data);
             _healthController = new HealthController(_stats);
             PlayerView = GetComponent<PlayerView>();
+            _rb = GetComponent<Rigidbody>();
             _currentTimeRegen = _cooldownRegen;
 
             _statisticsController = GetComponent<StatisticsController>();
@@ -190,6 +193,18 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _healthController.ModifyRegen(value);
         }
 
+        public void Impulse(Vector3 _transform,float value)
+        {
+            photonView.RPC(nameof(RPC_Impulse), RpcTarget.All,_transform,value);
+        }
+
+        [PunRPC]
+        private void RPC_Impulse(Vector3 _transform , float value)
+        {
+            _rb.isKinematic = false;
+            _rb.AddForce(_transform * value, ForceMode.Impulse);
+          
+        }
 
         public Stats GetStats() => _stats;
 
@@ -248,11 +263,19 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             var mousePos = (Vector3)Mouse.current.position.ReadValue();
             Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
 
-            Gizmos.DrawWireSphere(transform.position, 3.5f);
-            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(hit.point, 5f);
+            //var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            //Ray ray = Camera.current.ScreenPointToRay(mousePos);
+            //RaycastHit hit;
+            //Physics.Raycast(ray, out hit, Mathf.Infinity);
+            //Gizmos.DrawWireSphere(hit.point, 5);
+            //Gizmos.color = Color.red;
         }
 
         public void SetStopped(bool value) => _agent.isStopped = value;
+        public void ZeroMovement() => _agent.speed= 0f;
+        public void RecoveryMovement() => _agent.speed = data.BaseMovementSpeed;
+        public void RbZero() => _rb.isKinematic=true;
 
         private void SubscribePlayerController()
         {

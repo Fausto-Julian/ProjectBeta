@@ -50,6 +50,15 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             }
             yield break;
         }
+
+        private void OnDrawGizmos()
+        {
+            var mousePos = (Vector3)Mouse.current.position.ReadValue();
+            Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
+
+            Gizmos.DrawWireSphere(transform.position, 5f);
+            Gizmos.color = Color.red;
+        }
     }
 
     //float x;

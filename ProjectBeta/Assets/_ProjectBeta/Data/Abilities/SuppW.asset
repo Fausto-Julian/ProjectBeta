@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084d645ed2226174e81e6cfd413262b6, type: 3}
-  m_Name: TankW
+  m_Script: {fileID: 11500000, guid: 38e037ca62e98664b881b4405da6673a, type: 3}
+  m_Name: SuppW
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 1
+  <CooldownTime>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 0}
+  timeDuration: 7
+  _radius: 5
+  _impulse: 40

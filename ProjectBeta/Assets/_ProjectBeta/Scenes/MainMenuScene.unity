@@ -760,6 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersData:
   - {fileID: 11400000, guid: e67b50f652cc2824c8589998180fa293, type: 2}
+  - {fileID: 11400000, guid: 693f7185138d2304e956745de0893906, type: 2}
 --- !u!4 &989832390
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,7 +1326,7 @@ RectTransform:
   - {fileID: 130303618}
   - {fileID: 756499132}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2371,7 +2372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6890292424606842301, guid: a1e6182bfe35b834b8e75234e83e1b01, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6890292424606842301, guid: a1e6182bfe35b834b8e75234e83e1b01, type: 3}
       propertyPath: m_AnchorMax.x

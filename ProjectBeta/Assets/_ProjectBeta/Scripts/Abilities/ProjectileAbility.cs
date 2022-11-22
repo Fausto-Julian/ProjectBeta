@@ -30,7 +30,7 @@ namespace _ProjectBeta.Scripts.Abilities
 
             var position = isSpawnBody ? model.transform.position : hit.point;
 
-            var projectile = PhotonNetworkExtension.Instantiate<Projectile>(projectilePrefab, position, projectilePrefab.transform.rotation, layer);
+            var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, position, projectilePrefab.transform.rotation, layer);
 
             projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().damage, hit.point - model.transform.position);
                 

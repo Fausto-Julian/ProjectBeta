@@ -1,7 +1,9 @@
 using System.Collections;
+using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace _ProjectBeta.Scripts.Abilities
 {
@@ -17,7 +19,8 @@ namespace _ProjectBeta.Scripts.Abilities
         {
             model.SetStopped(false);
             
-            var particles = Instantiate(particlesPrefab, model.transform.position, Quaternion.identity);
+            var particles = PhotonNetworkExtension.Instantiate<ParticleController>(particlesPrefab, model.transform.position, Quaternion.identity);
+            Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, Vector3.one, true);
             
             model.StartCoroutine(AbilityCoroutine(model));

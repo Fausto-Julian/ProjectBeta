@@ -1,7 +1,9 @@
+using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace _ProjectBeta.Scripts.Abilities
 {
@@ -28,7 +30,8 @@ namespace _ProjectBeta.Scripts.Abilities
                 
                 playerModel.DoDamage(10f, model.photonView.Owner);
             }
-            var particles = GameObject.Instantiate(particlesPrefab, position, Quaternion.identity);
+            var particles = PhotonNetworkExtension.Instantiate<ParticleController>(particlesPrefab, model.transform.position, Quaternion.identity);
+            Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, particleSize);
             
             model.SetStopped(false);

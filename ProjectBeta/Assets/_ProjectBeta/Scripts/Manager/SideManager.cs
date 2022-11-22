@@ -38,6 +38,7 @@ namespace _ProjectBeta.Scripts.Manager
                 return;
             
             EndGame(isTeamOne);
+            PhotonNetwork.LoadLevel("ResultScene");
         }
 
         private static void EndGame(bool isTeamOne)

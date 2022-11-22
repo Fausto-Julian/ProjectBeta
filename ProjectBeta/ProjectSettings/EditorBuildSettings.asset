@@ -9,19 +9,10 @@ EditorBuildSettings:
     path: Assets/_ProjectBeta/Scenes/MainMenuScene.unity
     guid: f366ad4125e86f54ea2b71391efe9ca0
   - enabled: 1
-    path: Assets/_ProjectBeta/Scenes/GameScene.unity
-    guid: 57091001a3bc46e4ba27c95d7ac0e224
-  - enabled: 1
-    path: Assets/_ProjectBeta/Scenes/JulianScene.unity
-    guid: de854a513e0acf94492623f7c8c7a574
-  - enabled: 1
-    path: Assets/_ProjectBeta/Scenes/AlenScene/AlenScene.unity
-    guid: 1d054139d2783014a87f964fe5d3b5ca
-  - enabled: 1
-    path: Assets/_ProjectBeta/Scenes/NachoScene.unity
-    guid: b20b2b79f946c584182e983e0ba84172
-  - enabled: 1
     path: Assets/_ProjectBeta/Scenes/NicolasScene.unity
     guid: 3199c55f61959894e9fdd0cd3be64b06
+  - enabled: 1
+    path: Assets/_ProjectBeta/Scenes/ResultScene.unity
+    guid: 51ade141475e90049b16c94b61d96ff9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b0e315a2c6f893449803f40658c10bf1, type: 2}

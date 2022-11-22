@@ -31,7 +31,7 @@ namespace _ProjectBeta.Scripts
 
                 var layer = isTeamOne ? LayerMask.NameToLayer("Players One") : LayerMask.NameToLayer("Players Two");
                 
-                var player = PhotonNetworkExtension.Instantiate<PlayerModel>(playersData.Prefab, position, Quaternion.identity, layer);
+                var player = PhotonNetworkExtension.Instantiate(playersData.Prefab, position, Quaternion.identity, layer);
                 Assert.IsNotNull(player);
 
                 var controller = player.GetComponent<PlayerController>();

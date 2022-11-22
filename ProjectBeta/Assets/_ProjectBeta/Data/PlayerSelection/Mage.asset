@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd086fb25a544c0488bc69141904361e, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: c887ed2a931c29040bc544cd8c546e9f, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 61faa5f9df4c1be4ba224a08956f8e39, type: 3}
   <Prefab>k__BackingField: {fileID: 2415971294952951145, guid: b50465a60309b2c478c1735e4bad60ca, type: 3}

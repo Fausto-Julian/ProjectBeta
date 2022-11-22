@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd086fb25a544c0488bc69141904361e, type: 3}
   m_Name: PlayerOne
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 7e04220a529193949b3c2d8458b8fa6a, type: 3}
   <Prefab>k__BackingField: {fileID: 3734709936710267519, guid: d3f3c541ee1ab024b94484bcba0e495c, type: 3}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd086fb25a544c0488bc69141904361e, type: 3}
   m_Name: Supp
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 17035c204825f6340a252046ab6476fd, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 67ae3b91a4eb6294bac06a927c383b4b, type: 3}
   <Prefab>k__BackingField: {fileID: 3734709936710267519, guid: ccd03bce9a7fd934f9e528cc4d554c14, type: 3}

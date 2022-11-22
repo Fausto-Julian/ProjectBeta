@@ -761,6 +761,7 @@ MonoBehaviour:
   playersData:
   - {fileID: 11400000, guid: e67b50f652cc2824c8589998180fa293, type: 2}
   - {fileID: 11400000, guid: 693f7185138d2304e956745de0893906, type: 2}
+  - {fileID: 11400000, guid: 2c6f1e79631b39d49bdc3975fe83cb29, type: 2}
 --- !u!4 &989832390
 Transform:
   m_ObjectHideFlags: 0

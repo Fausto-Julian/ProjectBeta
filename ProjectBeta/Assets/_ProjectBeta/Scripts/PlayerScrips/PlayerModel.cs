@@ -54,6 +54,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private LayerMask _basicLayerMask;
 
+        private Vector3 _respawn;
+
         public LayerMask GetBasicLayerMask() => _basicLayerMask;
         public int GetPlayerLayerMask() => _currentPlayerLayerMask;
         public int GetEnemyLayerMask() => _currentEnemyLayerMask;
@@ -63,6 +65,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public HealthController GetHealthController() => _healthController;
         public UpgradeController GetUpgradeController() => _upgradeController;
 
+        public Vector3 GetRespawnPosition() => _respawn;
 
         public void Awake()
         {
@@ -87,11 +90,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             _healthController.OnDie += HealthControllerOnOnDie;
 
-            
             if (!photonView.IsMine) 
                 return;
-            
-            
+
             _killStreakSystem = GetComponent<KillStreakSystem>();
             Assert.IsNotNull(_killStreakSystem);
             _killStreakSystem.Initialize(this);
@@ -121,6 +122,17 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             }
                 
             SubscribePlayerController();
+        }
+
+        public void SetRespawnPosition(Vector3 position)
+        {
+            photonView.RPC(nameof(RPC_SetRespawnPosition), RpcTarget.All, position);
+        }
+
+        [PunRPC]
+        private void RPC_SetRespawnPosition(Vector3 position)
+        {
+            _respawn = position;
         }
 
         public void ClampCurrentHealth()

@@ -15,8 +15,6 @@ namespace _ProjectBeta.Scripts
         [SerializeField] private CameraController cameraController;
         [SerializeField] private PlayerUI playerUI;
 
-
-        private static Vector3 _respawnPosition;
         private void Awake()
         {
             var props = PhotonNetwork.LocalPlayer.CustomProperties;
@@ -29,11 +27,12 @@ namespace _ProjectBeta.Scripts
 
                 var isTeamOne = (bool)teamBlue;
 
-                _respawnPosition = isTeamOne ? respawnOne.position : respawnTwo.position;
+                var respawnPosition = isTeamOne ? respawnOne.position : respawnTwo.position;
 
                 var layer = isTeamOne ? LayerMask.NameToLayer("Players One") : LayerMask.NameToLayer("Players Two");
                 
-                var player = PhotonNetworkExtension.Instantiate(playersData.Prefab, _respawnPosition, Quaternion.identity, layer);
+                var player = PhotonNetworkExtension.Instantiate(playersData.Prefab, respawnPosition, Quaternion.identity, layer);
+                player.SetRespawnPosition(respawnPosition);
                 Assert.IsNotNull(player);
 
                 var controller = player.GetComponent<PlayerController>();
@@ -60,10 +59,9 @@ namespace _ProjectBeta.Scripts
         private static IEnumerator RespawnCoroutine(PlayerModel model)
         {
             model.gameObject.SetActive(false);
-            model.transform.position = _respawnPosition;
-            
             yield return new WaitForSeconds(model.GetData().RespawnCooldown);
             model.RestoreMaxHealth();
+            model.transform.position = model.GetRespawnPosition();
             model.gameObject.SetActive(true);
         }
     }

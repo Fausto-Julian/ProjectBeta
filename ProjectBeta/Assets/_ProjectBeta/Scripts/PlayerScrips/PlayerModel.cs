@@ -212,7 +212,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [PunRPC]
         private void RPC_Impulse(Vector3 value)
         {
-            _rb.isKinematic = false;
             _rb.AddForce(value);
           
         }
@@ -270,9 +269,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
 
         public void SetStopped(bool value) => _agent.isStopped = value;
-        public void ZeroMovement() => _agent.speed= 0f;
-        public void RecoveryMovement() => _agent.speed = data.BaseMovementSpeed;
-        public void RbZero() => _rb.isKinematic=true;
 
         private void SubscribePlayerController()
         {

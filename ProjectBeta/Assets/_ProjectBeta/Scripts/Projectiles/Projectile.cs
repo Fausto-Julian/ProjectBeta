@@ -56,9 +56,9 @@ namespace _ProjectBeta.Scripts.Projectiles
         {
             if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine)
             {
-                if(Equals(photonView.Owner, model.photonView.Owner))
+                if (Equals(photonView.Owner, model.photonView.Owner))
                     return;
-                
+
                 model.DoDamage(_damage, photonView.Owner);
 
                 photonView.RPC(nameof(RPC_ChangeHit), photonView.Owner);
@@ -70,8 +70,9 @@ namespace _ProjectBeta.Scripts.Projectiles
                 if (structureModel.GetIsAcceptProjectileDamage())
                     structureModel.DoDamage(_damage, photonView.Owner);
             }
-            
-            photonView.RPC(nameof(RPC_DestroyObjectRemote), photonView.Owner);
+
+            if (photonView.IsMine)
+                PhotonNetwork.Destroy(gameObject);
         }
 
         [PunRPC]

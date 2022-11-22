@@ -152,7 +152,7 @@
       <workItem from="1668897056838" duration="2316000" />
       <workItem from="1668975748630" duration="25741000" />
       <workItem from="1669060923313" duration="3519000" />
-      <workItem from="1669073388311" duration="5672000" />
+      <workItem from="1669073388311" duration="6396000" />
     </task>
     <servers />
   </component>
@@ -175,24 +175,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerUI.cs</url>
-          <line>90</line>
-          <properties documentPath="C:\Games UADE\2022 2C\D.S.J. y P.S.J\ProjectBeta\ProjectBeta\Assets\_ProjectBeta\Scripts\PlayerScrips\PlayerUI.cs" initialLine="90" containingFunctionPresentation="method 'OnChangeKillStreakLevelHandler'">
-            <startOffsets>
-              <option value="3765" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3802" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

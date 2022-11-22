@@ -22,5 +22,5 @@ MonoBehaviour:
   radius: 3.5
   damage: 30
   particlesPrefab: {fileID: 3038107805917784223, guid: e1f56d16328036e4795e4f7cacc27f5e, type: 3}
-  particlesLifetime: 0
+  particlesLifetime: 5
   particleSize: {x: 2, y: 2, z: 2}

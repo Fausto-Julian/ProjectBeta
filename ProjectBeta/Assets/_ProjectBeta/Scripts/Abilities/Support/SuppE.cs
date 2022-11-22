@@ -2,6 +2,7 @@ using System.Collections;
 using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.ScriptableObjects.Abilities;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -24,7 +25,8 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         
         public override bool TryActivate(PlayerModel model)
         {
-            var particles = PhotonNetworkExtension.Instantiate(particlesPrefab, model.transform.position, Quaternion.identity);
+            var obj = PhotonNetwork.Instantiate(particlesPrefab.name, model.transform.position, Quaternion.identity);
+            var particles = obj.GetComponent<ParticleController>();
             Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, particleSize, true);
             

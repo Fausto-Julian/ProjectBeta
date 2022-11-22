@@ -18,5 +18,5 @@ MonoBehaviour:
   percentageReg: 5
   radius: 3.5
   particlesPrefab: {fileID: 2825603761804140326, guid: b6efa5bfe7adf37419d29a8c8ed16bc4, type: 3}
-  particlesLifetime: 0
+  particlesLifetime: 5
   particleSize: {x: 2, y: 2, z: 2}

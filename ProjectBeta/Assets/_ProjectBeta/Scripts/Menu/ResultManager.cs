@@ -17,7 +17,7 @@ namespace _ProjectBeta.Scripts.Menu
         [SerializeField] private Button backToMainMenuButton;
         [SerializeField] private Button exitButton;
 
-        private void Awake()
+        private void Start()
         {
             backToMainMenuButton.onClick.AddListener(OnBackToMainMenuButtonClicked);
             exitButton.onClick.AddListener(OnExitButtonClicked);

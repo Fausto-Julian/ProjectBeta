@@ -60,8 +60,14 @@ namespace _ProjectBeta.Scripts
         {
             model.gameObject.SetActive(false);
             yield return new WaitForSeconds(model.GetData().RespawnCooldown);
-            model.RestoreMaxHealth();
-            model.transform.position = model.GetRespawnPosition();
+
+            if (model.photonView.IsMine)
+            {
+                model.RestoreMaxHealth();
+                model.transform.position = model.GetRespawnPosition();
+            }
+            
+            yield return new WaitForSeconds(1);
             model.gameObject.SetActive(true);
         }
     }

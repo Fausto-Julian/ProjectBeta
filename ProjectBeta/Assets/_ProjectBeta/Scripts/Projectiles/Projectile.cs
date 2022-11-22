@@ -54,7 +54,7 @@ namespace _ProjectBeta.Scripts.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine)
+            if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine && !Equals(photonView.Owner, model.photonView.Owner))
             {
                 model.DoDamage(_damage, photonView.Owner);
 

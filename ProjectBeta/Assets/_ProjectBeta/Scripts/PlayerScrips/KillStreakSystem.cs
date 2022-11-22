@@ -93,7 +93,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private bool CheckIsLevelUp()
         {
-            return _currentPoints <= _data.ExperiencePointNeededToLevelUp[_index];
+            return _currentPoints >= _data.ExperiencePointNeededToLevelUp[_index];
         }
 
         private void LevelUp()

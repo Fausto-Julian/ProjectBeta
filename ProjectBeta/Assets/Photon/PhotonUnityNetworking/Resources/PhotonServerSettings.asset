@@ -60,6 +60,7 @@ MonoBehaviour:
   - RPC_CreateFloatingInt
   - RPC_DestroyObjectRemote
   - RPC_DestroyStructure
+  - RPC_SetRespawnPosition
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

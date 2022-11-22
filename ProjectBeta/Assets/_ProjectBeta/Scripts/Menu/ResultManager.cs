@@ -15,10 +15,12 @@ namespace _ProjectBeta.Scripts.Menu
         [SerializeField] private Transform playerResultTwo;
         [SerializeField] private PlayerResultController playerResultControllerPrefab;
         [SerializeField] private Button backToMainMenuButton;
+        [SerializeField] private Button exitButton;
 
         private void Awake()
         {
             backToMainMenuButton.onClick.AddListener(OnBackToMainMenuButtonClicked);
+            exitButton.onClick.AddListener(OnExitButtonClicked);
             
             var players = PhotonNetwork.PlayerList;
 
@@ -62,9 +64,14 @@ namespace _ProjectBeta.Scripts.Menu
             resultText.text = "Defeat";
         }
 
-        private void OnBackToMainMenuButtonClicked()
+        private static void OnBackToMainMenuButtonClicked()
         {
             GameManager.Instance.BackToMainMenu();
+        }
+        
+        private static void OnExitButtonClicked()
+        {
+            GameManager.Instance.ExitApplication();
         }
     }
 }

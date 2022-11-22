@@ -3,29 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric arcs fade x4 hdr ab.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric arcs fade x4 hdr ab.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric small anim 4x2 hdr.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric small anim 4x2 hdr.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric sparks hdr ab.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric sparks hdr ab.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch trait hdr ab nosp.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch trait hdr ab nosp.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Arrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Arrow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CFXR3 Magic Aura A (Runic).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CFXR3 Magic Aura A (Runic).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/FX_Explosion_Blue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/FX_Explosion_Blue.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Wall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Wall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/DPS/DPSE.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/DPS/DPSE.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/DPS/DPSQ.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/DPS/DPSQ.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/DPS/DPSW.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/DPS/DPSW.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Supp/SuppE.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Supp/SuppE.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Supp/SuppQ.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Supp/SuppQ.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Supp/SuppW.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Supp/SuppW.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Tank/Tank Q.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/Abilities/Tank/Tank Q.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/DPSE.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/DPSE.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/DPSW.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Abilities/DPSW.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Projectiles/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Projectiles/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Structure/StructureModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Structure/StructureModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/SpawnerSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/SpawnerSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +104,7 @@
       <workItem from="1668975748630" duration="25741000" />
       <workItem from="1669060923313" duration="3519000" />
       <workItem from="1669073388311" duration="14794000" />
-      <workItem from="1669119366027" duration="4784000" />
+      <workItem from="1669119366027" duration="6181000" />
     </task>
     <servers />
   </component>

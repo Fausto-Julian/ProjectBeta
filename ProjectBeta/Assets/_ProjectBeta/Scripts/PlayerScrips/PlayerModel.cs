@@ -213,7 +213,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void RPC_Impulse(Vector3 value)
         {
             _rb.isKinematic = false;
-            _rb.AddForce(value, ForceMode.Impulse);
+            _rb.AddForce(value);
           
         }
 

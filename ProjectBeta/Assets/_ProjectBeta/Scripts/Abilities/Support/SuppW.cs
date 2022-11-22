@@ -18,18 +18,19 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         public override bool TryActivate(PlayerModel model)
         {
             var layer = model.GetEnemyLayerMask();
-            
-            var particles = PhotonNetworkExtension.Instantiate(particlesPrefab, model.transform.position, model.transform.rotation);
+
+            var position = model.transform.position;
+            var particles = PhotonNetworkExtension.Instantiate(particlesPrefab, position, model.transform.rotation);
             Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, Vector3.one);
             
-            var colliders = Physics.OverlapSphere(model.transform.position, radius, layer);
+            var colliders = Physics.OverlapSphere(position, radius, layer);
             foreach (var player in colliders)
             {
                 if (!player.TryGetComponent(out PlayerModel enemy))
                     continue;
-                var dir = enemy.transform.position - model.transform.position;
                 
+                var dir = enemy.transform.position - model.transform.position;
                 enemy.Impulse(dir.normalized * impulse);
             }
            

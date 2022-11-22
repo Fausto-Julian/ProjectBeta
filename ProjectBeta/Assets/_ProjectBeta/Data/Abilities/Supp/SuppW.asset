@@ -15,6 +15,6 @@ MonoBehaviour:
   <CooldownTime>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 0}
   radius: 5
-  impulse: 5
+  impulse: 1000
   particlesPrefab: {fileID: 4973235868035889519, guid: 7485f90679d1e6e46bd6e61f98ee1955, type: 3}
   particlesLifetime: 0

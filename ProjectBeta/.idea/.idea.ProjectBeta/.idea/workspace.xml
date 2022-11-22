@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/ProjectileBasic.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProjectileBasic.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/WizardPolyArt/Animations/WizardAnimControl.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/WizardPolyArt/Animations/WizardAnimControl.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/PlayerData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Data/PlayerData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Projectiles/BasicProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Projectiles/BasicProjectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/WallTeamOne.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/WallTeamOne.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/WallTeamTwo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/WallTeamTwo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/NicolasScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/NicolasScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/NicolasScene/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/NicolasScene/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

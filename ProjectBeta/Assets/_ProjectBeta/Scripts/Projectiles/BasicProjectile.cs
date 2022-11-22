@@ -1,3 +1,4 @@
+using System;
 using _ProjectBeta.Scripts.PlayerScrips;
 using _ProjectBeta.Scripts.Structure;
 using Photon.Pun;
@@ -10,6 +11,9 @@ namespace _ProjectBeta.Scripts.Projectiles
         [SerializeField] private float speed;
         private float _damage;
         private Transform _target;
+
+
+        
 
         private void Update()
         {

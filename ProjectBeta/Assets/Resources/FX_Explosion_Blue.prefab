@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 443653445301283652}
   - component: {fileID: 443653445301283650}
   - component: {fileID: 443653445301283651}
+  - component: {fileID: 621740426783936282}
   m_Layer: 0
   m_Name: Spark
   m_TagString: Untagged
@@ -4882,6 +4883,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &621740426783936282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653445301283653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &443653445314069269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,6 +5022,7 @@ GameObject:
   - component: {fileID: 443653445637789874}
   - component: {fileID: 443653445637789875}
   - component: {fileID: 443653445637789876}
+  - component: {fileID: 7546870981925564302}
   m_Layer: 0
   m_Name: Impact
   m_TagString: Untagged
@@ -9885,6 +9903,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7546870981925564302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653445637789877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &443653445946084731
 GameObject:
   m_ObjectHideFlags: 0
@@ -9896,6 +9930,7 @@ GameObject:
   - component: {fileID: 443653445946084728}
   - component: {fileID: 443653445946084729}
   - component: {fileID: 443653445946084730}
+  - component: {fileID: 684371792109136265}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -14776,6 +14811,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &684371792109136265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653445946084731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &443653445948988864
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,6 +14838,7 @@ GameObject:
   - component: {fileID: 443653445948988893}
   - component: {fileID: 443653445948988894}
   - component: {fileID: 443653445948988895}
+  - component: {fileID: 5754167789615676237}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -19667,6 +19719,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5754167789615676237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653445948988864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &443653446164754725
 GameObject:
   m_ObjectHideFlags: 0
@@ -19678,6 +19746,7 @@ GameObject:
   - component: {fileID: 443653446164754724}
   - component: {fileID: 443653446164754722}
   - component: {fileID: 443653446164754723}
+  - component: {fileID: 4007988697693934944}
   m_Layer: 0
   m_Name: Ground _dark
   m_TagString: Untagged
@@ -24558,6 +24627,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4007988697693934944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653446164754725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &443653446294732649
 GameObject:
   m_ObjectHideFlags: 0
@@ -24569,6 +24654,7 @@ GameObject:
   - component: {fileID: 443653446294732648}
   - component: {fileID: 443653446294732646}
   - component: {fileID: 443653446294732647}
+  - component: {fileID: 6010878223684220886}
   m_Layer: 0
   m_Name: Fire_up
   m_TagString: Untagged
@@ -29449,3 +29535,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6010878223684220886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443653446294732649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1

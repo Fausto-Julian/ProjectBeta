@@ -34,7 +34,7 @@ namespace _ProjectBeta.Scripts.Menu
                 if (!props.TryGetValue(GameSettings.PlayerPrefabId, out var championSpawn)) 
                     continue;
                 
-                var spawn = (PlayerSpawnData)championSpawn;
+                var spawn = GameManager.Instance.GetPlayerSpawnData((int)championSpawn);
                 var content = (bool)isTeamOne ? playerResultOne : playerResultTwo;
                 var result = GameManager.Instance.GetPlayerResult(player);
 

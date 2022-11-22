@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CooldownTime>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: 0}
-  projectilePrefab: {fileID: -3731573622508394281, guid: cbb56b50e1f0a8c45b57c2091ebe5899, type: 3}
+  projectilePrefab: {fileID: 3879433162986928513, guid: cbb56b50e1f0a8c45b57c2091ebe5899, type: 3}
   speed: 5
   lifeTimeProjectile: 3
   damage: 20

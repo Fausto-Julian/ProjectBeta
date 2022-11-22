@@ -1359,7 +1359,7 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
-  floatingTextPrefab: {fileID: 0}
+  floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &285759343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2433,7 +2433,7 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
-  floatingTextPrefab: {fileID: 0}
+  floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &476827200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3151,7 +3151,7 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
-  floatingTextPrefab: {fileID: 0}
+  floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &574764138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9655,7 +9655,7 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
-  floatingTextPrefab: {fileID: 0}
+  floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &1823014323
 BoxCollider:
   m_ObjectHideFlags: 0

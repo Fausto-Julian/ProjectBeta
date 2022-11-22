@@ -16,11 +16,11 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 0}
   layersToAffect:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   timeDuration: 7
   healing: 0
   radius: 3.5
   damage: 30
   particlesPrefab: {fileID: 3038107805917784223, guid: e1f56d16328036e4795e4f7cacc27f5e, type: 3}
   particlesLifetime: 0
-  particleSize: {x: 0, y: 0, z: 0}
+  particleSize: {x: 2, y: 2, z: 2}

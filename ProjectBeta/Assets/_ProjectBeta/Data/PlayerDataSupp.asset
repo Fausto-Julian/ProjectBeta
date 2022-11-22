@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb865273849f294e8193344f2c69c8d, type: 3}
+  m_Name: PlayerDataSupp
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 100
+  <HealthForSecond>k__BackingField: 5
+  <BaseMovementSpeed>k__BackingField: 3.5
+  <BaseDefense>k__BackingField: 40
+  <BaseDamage>k__BackingField: 20
+  <DistanceToAttack>k__BackingField: 8
+  <DistanceToBasicAttack>k__BackingField: 5
+  <RespawnCooldown>k__BackingField: 2
+  <KillStreakData>k__BackingField: {fileID: 11400000, guid: 7f829ba164427b84a9b2082b9398ee0e, type: 2}
+  <ClickRightLayerMaskTeamOne>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 10376
+  <ClickRightLayerMaskTeamTwo>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 5192
+  <PercentageReduceCooldownAbilities>k__BackingField: 15
+  <AbilityOne>k__BackingField: {fileID: 11400000, guid: 728d957335739174f9460017401f9b11, type: 2}
+  <AbilityTwo>k__BackingField: {fileID: 11400000, guid: 53ef92070fb745d498094e8cb2e43c21, type: 2}
+  <AbilityThree>k__BackingField: {fileID: 11400000, guid: e07218b31c0ac1b45bb772aafc2b1b53, type: 2}

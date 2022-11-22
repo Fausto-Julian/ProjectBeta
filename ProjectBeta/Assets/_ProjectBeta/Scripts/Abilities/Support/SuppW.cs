@@ -24,7 +24,7 @@ namespace _ProjectBeta.Scripts.Abilities.Support
             Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, Vector3.one);
             
-            Physics.OverlapSphereNonAlloc(position, radius, colliders, layer);
+            Physics.OverlapSphereNonAlloc(position, radius, colliders, LayerMask.NameToLayer("Players Two"));
             foreach (var player in colliders)
             {
                 if (!player.TryGetComponent(out PlayerModel enemy))

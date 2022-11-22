@@ -31,9 +31,11 @@ namespace _ProjectBeta.Scripts.Menu
                 if (!props.TryGetValue(GameSettings.IsTeamOneId, out var isTeamOne)) 
                     continue;
                 
+                if (!props.TryGetValue(GameSettings.PlayerPrefabId, out var championSpawn)) 
+                    continue;
+                
+                var spawn = (PlayerSpawnData)championSpawn;
                 var content = (bool)isTeamOne ? playerResultOne : playerResultTwo;
-                var spawn = (PlayerSpawnData)props[GameSettings.PlayerPrefabId];
-
                 var result = GameManager.Instance.GetPlayerResult(player);
 
                 var playerResultController = Instantiate(playerResultControllerPrefab, content);

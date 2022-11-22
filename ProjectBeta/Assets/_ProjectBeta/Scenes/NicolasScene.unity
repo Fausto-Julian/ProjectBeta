@@ -1359,6 +1359,19 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
+--- !u!65 &285759343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285759341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 15, z: 12}
+  m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!1 &300221999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +2410,19 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
+--- !u!65 &476827200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476827198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 15, z: 12}
+  m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!1001 &480711427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2997,6 +3023,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2566717000912098841, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277517609848897700, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671295353599167915, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5792641013195466860, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3067,6 +3105,19 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
+--- !u!65 &574764138
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574764136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 15, z: 12}
+  m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!1001 &601937962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9534,6 +9585,19 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
+--- !u!65 &1823014323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823014321}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 15, z: 12}
+  m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!1001 &1840741878
 PrefabInstance:
   m_ObjectHideFlags: 0

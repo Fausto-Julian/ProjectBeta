@@ -17,16 +17,19 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         [SerializeField] private Collider[] colliders = new Collider[3];
         public override bool TryActivate(PlayerModel model)
         {
-            var layer = model.GetEnemyLayerMask();
-
             var position = model.transform.position;
             var particles = PhotonNetworkExtension.Instantiate(particlesPrefab, position, model.transform.rotation);
             Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, Vector3.one);
+            var layer = LayerMask.NameToLayer("Players Two");
             
-            Physics.OverlapSphereNonAlloc(position, radius, colliders, LayerMask.NameToLayer("Players Two"));
-            foreach (var player in colliders)
+            Debug.Log(layer);
+            
+            var size = Physics.OverlapSphereNonAlloc(position, radius, colliders, layer);
+
+            for (var i = 0; i < size; i++)
             {
+                var player = colliders[i];
                 if (!player.TryGetComponent(out PlayerModel enemy))
                     continue;
                 

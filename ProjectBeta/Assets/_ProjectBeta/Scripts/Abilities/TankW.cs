@@ -11,6 +11,7 @@ namespace _ProjectBeta.Scripts.Abilities
     public class TankW : Ability
     {
         [SerializeField] private ParticleController particlesPrefab;
+        [SerializeField] private float damage = 20f;
         [SerializeField] private float particlesLifetime;
         [SerializeField] private float range;
         [SerializeField] private Vector3 particleSize;
@@ -28,7 +29,7 @@ namespace _ProjectBeta.Scripts.Abilities
                 if (playerModel == model) 
                     continue;
                 
-                playerModel.DoDamage(10f, model.photonView.Owner);
+                playerModel.DoDamage(damage + model.GetStats().damage, model.photonView.Owner);
             }
             var particles = PhotonNetworkExtension.Instantiate<ParticleController>(particlesPrefab, model.transform.position, Quaternion.identity);
             Assert.IsNotNull(particles);

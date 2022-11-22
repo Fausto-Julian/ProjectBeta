@@ -103,6 +103,7 @@ namespace _ProjectBeta.Scripts.Menu
             {
                 var champion = Instantiate(championsButtonPrefab, championsContent);
                 champion.Initialize(i);
+                _championsCache.Add(champion);
             }
 
             startGameButton.interactable = CheckPlayersReady();

@@ -37,7 +37,7 @@ namespace _ProjectBeta.Scripts
                 var controller = player.GetComponent<PlayerController>();
                 
                 Assert.IsNotNull(controller);
-                cameraController.SetTarget(controller);
+                cameraController.SetTarget(controller, isTeamOne);
 
                 playerUI.Initialized(player);
             }

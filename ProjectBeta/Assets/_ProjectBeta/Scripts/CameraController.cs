@@ -22,16 +22,23 @@ namespace _ProjectBeta.Scripts
         private IPlayerController _playerController;
         private Transform _target;
 
-        public void SetTarget(PlayerController playerController)
+        public void SetTarget(PlayerController playerController, bool isTeamOne)
         {
             _playerController = playerController;
             _target = playerController.transform;
 
-
             var targetPosition = _target.position;
             var position = new Vector3(targetPosition.x, offsetY, targetPosition.z - offsetZ);
-            transform.position = position;
+            if (!isTeamOne)
+            {
+                var euler = transform.rotation.eulerAngles;
+                euler.y = 180;
+                transform.Rotate(euler);
 
+                position.z = targetPosition.z + offsetZ;
+            }
+            
+            transform.position = position;
             _offset = position - targetPosition;
 
             _playerController.OnSpace += CameraLock;

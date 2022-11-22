@@ -146,7 +146,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
                 if (hit.collider.TryGetComponent(out StructureModel structureModel))
                 {
-                    structureModel.DoDamage(_model.GetStats().damage);
+                    structureModel.DoDamage(_model.GetStats().damage, _model.photonView.Owner);
                     return;
                 }
             }

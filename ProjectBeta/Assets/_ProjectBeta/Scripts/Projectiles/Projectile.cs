@@ -65,7 +65,7 @@ namespace _ProjectBeta.Scripts.Projectiles
             if (other.TryGetComponent(out StructureModel structureModel) && structureModel.photonView.IsMine)
             {
                 if (structureModel.GetIsAcceptProjectileDamage())
-                    structureModel.DoDamage(_damage);
+                    structureModel.DoDamage(_damage, photonView.Owner);
             }
             
             photonView.RPC(nameof(RPC_DestroyObjectRemote), photonView.Owner);

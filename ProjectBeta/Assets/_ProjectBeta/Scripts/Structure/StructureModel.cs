@@ -51,7 +51,7 @@ namespace _ProjectBeta.Scripts.Structure
         [PunRPC]
         private void RPC_CreateFloatingInt(int textInt)
         {
-            var position = isWall ? transform.position - Vector3.down * 4 : transform.position;
+            var position = isWall ? transform.position + Vector3.down * 3 : transform.position;
             
             var floatingText = Instantiate(floatingTextPrefab, position, Quaternion.identity);
             floatingText.InstanciateInt(position, textInt, Color.red);

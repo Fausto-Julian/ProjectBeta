@@ -33,18 +33,32 @@ namespace _ProjectBeta.Scripts.Abilities
             //agregar layer enemy al overlap
             var colliders = Physics.OverlapSphere(position, range, layerEnemy);
 
+            /*
             if (colliders[0] == default)
                 return false;
             
             if (!colliders[0].TryGetComponent(out PlayerModel playerModel))
                 return false;
-            
+            */
             var layer = model.GetProjectileLayerMask();
 
             var projectile = PhotonNetworkExtension.Instantiate<Projectile>(projectilePrefab, position, projectilePrefab.transform.rotation, layer);
 
-            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().damage, playerModel.transform.position - position);
-
+            //projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().damage, playerModel.transform.position - position);
+            projectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().damage, hit.point - position);
+            
+            
+            
+            for (int i = 0; i < projectile.transform.childCount; i++)
+            {
+                var child = projectile.transform.GetChild(i);
+                
+                if(!child.TryGetComponent<Projectile>(out var childPorjectile))
+                    continue;
+                
+                childPorjectile.Initialize(speed, lifeTimeProjectile, damage + model.GetStats().damage, childPorjectile.transform.forward);
+            }
+            
             model.SetStopped(false);
             return true;
 

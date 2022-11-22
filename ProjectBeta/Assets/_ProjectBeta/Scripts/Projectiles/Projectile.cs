@@ -32,13 +32,13 @@ namespace _ProjectBeta.Scripts.Projectiles
                 Move();
         }
 
-        public void Initialize(float speed, float lifeTime, float damage, Vector3 position, int countHits = 0)
+        public void Initialize(float speed, float lifeTime, float damage, Vector3 direction, int countHits = 0)
         {
             _speed = speed;
             _lifeTime = lifeTime + Time.time;
             _damage = damage;
 
-            var rotation = Quaternion.LookRotation(position);
+            var rotation = Quaternion.LookRotation(direction);
             var eulerAngles = transform.eulerAngles;
 
             eulerAngles = new Vector3(eulerAngles.x, rotation.eulerAngles.y, eulerAngles.z);
@@ -49,7 +49,7 @@ namespace _ProjectBeta.Scripts.Projectiles
 
         private void Move()
         {
-            transform.position += transform.forward * _speed * Time.deltaTime;
+            transform.position += transform.forward * (_speed * Time.deltaTime);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -71,7 +71,7 @@ namespace _ProjectBeta.Scripts.Projectiles
                 return;
             }
 
-            if (other.TryGetComponent(out StructureModel structureModel))
+            if (other.TryGetComponent<StructureModel>(out var structureModel))
             {
                 if (structureModel.GetIsAcceptProjectileDamage())
                     structureModel.DoDamage(_damage, photonView.Owner);

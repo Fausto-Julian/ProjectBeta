@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuppW
   m_EditorClassIdentifier: 
   <CooldownTime>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 59d9bef3956a6c943adc2bae3d8998d0, type: 3}
   radius: 1
   impulse: 5
   particlesPrefab: {fileID: 4973235868035889519, guid: 7485f90679d1e6e46bd6e61f98ee1955, type: 3}

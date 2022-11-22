@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuppQ
   m_EditorClassIdentifier: 
   <CooldownTime>k__BackingField: 5
-  <Sprite>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 5b7c33700896a0a4d9d3af59a3f3e5df, type: 3}
   timeDuration: 7
   percentageReg: 5
   radius: 3.5

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _ProjectBeta.Scripts.Classes;
 using _ProjectBeta.Scripts.Manager;
 using _ProjectBeta.Scripts.PlayerScrips.Interface;
@@ -206,14 +207,24 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Impulse(Vector3 value)
         {
-            photonView.RPC(nameof(RPC_Impulse), RpcTarget.All, value);
+            photonView.RPC(nameof(RPC_Impulse), photonView.Owner, value);
         }
 
         [PunRPC]
         private void RPC_Impulse(Vector3 value)
         {
-            _rb.velocity += value;
-          
+            StartCoroutine(MovementImpulseTest(value));
+        }
+
+        private IEnumerator MovementImpulseTest(Vector3 value)
+        {
+            var distance = Vector3.Distance(transform.position, value);
+            while (distance > 0.05f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, value, 50f);
+                distance = Vector3.Distance(transform.position, value);
+                yield return null;
+            }
         }
 
         public Stats GetStats() => _stats;

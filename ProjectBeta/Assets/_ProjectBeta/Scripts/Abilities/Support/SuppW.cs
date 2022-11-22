@@ -31,12 +31,14 @@ namespace _ProjectBeta.Scripts.Abilities.Support
                     continue;
                 
                 var dir = enemy.transform.position - model.transform.position;
-                enemy.Impulse(dir.normalized * impulse);
+                dir.Normalize();
+
+                var value = model.transform.position + dir * impulse;
+                
+                enemy.Impulse(value);
             }
            
             return true;
         }
-        
-
     }
 }

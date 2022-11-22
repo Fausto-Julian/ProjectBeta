@@ -109,5 +109,13 @@ namespace _ProjectBeta.Scripts.Manager
             _playersResult.Clear();
             SceneManager.LoadScene("MainMenuScene");
         }
+
+        public void ExitApplication()
+        {
+            if (PhotonNetwork.IsConnected)
+                PhotonNetwork.Disconnect();
+            
+            Application.Quit();
+        }
     }
 }

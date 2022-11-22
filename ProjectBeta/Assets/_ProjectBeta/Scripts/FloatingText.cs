@@ -30,7 +30,6 @@ namespace _ProjectBeta.Scripts
 
         private void Update()
         {
-
             if (lifeTime >= Time.time)
             {
                 gameObject.transform.position += Vector3.up * (Time.deltaTime * speed);

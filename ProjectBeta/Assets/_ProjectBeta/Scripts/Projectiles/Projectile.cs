@@ -54,38 +54,34 @@ namespace _ProjectBeta.Scripts.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!photonView.IsMine)
+                return;
+            
             if (!isDamage)
                 return;
             
-            if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine)
+            if (other.TryGetComponent<PlayerModel>(out var model))
             {
                 if (Equals(photonView.Owner, model.photonView.Owner))
                     return;
 
                 model.DoDamage(_damage, photonView.Owner);
 
-                photonView.RPC(nameof(RPC_ChangeHit), photonView.Owner);
+                ChangeHit();
                 return;
             }
 
-            if (other.TryGetComponent(out StructureModel structureModel) && structureModel.photonView.IsMine)
+            if (other.TryGetComponent(out StructureModel structureModel))
             {
                 if (structureModel.GetIsAcceptProjectileDamage())
                     structureModel.DoDamage(_damage, photonView.Owner);
             }
-
-            if (photonView.IsMine)
-                PhotonNetwork.Destroy(gameObject);
-        }
-
-        [PunRPC]
-        private void RPC_DestroyObjectRemote()
-        {
+            
             PhotonNetwork.Destroy(gameObject);
         }
+        
 
-        [PunRPC]
-        private void RPC_ChangeHit()
+        private void ChangeHit()
         {
             _countHits--;
             if (_countHits > 0)

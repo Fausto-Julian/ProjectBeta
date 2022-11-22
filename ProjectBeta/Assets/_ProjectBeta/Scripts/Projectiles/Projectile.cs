@@ -54,8 +54,11 @@ namespace _ProjectBeta.Scripts.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine && !Equals(photonView.Owner, model.photonView.Owner))
+            if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine)
             {
+                if(Equals(photonView.Owner, model.photonView.Owner))
+                    return;
+                
                 model.DoDamage(_damage, photonView.Owner);
 
                 photonView.RPC(nameof(RPC_ChangeHit), photonView.Owner);
@@ -71,6 +74,7 @@ namespace _ProjectBeta.Scripts.Projectiles
             photonView.RPC(nameof(RPC_DestroyObjectRemote), photonView.Owner);
         }
 
+        [PunRPC]
         private void RPC_DestroyObjectRemote()
         {
             PhotonNetwork.Destroy(gameObject);

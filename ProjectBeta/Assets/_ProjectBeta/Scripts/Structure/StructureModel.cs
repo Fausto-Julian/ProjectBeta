@@ -40,6 +40,7 @@ namespace _ProjectBeta.Scripts.Structure
             photonView.RPC(nameof(RPC_DestroyStructure), RpcTarget.All);
         }
 
+        [PunRPC]
         private void RPC_DestroyStructure()
         {
             OnDestroyStructure?.Invoke();

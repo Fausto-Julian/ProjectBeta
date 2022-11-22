@@ -58,6 +58,8 @@ MonoBehaviour:
   - RPC_GetHeal
   - RPC_ChangeHit
   - RPC_CreateFloatingInt
+  - RPC_DestroyObjectRemote
+  - RPC_DestroyStructure
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

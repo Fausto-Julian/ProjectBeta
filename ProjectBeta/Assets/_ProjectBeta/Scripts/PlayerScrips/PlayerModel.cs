@@ -85,40 +85,42 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             _agent.speed = _stats.movementSpeed;
 
-            if (photonView.IsMine)
-            {
-                _killStreakSystem = GetComponent<KillStreakSystem>();
-                Assert.IsNotNull(_killStreakSystem);
-                _killStreakSystem.Initialize(this);
-                
-                _playerController = GetComponent<PlayerController>();
-                
-                var playerHeadUI = GetComponent<PlayerHeadUI>();
-                Assert.IsNotNull(playerHeadUI);
-                playerHeadUI.Initialize(this);
-
-                _playerOneLayerMask = LayerMask.NameToLayer("Players One");
-                _playerTwoLayerMask = LayerMask.NameToLayer("Players Two");
-                _playerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
-                _playerColTwoLayerMask = LayerMask.NameToLayer("PlayersCol Two");
-
-                if (photonView.Owner.CustomProperties.TryGetValue(GameSettings.IsTeamOneId, out var value))
-                {
-                    var isTeamOne = (bool)value;
-
-                    var playerLayer = isTeamOne ? _playerOneLayerMask : _playerTwoLayerMask;
-                    var enemyLayer = isTeamOne ? _playerTwoLayerMask : _playerOneLayerMask;
-                    var projectileLayer = isTeamOne ? _playerColOneLayerMask : _playerColTwoLayerMask;
-                    
-                    _basicLayerMask = isTeamOne ? data.ClickRightLayerMaskTeamOne : data.ClickRightLayerMaskTeamTwo;
-
-                    photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, enemyLayer, projectileLayer);
-                }
-                
-                SubscribePlayerController();
-            }
-
             _healthController.OnDie += HealthControllerOnOnDie;
+
+            
+            if (!photonView.IsMine) 
+                return;
+            
+            
+            _killStreakSystem = GetComponent<KillStreakSystem>();
+            Assert.IsNotNull(_killStreakSystem);
+            _killStreakSystem.Initialize(this);
+                
+            _playerController = GetComponent<PlayerController>();
+                
+            var playerHeadUI = GetComponent<PlayerHeadUI>();
+            Assert.IsNotNull(playerHeadUI);
+            playerHeadUI.Initialize(this);
+
+            _playerOneLayerMask = LayerMask.NameToLayer("Players One");
+            _playerTwoLayerMask = LayerMask.NameToLayer("Players Two");
+            _playerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
+            _playerColTwoLayerMask = LayerMask.NameToLayer("PlayersCol Two");
+
+            if (photonView.Owner.CustomProperties.TryGetValue(GameSettings.IsTeamOneId, out var value))
+            {
+                var isTeamOne = (bool)value;
+
+                var playerLayer = isTeamOne ? _playerOneLayerMask : _playerTwoLayerMask;
+                var enemyLayer = isTeamOne ? _playerTwoLayerMask : _playerOneLayerMask;
+                var projectileLayer = isTeamOne ? _playerColOneLayerMask : _playerColTwoLayerMask;
+                    
+                _basicLayerMask = isTeamOne ? data.ClickRightLayerMaskTeamOne : data.ClickRightLayerMaskTeamTwo;
+
+                photonView.RPC(nameof(SetLayers), RpcTarget.All, playerLayer, enemyLayer, projectileLayer);
+            }
+                
+            SubscribePlayerController();
         }
 
         public void ClampCurrentHealth()

@@ -1383,6 +1383,7 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
+  isWall: 1
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &285759343
 BoxCollider:
@@ -2481,6 +2482,7 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
+  isWall: 1
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &476827200
 BoxCollider:
@@ -3223,6 +3225,7 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
+  isWall: 1
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &574764138
 BoxCollider:
@@ -3654,6 +3657,7 @@ MonoBehaviour:
   maxHealth: 8500
   defense: 0
   isAcceptProjectileDamage: 0
+  isWall: 0
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!114 &619045720
 MonoBehaviour:
@@ -5115,7 +5119,7 @@ GameObject:
   - component: {fileID: 907289112}
   - component: {fileID: 907289111}
   m_Layer: 0
-  m_Name: SizeControllerOne
+  m_Name: SideControllerOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5941,7 +5945,7 @@ GameObject:
   - component: {fileID: 1017148192}
   - component: {fileID: 1017148191}
   m_Layer: 0
-  m_Name: SizeControllerTwo
+  m_Name: SideControllerTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5963,6 +5967,7 @@ MonoBehaviour:
   structuresList:
   - {fileID: 285759342}
   - {fileID: 476827199}
+  - {fileID: 619045719}
 --- !u!4 &1017148192
 Transform:
   m_ObjectHideFlags: 0
@@ -9774,6 +9779,7 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
+  isWall: 1
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!65 &1823014323
 BoxCollider:
@@ -12083,6 +12089,7 @@ MonoBehaviour:
   maxHealth: 8500
   defense: 0
   isAcceptProjectileDamage: 0
+  isWall: 0
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!114 &2086890165
 MonoBehaviour:

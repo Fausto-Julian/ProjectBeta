@@ -9,6 +9,7 @@ namespace _ProjectBeta.Scripts.Manager
     {
         [SerializeField] private bool isTeamOne;
         [SerializeField] private List<StructureModel> structuresList;
+        
 
         private float _countStructureDestroy;
 
@@ -46,7 +47,7 @@ namespace _ProjectBeta.Scripts.Manager
             {
                 var props = player.CustomProperties;
 
-                props[GameSettings.TeamWonId] = isTeamOne ? GameSettings.TeamOneName : GameSettings.TeamTwoName;
+                props[GameSettings.TeamWonId] = isTeamOne ?  GameSettings.TeamTwoName : GameSettings.TeamOneName;
 
                 player.SetCustomProperties(props);
             }

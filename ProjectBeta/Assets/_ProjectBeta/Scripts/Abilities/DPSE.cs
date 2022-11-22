@@ -16,7 +16,6 @@ namespace _ProjectBeta.Scripts.Abilities
         
         [SerializeField] private ParticleController particlesPrefab;
         [SerializeField] private float particlesLifetime = 5f;
-        [SerializeField] private float range = 1f;
         [SerializeField] private Vector3 particleSize = Vector3.one;
 
         public override bool TryActivate(PlayerModel model)

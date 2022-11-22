@@ -15,6 +15,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         
         [field: SerializeField] public float DistanceToAttack { get; private set; }
         [field: SerializeField] public float DistanceToBasicAttack { get; private set; }
+        [field: SerializeField] public float DistanceToAttackWall { get; private set; }
         [field: SerializeField] public float RespawnCooldown { get; private set; } = 2;
         
         [field: SerializeField] public KillStreakData KillStreakData { get; private set; }

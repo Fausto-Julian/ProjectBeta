@@ -19,7 +19,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private InputAction _leftClickInputAction;
         private InputAction _rightClickInputAction;
         private InputAction _spaceInputAction;
-        
+
         public event Action OnActiveOne;
         public event Action OnActiveTwo;
         public event Action OnActiveThree;
@@ -33,7 +33,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private void Awake()
         {
-            if(photonView.IsMine)
+            if (photonView.IsMine)
             {
                 PlayerInputGetActions();
             }
@@ -65,7 +65,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
             _leftClickInputAction.performed += LeftClickInputActionInput;
             _rightClickInputAction.performed += RightClickInputActionInput;
-            
+
             _spaceInputAction.performed += SpaceInputAction;
         }
 
@@ -84,31 +84,40 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void RightClickInputActionInput(InputAction.CallbackContext context)
         {
             var mouse = Mouse.current.position.ReadValue();
-            
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity, _model.GetBasicLayerMask())) 
+
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity,
+                    _model.GetBasicLayerMask()))
                 return;
-            
-            if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack && _currentCooldownBasic <= Time.time)
+
+            if (_currentCooldownBasic <= Time.time)
             {
                 var layer = _model.GetProjectileLayerMask();
-                
+
                 if (hit.collider.TryGetComponent(out PlayerModel model))
                 {
-                    if (model != _model)
+                    if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack)
                     {
-                        var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position, Quaternion.identity, layer);
-                        projectile.Initialize(_model.GetStats().damage, model.transform);
-                        _currentCooldownBasic = Time.time + cooldownBasic;
-                        return;
+                        if (model != _model)
+                        {
+                            var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position,
+                                Quaternion.identity, layer);
+                            projectile.Initialize(_model.GetStats().damage, model.transform);
+                            _currentCooldownBasic = Time.time + cooldownBasic;
+                            return;
+                        }
                     }
                 }
 
                 if (hit.collider.TryGetComponent(out StructureModel structureModel))
                 {
-                    var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position, Quaternion.identity, layer);
-                    projectile.Initialize(_model.GetStats().damage, structureModel.transform);
-                    _currentCooldownBasic = Time.time + cooldownBasic;
-                    return;
+                    if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToAttackWall)
+                    {
+                        var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position,
+                            Quaternion.identity, layer);
+                        projectile.Initialize(_model.GetStats().damage, structureModel.transform);
+                        _currentCooldownBasic = Time.time + cooldownBasic;
+                        return;
+                    }
                 }
             }
 
@@ -120,11 +129,13 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             //_activeOneCommand = context.ReadValue<float>() > 0.5f;
             OnActiveOne?.Invoke();
         }
+
         private void AbilityInputAction2Input(InputAction.CallbackContext context)
         {
             //_activeTwoCommand = context.ReadValue<float>() > 0.5f;
             OnActiveTwo?.Invoke();
         }
+
         private void AbilityInputAction3Input(InputAction.CallbackContext context)
         {
             //_activeThreeCommand = context.ReadValue<float>() > 0.5f;

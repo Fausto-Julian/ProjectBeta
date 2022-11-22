@@ -18,7 +18,8 @@ MonoBehaviour:
   <BaseDefense>k__BackingField: 40
   <BaseDamage>k__BackingField: 60
   <DistanceToAttack>k__BackingField: 8
-  <DistanceToBasicAttack>k__BackingField: 3
+  <DistanceToBasicAttack>k__BackingField: 2.5
+  <DistanceToAttackWall>k__BackingField: 8
   <RespawnCooldown>k__BackingField: 5
   <KillStreakData>k__BackingField: {fileID: 11400000, guid: 7f829ba164427b84a9b2082b9398ee0e, type: 2}
   <ClickRightLayerMaskTeamOne>k__BackingField:

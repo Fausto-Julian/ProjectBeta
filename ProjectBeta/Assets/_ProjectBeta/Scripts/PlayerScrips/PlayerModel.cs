@@ -206,6 +206,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void Impulse(Vector3 value)
         {
+            Debug.Log("nono");
             photonView.RPC(nameof(RPC_Impulse), photonView.Owner, value);
         }
 
@@ -213,6 +214,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private void RPC_Impulse(Vector3 value)
         {
             StartCoroutine(MovementImpulseTest(value));
+            Debug.Log("Hola");
         }
 
         private IEnumerator MovementImpulseTest(Vector3 value)

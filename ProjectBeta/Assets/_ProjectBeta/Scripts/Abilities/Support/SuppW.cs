@@ -14,7 +14,7 @@ namespace _ProjectBeta.Scripts.Abilities.Support
         [SerializeField] private float impulse = 150f;
         [SerializeField] private ParticleController particlesPrefab;
         [SerializeField] private float particlesLifetime;
-        
+        [SerializeField] private Collider[] colliders = new Collider[3];
         public override bool TryActivate(PlayerModel model)
         {
             var layer = model.GetEnemyLayerMask();
@@ -24,7 +24,7 @@ namespace _ProjectBeta.Scripts.Abilities.Support
             Assert.IsNotNull(particles);
             particles.Initialize(model.transform, particlesLifetime, Vector3.one);
             
-            var colliders = Physics.OverlapSphere(position, radius, layer);
+            Physics.OverlapSphereNonAlloc(position, radius, colliders, layer);
             foreach (var player in colliders)
             {
                 if (!player.TryGetComponent(out PlayerModel enemy))
@@ -36,6 +36,7 @@ namespace _ProjectBeta.Scripts.Abilities.Support
                 var value = model.transform.position + dir * impulse;
                 
                 enemy.Impulse(value);
+                Debug.Log(enemy);
             }
            
             return true;

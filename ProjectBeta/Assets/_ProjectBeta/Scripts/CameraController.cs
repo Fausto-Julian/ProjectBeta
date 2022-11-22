@@ -32,6 +32,7 @@ namespace _ProjectBeta.Scripts
             if (!isTeamOne)
             {
                 var euler = transform.rotation.eulerAngles;
+                euler.x = 45;
                 euler.y = 180;
                 transform.Rotate(euler);
 

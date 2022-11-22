@@ -212,7 +212,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [PunRPC]
         private void RPC_Impulse(Vector3 value)
         {
-            _rb.AddForce(value);
+            _rb.velocity += value;
           
         }
 

@@ -20,7 +20,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5792641013195466860
 Transform:
@@ -156,12 +156,12 @@ GameObject:
   - component: {fileID: 6289211727688206949}
   - component: {fileID: 8179607776701592381}
   - component: {fileID: 1574406357848136257}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6289211727688206949
 Transform:

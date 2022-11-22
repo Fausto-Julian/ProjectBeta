@@ -27,7 +27,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private Stats _stats;
         private HealthController _healthController;
-        private Rigidbody _rb;
         private IPlayerController _playerController;
         private NavMeshAgent _agent;
         private float _rotateVelocity;

@@ -31,10 +31,10 @@ namespace _ProjectBeta.Scripts
             var position = new Vector3(targetPosition.x, offsetY, targetPosition.z - offsetZ);
             if (!isTeamOne)
             {
-                var euler = transform.rotation.eulerAngles;
-                euler.x = 45;
+                var transform1 = transform;
+                var euler = transform1.rotation.eulerAngles;
                 euler.y = 180;
-                transform.Rotate(euler);
+                transform1.eulerAngles = euler;
 
                 position.z = targetPosition.z + offsetZ;
             }

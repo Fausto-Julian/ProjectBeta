@@ -1,5 +1,7 @@
 using System;
+using _ProjectBeta.Scripts.Extension;
 using _ProjectBeta.Scripts.PlayerScrips.Interface;
+using _ProjectBeta.Scripts.Projectiles;
 using _ProjectBeta.Scripts.Structure;
 using Photon.Pun;
 using UnityEngine;
@@ -9,6 +11,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 {
     public class PlayerController : MonoBehaviourPun, IPlayerController
     {
+        [SerializeField] private BasicProjectile projectilePrefab;
+        [SerializeField] private float cooldownBasic;
         private InputAction _abilityInputAction1;
         private InputAction _abilityInputAction2;
         private InputAction _abilityInputAction3;
@@ -25,6 +29,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         private PlayerModel _model;
 
+        private float _currentCooldownBasic;
+
         private void Awake()
         {
             if(photonView.IsMine)
@@ -33,60 +39,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             }
         }
 
-        //public void Spawned()
-        //{
-            //if (true)Object.HasInputAuthority)
-            //{
-                //Runner.AddCallbacks(this);
-            //}
-
-            //PlayerInputGetActions();
-
-            // _inputAsset = GetComponent<PlayerInput>().actions;
-            // _playerControls = _inputAsset.FindActionMap("PlayerControls");
-        //}
-
         private void PlayerInputGetActions()
         {
-
-            //var playerModels = FindObjectsOfType<PlayerModel>();
-            //PlayerInput playerInput = null;
-            //foreach (var player in playerModels)
-            //{
-            //    if (!player.TryGetComponent(out PlayerInput input))
-            //        continue;
-
-            //    if (player.Object.HasInputAuthority)
-            //    {
-            //        _model = player;
-            //        playerInput = input;
-            //        continue;
-            //    }
-
-            //    Destroy(input);
-            //}
-
-            //if (playerInput == null)
-            //{
-            //    Debug.LogError("Null player Input");
-            //    return;
-            //}
-
-            //if (!Object.HasInputAuthority)
-            //    return;
-
-            //var inputActions = playerInput.actions;
-
-            //if (inputActions != null)
-            //{
-            //    _abilityInputAction1 = inputActions["Ability1"];
-            //    _abilityInputAction2 = inputActions["Ability2"];
-            //    _abilityInputAction3 = inputActions["Ability3"];
-            //    _spaceInputAction = inputActions["CameraLock"];
-
-            //    _leftClickInputAction = inputActions["LeftClick"];
-            //    _rightClickInputAction = inputActions["RightClick"];
-            //}
             var input = GetComponent<PlayerInput>();
             _model = GetComponent<PlayerModel>();
 
@@ -133,20 +87,26 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             if (!Physics.Raycast(Camera.main.ScreenPointToRay(mouse), out var hit, Mathf.Infinity, _model.GetBasicLayerMask())) 
                 return;
             
-            if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack)
+            if (Vector3.Distance(hit.point, transform.position) < _model.GetData().DistanceToBasicAttack && _currentCooldownBasic <= Time.time)
             {
+                var layer = _model.GetProjectileLayerMask();
+                
                 if (hit.collider.TryGetComponent(out PlayerModel model))
                 {
                     if (model != _model)
                     {
-                        model.DoDamage(_model.GetStats().damage, _model.photonView.Owner);
+                        var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position, Quaternion.identity, layer);
+                        projectile.Initialize(_model.GetStats().damage, model.transform);
+                        _currentCooldownBasic = Time.time + cooldownBasic;
                         return;
                     }
                 }
 
                 if (hit.collider.TryGetComponent(out StructureModel structureModel))
                 {
-                    structureModel.DoDamage(_model.GetStats().damage, _model.photonView.Owner);
+                    var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position, Quaternion.identity, layer);
+                    projectile.Initialize(_model.GetStats().damage, structureModel.transform);
+                    _currentCooldownBasic = Time.time + cooldownBasic;
                     return;
                 }
             }

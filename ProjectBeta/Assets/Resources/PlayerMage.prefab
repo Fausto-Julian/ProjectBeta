@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9fbb2e529458645a2fd3c0390eb771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 6074286416874674385, guid: cea601c9fa4618146a4eff768aa1b948, type: 3}
+  cooldownBasic: 0.5
 --- !u!114 &8046257183110560391
 MonoBehaviour:
   m_ObjectHideFlags: 0

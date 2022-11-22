@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
 using Photon.Pun;
@@ -23,7 +24,8 @@ namespace _ProjectBeta.Scripts.Menu
 
         private void Start()
         {
-            CheckAndFixDependenciesCoroutine();
+            if (!PhotonNetwork.IsConnected)
+                CheckAndFixDependenciesCoroutine();
         }
 
         private async void CheckAndFixDependenciesCoroutine()
@@ -49,6 +51,7 @@ namespace _ProjectBeta.Scripts.Menu
             _auth = FirebaseAuth.DefaultInstance;
 
             _auth.StateChanged += AuthOnStateChanged;
+            AuthOnStateChanged(this, default);
         }
 
         private void AuthOnStateChanged(object sender, EventArgs e)
@@ -66,13 +69,12 @@ namespace _ProjectBeta.Scripts.Menu
             loginUIManager.ClearOutput();
 
             var credential = EmailAuthProvider.GetCredential(email, password);
-
             var task = _auth.SignInWithCredentialAsync(credential);
+            
             try
             {
                 await task;
             }
-
             catch (Exception e)
             {
                 loginUIManager.OnError(e.Message);

@@ -77,7 +77,8 @@ namespace _ProjectBeta.Scripts.Projectiles
                     structureModel.DoDamage(_damage, photonView.Owner);
             }
             
-            PhotonNetwork.Destroy(gameObject);
+            if (other.gameObject.layer != gameObject.layer)
+                PhotonNetwork.Destroy(gameObject);
         }
         
 

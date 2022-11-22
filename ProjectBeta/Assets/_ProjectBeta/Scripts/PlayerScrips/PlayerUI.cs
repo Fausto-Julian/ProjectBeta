@@ -110,16 +110,19 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             abilityHolderOneText.text = ((int)time).ToString();
             abilityHolderOneText.gameObject.SetActive(time > 0);
+            abilityHolderOneButton.interactable = time <= 0;
         }
         private void UpdateAbilityTwo(float time)
         {
             abilityHolderTwoText.text = ((int)time).ToString();
             abilityHolderTwoText.gameObject.SetActive(time > 0);
+            abilityHolderTwoButton.interactable = time <= 0;
         }
         private void UpdateAbilityThree(float time)
         {
             abilityHolderThreeText.text = ((int)time).ToString();
             abilityHolderThreeText.gameObject.SetActive(time > 0);
+            abilityHolderThreeButton.interactable = time <= 0;
         }
         
         private void UpdateKillStatUI(int kills) => killsCountText.text = kills.ToString();

@@ -8,15 +8,15 @@ namespace _ProjectBeta.Scripts.Projectiles
 {
     public class Projectile : MonoBehaviourPun
     {
+        [SerializeField] private bool isDamage;
+        [SerializeField] private bool isMovement;
         private float _damage;
         private float _speed;
         private float _lifeTime;
-        private Rigidbody _rb;
         private int _countHits;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
             _lifeTime = 99999999;
         } 
 
@@ -25,11 +25,11 @@ namespace _ProjectBeta.Scripts.Projectiles
             if (!photonView.IsMine)
                 return;
         
-            Move();
             if(_lifeTime <= Time.time)
-            {
                 PhotonNetwork.Destroy(gameObject);
-            }
+            
+            if(isMovement)
+                Move();
         }
 
         public void Initialize(float speed, float lifeTime, float damage, Vector3 position, int countHits = 0)
@@ -49,11 +49,14 @@ namespace _ProjectBeta.Scripts.Projectiles
 
         private void Move()
         {
-            _rb.velocity = transform.forward * _speed;
+            transform.position += transform.forward * _speed * Time.deltaTime;
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!isDamage)
+                return;
+            
             if (other.TryGetComponent<PlayerModel>(out var model) && model.photonView.IsMine)
             {
                 if (Equals(photonView.Owner, model.photonView.Owner))

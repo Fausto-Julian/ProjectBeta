@@ -107,10 +107,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9828">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="9828" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -152,7 +152,7 @@
       <workItem from="1668897056838" duration="2316000" />
       <workItem from="1668975748630" duration="25741000" />
       <workItem from="1669060923313" duration="3519000" />
-      <workItem from="1669073388311" duration="2798000" />
+      <workItem from="1669073388311" duration="3147000" />
     </task>
     <servers />
   </component>
@@ -175,5 +175,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerUI.cs</url>
+          <line>90</line>
+          <properties documentPath="C:\Games UADE\2022 2C\D.S.J. y P.S.J\ProjectBeta\ProjectBeta\Assets\_ProjectBeta\Scripts\PlayerScrips\PlayerUI.cs" initialLine="90" containingFunctionPresentation="method 'OnChangeKillStreakLevelHandler'">
+            <startOffsets>
+              <option value="3765" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3802" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

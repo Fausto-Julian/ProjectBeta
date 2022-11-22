@@ -1359,6 +1359,7 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
+  floatingTextPrefab: {fileID: 0}
 --- !u!65 &285759343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1370,7 +1371,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 15, z: 12}
+  m_Size: {x: 4, y: 15, z: 30}
   m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!114 &285759344
 MonoBehaviour:
@@ -2432,6 +2433,7 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
+  floatingTextPrefab: {fileID: 0}
 --- !u!65 &476827200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2443,7 +2445,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 15, z: 12}
+  m_Size: {x: 4, y: 15, z: 30}
   m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!114 &476827201
 MonoBehaviour:
@@ -3149,6 +3151,7 @@ MonoBehaviour:
   maxHealth: 2500
   defense: 0
   isAcceptProjectileDamage: 1
+  floatingTextPrefab: {fileID: 0}
 --- !u!65 &574764138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3160,7 +3163,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 15, z: 12}
+  m_Size: {x: 4, y: 15, z: 30}
   m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!114 &574764139
 MonoBehaviour:
@@ -3578,6 +3581,7 @@ MonoBehaviour:
   maxHealth: 8500
   defense: 0
   isAcceptProjectileDamage: 0
+  floatingTextPrefab: {fileID: 0}
 --- !u!1 &624508271
 GameObject:
   m_ObjectHideFlags: 0
@@ -9651,6 +9655,7 @@ MonoBehaviour:
   maxHealth: 5000
   defense: 0
   isAcceptProjectileDamage: 1
+  floatingTextPrefab: {fileID: 0}
 --- !u!65 &1823014323
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9662,7 +9667,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 15, z: 12}
+  m_Size: {x: 4, y: 15, z: 30}
   m_Center: {x: -1.7, y: 0, z: 0}
 --- !u!114 &1823014324
 MonoBehaviour:
@@ -10715,9 +10720,9 @@ MonoBehaviour:
   killsCountText: {fileID: 23416085}
   assistsCountText: {fileID: 624508273}
   deathCountText: {fileID: 2053064072}
-  maxExperienceBar: 0
-  experienceBar: {fileID: 0}
-  levelText: {fileID: 0}
+  maxExperienceBar: 0.53
+  experienceBar: {fileID: 857298391}
+  levelText: {fileID: 729234863}
 --- !u!114 &1949712941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11958,6 +11963,7 @@ MonoBehaviour:
   maxHealth: 8500
   defense: 0
   isAcceptProjectileDamage: 0
+  floatingTextPrefab: {fileID: 0}
 --- !u!1001 &2093714254
 PrefabInstance:
   m_ObjectHideFlags: 0

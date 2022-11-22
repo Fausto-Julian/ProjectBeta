@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58167a451a404264897148f1d5fecbbb, type: 3}
   m_Name: Tank Q
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 10
+  <CooldownTime>k__BackingField: 8
   <Sprite>k__BackingField: {fileID: 21300000, guid: 5818b1bb3f715594f8be86b5064acf5f, type: 3}
   projectilePrefab: {fileID: -7528246914261334829, guid: 5d456ad9ac10e724a930ea65cb751467, type: 3}
   speed: 5

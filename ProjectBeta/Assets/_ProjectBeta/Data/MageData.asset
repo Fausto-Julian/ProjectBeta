@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb865273849f294e8193344f2c69c8d, type: 3}
   m_Name: MageData
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  <HealthForSecond>k__BackingField: 0
-  <BaseMovementSpeed>k__BackingField: 5
+  <MaxHealth>k__BackingField: 300
+  <HealthForSecond>k__BackingField: 5
+  <BaseMovementSpeed>k__BackingField: 4.5
   <BaseDefense>k__BackingField: 20
-  <BaseDamage>k__BackingField: 40
+  <BaseDamage>k__BackingField: 50
   <DistanceToAttack>k__BackingField: 12
-  <DistanceToBasicAttack>k__BackingField: 8
+  <DistanceToBasicAttack>k__BackingField: 6
   <RespawnCooldown>k__BackingField: 2
   <KillStreakData>k__BackingField: {fileID: 11400000, guid: 7f829ba164427b84a9b2082b9398ee0e, type: 2}
   <ClickRightLayerMaskTeamOne>k__BackingField:
@@ -27,7 +27,7 @@ MonoBehaviour:
   <ClickRightLayerMaskTeamTwo>k__BackingField:
     serializedVersion: 2
     m_Bits: 5192
-  <PercentageReduceCooldownAbilities>k__BackingField: 0
+  <PercentageReduceCooldownAbilities>k__BackingField: 10
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: e5d81ccfc69dcd143a9dcebcf09ce90a, type: 2}
   <AbilityTwo>k__BackingField: {fileID: 11400000, guid: d8306d6d17b5ee449bcd7a679655ada6, type: 2}
   <AbilityThree>k__BackingField: {fileID: 11400000, guid: 3bc8db787a9a78e419dd7da9389bb6ed, type: 2}

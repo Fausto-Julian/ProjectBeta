@@ -13,14 +13,21 @@ MonoBehaviour:
   m_Name: TEST
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
+  <HealthForSecond>k__BackingField: 0
   <BaseMovementSpeed>k__BackingField: 3.5
-  <BaseDefense>k__BackingField: 40
+  <BaseDefense>k__BackingField: 10
+  <BaseDamage>k__BackingField: 0
   <DistanceToAttack>k__BackingField: 8
   <DistanceToBasicAttack>k__BackingField: 5
   <RespawnCooldown>k__BackingField: 2
+  <KillStreakData>k__BackingField: {fileID: 0}
+  <ClickRightLayerMaskTeamOne>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  <ClickRightLayerMaskTeamTwo>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  <PercentageReduceCooldownAbilities>k__BackingField: 0
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: c7e4868878a1ca540a87f482178c4a68, type: 2}
   <AbilityTwo>k__BackingField: {fileID: 11400000, guid: c7e4868878a1ca540a87f482178c4a68, type: 2}
   <AbilityThree>k__BackingField: {fileID: 11400000, guid: c7e4868878a1ca540a87f482178c4a68, type: 2}
-  <AbilityOneIcon>k__BackingField: {fileID: 21300000, guid: c21f94d3c253d9e49bbce8b1fcfaae4c, type: 3}
-  <AbilityTwoIcon>k__BackingField: {fileID: 21300000, guid: beff0132a56cbe14da15c3aa39e7aeff, type: 3}
-  <AbilityThreeIcon>k__BackingField: {fileID: 21300000, guid: 3db496306c0f26a4f98b6604db2f110e, type: 3}

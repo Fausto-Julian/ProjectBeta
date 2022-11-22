@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3451e0c2046e8640a52405d18b7aaac, type: 3}
   m_Name: DPSE
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 0
+  <CooldownTime>k__BackingField: 15
   <Sprite>k__BackingField: {fileID: 21300000, guid: 1a999cb4d425d7441aaf1ee995a94d34, type: 3}
   timeDuration: 10
   percentageUpgrade: 100
   particlesPrefab: {fileID: 4000652480429442353, guid: 9b6edc9086ebe6048b2e91961c4bec13, type: 3}
-  particlesLifetime: 5
+  particlesLifetime: 10
   range: 1
   particleSize: {x: 1, y: 1, z: 1}

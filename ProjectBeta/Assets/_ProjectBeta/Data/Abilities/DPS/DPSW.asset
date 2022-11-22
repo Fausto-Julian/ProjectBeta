@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf6bb562fa80ff4289fbedf31d9c2d2, type: 3}
   m_Name: DPSW
   m_EditorClassIdentifier: 
-  <CooldownTime>k__BackingField: 2
+  <CooldownTime>k__BackingField: 6
   <Sprite>k__BackingField: {fileID: 21300000, guid: eafaedfcd72773d42a776c052cdcf422, type: 3}
   projectilePrefab: {fileID: 1759316467877076628, guid: 93940908712d0c446a039793a26b9be9, type: 3}
   speed: 10
   lifeTimeProjectile: 4
-  damage: 5
+  damage: 80
   range: 15

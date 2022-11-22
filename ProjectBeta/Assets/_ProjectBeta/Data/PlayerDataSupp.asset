@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerDataSupp
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 250
-  <HealthForSecond>k__BackingField: 7.5
+  <HealthForSecond>k__BackingField: 1
   <BaseMovementSpeed>k__BackingField: 3.5
   <BaseDefense>k__BackingField: 10
   <BaseDamage>k__BackingField: 30

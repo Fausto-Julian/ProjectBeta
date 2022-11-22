@@ -56,7 +56,8 @@ namespace _ProjectBeta.Scripts.Projectiles
         {
             if (!photonView.IsMine)
                 return;
-            
+            if (other.gameObject.layer == gameObject.layer)
+                return;
             if (!isDamage)
                 return;
             

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: MageData
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 300
-  <HealthForSecond>k__BackingField: 5
+  <HealthForSecond>k__BackingField: 1.5
   <BaseMovementSpeed>k__BackingField: 4.5
   <BaseDefense>k__BackingField: 20
   <BaseDamage>k__BackingField: 50
   <DistanceToAttack>k__BackingField: 12
-  <DistanceToBasicAttack>k__BackingField: 6
+  <DistanceToBasicAttack>k__BackingField: 20
   <RespawnCooldown>k__BackingField: 5
   <KillStreakData>k__BackingField: {fileID: 11400000, guid: 7f829ba164427b84a9b2082b9398ee0e, type: 2}
   <ClickRightLayerMaskTeamOne>k__BackingField:

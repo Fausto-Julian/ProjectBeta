@@ -28,10 +28,15 @@ namespace _ProjectBeta.Scripts.Structure
         [PunRPC]
         private void RPC_UpdateUI(float maxHealth, float currentHealth)
         {
-            healthBar.transform.localScale = new Vector3(0, currentHealth / maxHealth);
-            var posY = (currentHealth / maxHealth) - 1;
+            Debug.Log(currentHealth / maxHealth);
+            healthBar.transform.localScale = new Vector3(1, currentHealth / maxHealth,1);
+            /*
+            var posY = currentHealth / maxHealth;
 
-            healthBar.transform.position = new Vector3(0, posY);
+            var healthBarPos = healthBar.transform.position;
+            var newPos = new Vector3(healthBarPos.x, posY,  healthBarPos.z);
+            healthBar.transform.position = newPos;
+            */
         }
     }
 }

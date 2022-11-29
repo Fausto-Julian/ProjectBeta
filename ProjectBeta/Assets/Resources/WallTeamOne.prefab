@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 574764137}
   - component: {fileID: 574764139}
   - component: {fileID: 6037990228046042239}
+  - component: {fileID: 240717500743842899}
   m_Layer: 10
   m_Name: WallTeamOne
   m_TagString: Untagged
@@ -145,6 +146,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 15, z: 30}
   m_Center: {x: -8.5, y: 0, z: 0}
+--- !u!114 &240717500743842899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7924452156982343015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c5431947b14a6e94df6ff245fad5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
 --- !u!1 &9062879455029648590
 GameObject:
   m_ObjectHideFlags: 0

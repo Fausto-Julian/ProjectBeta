@@ -16,12 +16,15 @@ namespace _ProjectBeta.Scripts.Structure
 
         private float _currentHealth;
         public Action OnDestroyStructure;
+        public Action<float, float> OnChangeHealth;
 
         public bool GetIsAcceptProjectileDamage() => isAcceptProjectileDamage;
 
         private void Awake()
         {
             _currentHealth = maxHealth;
+            var healthBar = GetComponent<HealthBarStructure>();
+            healthBar.Initialize(this);
         }
 
         public void DoDamage(float damage, Player doesToDamage)
@@ -33,6 +36,7 @@ namespace _ProjectBeta.Scripts.Structure
         private void RPC_TakeDamage(float damage, Player doesToDamage)
         {
             _currentHealth -= damage / (1 + defense / 100);
+            OnChangeHealth.Invoke(maxHealth, _currentHealth);
             photonView.RPC(nameof(RPC_CreateFloatingInt), doesToDamage, (int)damage);
 
             if (!(_currentHealth <= 0) || !photonView.IsMine) 

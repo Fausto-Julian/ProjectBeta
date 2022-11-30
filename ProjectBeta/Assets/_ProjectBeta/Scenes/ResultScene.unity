@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 1365233102}
   - component: {fileID: 1365233101}
   m_Layer: 5
-  m_Name: BackToMainMenu (1)
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   playerResultTwo: {fileID: 1895290603}
   playerResultControllerPrefab: {fileID: 7934807771503716729, guid: efd76ac35edc8fa4f81f33d54076cc99, type: 3}
   backToMainMenuButton: {fileID: 2142080758}
-  exitButton: {fileID: 0}
+  exitButton: {fileID: 1365233101}
 --- !u!1 &1895290602
 GameObject:
   m_ObjectHideFlags: 0

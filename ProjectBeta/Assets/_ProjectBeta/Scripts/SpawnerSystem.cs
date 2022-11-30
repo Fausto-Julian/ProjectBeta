@@ -19,56 +19,58 @@ namespace _ProjectBeta.Scripts
         {
             var props = PhotonNetwork.LocalPlayer.CustomProperties;
 
-            if (props.TryGetValue(GameSettings.PlayerPrefabId, out var obj) && 
-                props.TryGetValue(GameSettings.IsTeamOneId, out var teamBlue))
-            {
-                var index = (int)obj;
-                var playersData = GameManager.Instance.GetPlayerSpawnData(index);
+            if (!props.TryGetValue(GameSettings.PlayerPrefabId, out var obj) ||
+                !props.TryGetValue(GameSettings.IsTeamOneId, out var teamBlue)) 
+                return;
+            
+            var index = (int)obj;
+            var playersData = GameManager.Instance.GetPlayerSpawnData(index);
 
-                var isTeamOne = (bool)teamBlue;
+            var isTeamOne = (bool)teamBlue;
 
-                var respawnPosition = isTeamOne ? respawnOne.position : respawnTwo.position;
+            var respawnPosition = isTeamOne ? respawnOne.position : respawnTwo.position;
 
-                var layer = isTeamOne ? LayerMask.NameToLayer("Players One") : LayerMask.NameToLayer("Players Two");
+            var layer = isTeamOne ? LayerMask.NameToLayer("Players One") : LayerMask.NameToLayer("Players Two");
                 
-                var player = PhotonNetworkExtension.Instantiate(playersData.Prefab, respawnPosition, Quaternion.identity, layer);
-                player.SetRespawnPosition(respawnPosition);
-                Assert.IsNotNull(player);
+            var player = PhotonNetworkExtension.Instantiate(playersData.Prefab, respawnPosition, Quaternion.identity, layer);
+            player.SetRespawnPosition(respawnPosition);
+            Assert.IsNotNull(player);
 
-                var controller = player.GetComponent<PlayerController>();
+            var controller = player.GetComponent<PlayerController>();
                 
-                Assert.IsNotNull(controller);
-                cameraController.SetTarget(controller, isTeamOne);
+            Assert.IsNotNull(controller);
+            cameraController.SetTarget(controller, isTeamOne);
 
-                playerUI.Initialized(player);
-            }
-
-            PlayerModel.OnDiePlayer += ActiveRespawn;
+            playerUI.Initialized(player);
+            
+            PlayerModel.OnDiePlayer += PlayerModelOnOnDiePlayer;
         }
 
-        private void OnDisable()
+        private void PlayerModelOnOnDiePlayer(PlayerModel obj)
         {
-            PlayerModel.OnDiePlayer -= ActiveRespawn;
-        }
-
-        private void ActiveRespawn(PlayerModel model)
-        {
-            StartCoroutine(RespawnCoroutine(model));
+            StartCoroutine(RespawnCoroutine(obj));
         }
         
         private static IEnumerator RespawnCoroutine(PlayerModel model)
         {
-            model.gameObject.SetActive(false);
-            yield return new WaitForSeconds(model.GetData().RespawnCooldown);
-
-            if (model.photonView.IsMine)
+            model.transform.position = model.GetRespawnPosition();
+            var child = model.transform.childCount;
+            for (var i = 0; i < child; i++)
             {
-                model.RestoreMaxHealth();
-                model.transform.position = model.GetRespawnPosition();
+                model.transform.GetChild(i).gameObject.SetActive(false);
             }
             
+            model.SetCanMove(false);
+            yield return new WaitForSeconds(model.GetData().RespawnCooldown);
+
+            model.RestoreMaxHealth();
+            
             yield return new WaitForSeconds(1);
-            model.gameObject.SetActive(true);
+            for (var i = 0; i < child; i++)
+            {
+                model.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            model.SetCanMove(true);
         }
     }
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1689230538086472531}
   - component: {fileID: 5494855147015716492}
   - component: {fileID: 4009357489169298560}
-  - component: {fileID: 7073487252330000801}
   m_Layer: 0
   m_Name: "Smoke 90\xB0"
   m_TagString: Untagged
@@ -4892,22 +4891,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &7073487252330000801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96679862359448604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &1644103372524992070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,7 +4902,6 @@ GameObject:
   - component: {fileID: 7108912980037721744}
   - component: {fileID: 5492800417922235047}
   - component: {fileID: 1824132614345685014}
-  - component: {fileID: 557630624589288044}
   m_Layer: 0
   m_Name: "Smoke 180\xB0"
   m_TagString: Untagged
@@ -9800,22 +9782,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &557630624589288044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644103372524992070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &1860070851821435486
 GameObject:
   m_ObjectHideFlags: 0
@@ -9827,7 +9793,6 @@ GameObject:
   - component: {fileID: 5432837768569222119}
   - component: {fileID: 2219064235631228839}
   - component: {fileID: 3143323278031386241}
-  - component: {fileID: 1759974959652228739}
   m_Layer: 0
   m_Name: Quick Spikes
   m_TagString: Untagged
@@ -14555,22 +14520,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &1759974959652228739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860070851821435486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
 --- !u!1 &3108832869801477831
 GameObject:
   m_ObjectHideFlags: 0
@@ -14582,7 +14531,6 @@ GameObject:
   - component: {fileID: 840464390558888770}
   - component: {fileID: 635346246516141736}
   - component: {fileID: 4682227915297918085}
-  - component: {fileID: 866905453793053426}
   m_Layer: 0
   m_Name: "Smoke 270\xB0"
   m_TagString: Untagged
@@ -19463,22 +19411,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &866905453793053426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3108832869801477831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &3957522130720490822
 GameObject:
   m_ObjectHideFlags: 0
@@ -24542,7 +24474,6 @@ GameObject:
   - component: {fileID: 1620001445768062165}
   - component: {fileID: 1666851060938621177}
   - component: {fileID: 2970471859489463509}
-  - component: {fileID: 2642958068189941719}
   m_Layer: 0
   m_Name: Rays
   m_TagString: Untagged
@@ -29414,22 +29345,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2642958068189941719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4697282975077638874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
 --- !u!1 &5356827662422109954
 GameObject:
   m_ObjectHideFlags: 0
@@ -29440,7 +29355,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4969546043507821354}
   - component: {fileID: 769964128496932835}
-  - component: {fileID: 7071171378719062787}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -29525,22 +29439,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &7071171378719062787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5356827662422109954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
 --- !u!1 &7594594854743243438
 GameObject:
   m_ObjectHideFlags: 0
@@ -29608,13 +29506,13 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2065389342713777508}
-  - {fileID: 8229315993270635144}
-  - {fileID: 7073487252330000801}
-  - {fileID: 557630624589288044}
-  - {fileID: 866905453793053426}
-  - {fileID: 2642958068189941719}
-  - {fileID: 1759974959652228739}
-  - {fileID: 7071171378719062787}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -29645,7 +29543,6 @@ GameObject:
   - component: {fileID: 5513835217619157230}
   - component: {fileID: 7506473158284857821}
   - component: {fileID: 7488509839958428133}
-  - component: {fileID: 8229315993270635144}
   m_Layer: 0
   m_Name: "Smoke 0\xB0"
   m_TagString: Untagged
@@ -34526,19 +34423,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8229315993270635144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8972727850563377177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1

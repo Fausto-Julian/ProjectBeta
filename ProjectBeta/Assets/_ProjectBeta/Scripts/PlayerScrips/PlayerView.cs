@@ -22,6 +22,8 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         
         private void Update()
         {
+            if (!photonView.IsMine)
+                return;
             var speed = _agent.velocity.magnitude / _agent.speed;
             _animator.SetFloat(SpeedId, speed, MotionSmoothTime, Time.deltaTime);
         }

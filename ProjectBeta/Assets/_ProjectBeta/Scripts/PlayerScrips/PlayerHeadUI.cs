@@ -64,7 +64,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             floatingText.InstanciateInt(position, textInt, color);
         }
 
-
         [PunRPC]
         private void RPC_UpdateUI(float maxHealth, float currentHealth)
         {
@@ -74,7 +73,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         [PunRPC]
         private void RPC_TakeDamage(float damage)
         {
-            CreateFloatingInt((int) damage, Color.red);
+            CreateFloatingInt((int)damage, Color.red);
         }
 
         [PunRPC]

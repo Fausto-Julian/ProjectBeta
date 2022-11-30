@@ -17,6 +17,8 @@ namespace _ProjectBeta.Scripts.Menu
         [SerializeField] private GameObject main;
         [SerializeField] private TMP_InputField roomName;
         [SerializeField] private Button joinButton;
+        [SerializeField] private Button exitButton;
+        [SerializeField] private Button exitButton2;
         
         [Header("Room")]
         [SerializeField] private GameObject lobby;
@@ -44,6 +46,8 @@ namespace _ProjectBeta.Scripts.Menu
             leaveRoomButton.onClick.AddListener(OnLeaveGameButtonClicked);
             joinButton.onClick.AddListener(OnJoinRoomButtonClicked);
             readyButton.onClick.AddListener(OnReadyButtonClicked);
+            exitButton.onClick.AddListener(ExitGame);
+            exitButton2.onClick.AddListener(ExitGame);
         }
 
         #region Rooms
@@ -220,6 +224,11 @@ namespace _ProjectBeta.Scripts.Menu
             props[GameSettings.ReadyId] = !(bool)props[GameSettings.ReadyId];
             
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+        }
+
+        private void ExitGame()
+        {
+            GameManager.Instance.ExitApplication();
         }
 
         #endregion

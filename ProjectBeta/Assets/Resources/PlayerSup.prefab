@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6074286416874674385, guid: cea601c9fa4618146a4eff768aa1b948, type: 3}
-  cooldownBasic: 0.5
+  cooldownBasic: 0.7
 --- !u!114 &6674656875131646998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
@@ -885,6 +885,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063552230360950, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263362929766448099, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+      propertyPath: m_SynchronizeLayers.Array.data[0].SynchronizeType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

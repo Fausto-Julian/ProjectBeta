@@ -155,6 +155,8 @@ MonoBehaviour:
   main: {fileID: 130303617}
   roomName: {fileID: 1074089714}
   joinButton: {fileID: 1090432271}
+  exitButton: {fileID: 1505406934}
+  exitButton2: {fileID: 236477573}
   lobby: {fileID: 756499131}
   playerListLeft: {fileID: 830367094}
   playerListRight: {fileID: 957609103}

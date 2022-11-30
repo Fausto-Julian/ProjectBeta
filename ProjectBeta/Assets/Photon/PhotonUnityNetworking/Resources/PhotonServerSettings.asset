@@ -61,6 +61,10 @@ MonoBehaviour:
   - RPC_DestroyObjectRemote
   - RPC_DestroyStructure
   - RPC_SetRespawnPosition
+  - RPC_Syncronize
+  - RPC_Respawn
+  - RPC_SetActiveObject
+  - RPC_DoDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

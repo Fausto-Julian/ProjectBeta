@@ -67,32 +67,41 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public Vector3 GetRespawnPosition() => _respawn;
 
+        private bool _canMove;
+
+        public void SetCanMove(bool canMove)
+        {
+            _canMove = canMove;
+            _agent.isStopped = true;
+        }
+
         public void Awake()
         {
+            _canMove = true;
             GameManager.Instance.AddPlayer(this);
-            
-            _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
-            _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
-            _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
 
-            _agent = GetComponent<NavMeshAgent>();
+            _statisticsController = GetComponent<StatisticsController>();
+            _statisticsController.Initialize(this);
+            
             _stats = new Stats(data);
-            _healthController = new HealthController(_stats);
 
             _upgradeController = GetComponent<UpgradeController>();
             Assert.IsNotNull(_upgradeController);
             _upgradeController.Initialize(_stats);
             
-            _statisticsController = GetComponent<StatisticsController>();
-            _statisticsController.Initialize(this);
-
-            _agent.speed = _stats.movementSpeed;
-
-            _healthController.OnDie += HealthControllerOnOnDie;
-
             if (!photonView.IsMine) 
                 return;
 
+            _healthController = new HealthController(_stats);
+            _healthController.OnDie += HealthControllerOnOnDie;
+
+            _abilityHolderOne = new AbilityHolder(data.AbilityOne, this);
+            _abilityHolderTwo = new AbilityHolder(data.AbilityTwo, this);
+            _abilityHolderThree = new AbilityHolder(data.AbilityThree, this);
+
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.speed = _stats.movementSpeed;
+            
             _killStreakSystem = GetComponent<KillStreakSystem>();
             Assert.IsNotNull(_killStreakSystem);
             _killStreakSystem.Initialize(this);
@@ -137,7 +146,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void ClampCurrentHealth()
         {
-            photonView.RPC(nameof(RPC_ClampCurrentHealth), RpcTarget.All);
+            photonView.RPC(nameof(RPC_ClampCurrentHealth), photonView.Owner);
         }
         
         [PunRPC]
@@ -165,24 +174,20 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             OnDieStatics?.Invoke();
             OnDiePlayer?.Invoke(this);
         }
-
-        public void RestoreMaxHealth()
-        {
-            photonView.RPC(nameof(RPC_RestoreMaxHealth), RpcTarget.All);
-        }
-        public LayerMask GetLayers()
-        {
-           return gameObject.layer;
-        }
-
+        
         [PunRPC]
-        private void RPC_RestoreMaxHealth()
+        public void RPC_SetActiveObject(bool isActive)
         {
-            _healthController.RestoreMaxHealth();
+            gameObject.SetActive(false);
         }
+
+        
 
         public void Update()
         {
+            if (!photonView.IsMine)
+                return;
+            
             if (Vector3.Distance(_destination, transform.position) < 0.1f)
                 _agent.isStopped = true;
 
@@ -190,14 +195,14 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _abilityHolderTwo.Update();
             _abilityHolderThree.Update();
             
-            GetHeal(data.HealthForSecond * Time.deltaTime);
+            _healthController.Heal(data.HealthForSecond * Time.deltaTime);
         }
 
         public PlayerData GetData() => data;
 
         public void GetHeal(float heal)
         {
-            photonView.RPC(nameof(RPC_GetHeal), RpcTarget.All, heal);
+            photonView.RPC(nameof(RPC_GetHeal), photonView.Owner, heal);
         }
         
         [PunRPC]
@@ -248,6 +253,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         
         private void Movement(Vector3 destination)
         {
+            if (!_canMove)
+                return;
+            
             _destination = destination;
             _agent.isStopped = false;
             _agent.SetDestination(_destination);
@@ -255,7 +263,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
 
         public void DoDamage(float damage, Player doesTheDamage)
         {
-            photonView.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage, doesTheDamage);
+            photonView.RPC(nameof(RPC_TakeDamage), photonView.Owner, damage, doesTheDamage);
         }
 
         [PunRPC]
@@ -268,7 +276,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             }
             
             _healthController.TakeDamage(damage);
-            
         }
 
         private void OnActiveOneAbilityHandler()
@@ -303,20 +310,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         }
 
 #if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            var mousePos = (Vector3)Mouse.current.position.ReadValue();
-            Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out var hit, Mathf.Infinity);
 
-            Gizmos.DrawWireSphere(hit.point, 5f);
-            //var mousePos = (Vector3)Mouse.current.position.ReadValue();
-            //Ray ray = Camera.current.ScreenPointToRay(mousePos);
-            //RaycastHit hit;
-            //Physics.Raycast(ray, out hit, Mathf.Infinity);
-            //Gizmos.DrawWireSphere(hit.point, 5);
-            //Gizmos.color = Color.red;
-        }
-        
         [ContextMenu("ActiveQ")]
         private void ActiveQ() => _abilityHolderOne.Activate();
 
@@ -331,5 +325,10 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action<float> ActiveAbilityOne;
         public event Action<float> ActiveAbilityThree;
         public event Action<float> ActiveAbilityTwo;
+
+        public void RestoreMaxHealth()
+        {
+            _healthController.RestoreMaxHealth();
+        }
     }
 }

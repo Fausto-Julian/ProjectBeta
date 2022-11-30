@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1318935079978438864}
   - component: {fileID: 1318935079978438870}
   - component: {fileID: 1318935079978438871}
-  - component: {fileID: 6416200257816187918}
   m_Layer: 0
   m_Name: Runes small
   m_TagString: Untagged
@@ -4883,22 +4882,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &6416200257816187918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1318935079978438865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
 --- !u!1 &2319904205370560433
 GameObject:
   m_ObjectHideFlags: 0
@@ -4910,7 +4893,6 @@ GameObject:
   - component: {fileID: 3531368748785038516}
   - component: {fileID: 6679182840704168355}
   - component: {fileID: 7893921968227561089}
-  - component: {fileID: 6752714873336908791}
   m_Layer: 0
   m_Name: Runes
   m_TagString: Untagged
@@ -9782,22 +9764,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &6752714873336908791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2319904205370560433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
 --- !u!1 &3280519133223516631
 GameObject:
   m_ObjectHideFlags: 0
@@ -9809,7 +9775,6 @@ GameObject:
   - component: {fileID: 3280519133223516630}
   - component: {fileID: 3280519133223516628}
   - component: {fileID: 3280519133223516629}
-  - component: {fileID: 8993547290193439053}
   m_Layer: 0
   m_Name: Rays
   m_TagString: Untagged
@@ -14623,22 +14588,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8993547290193439053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3280519133223516631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
 --- !u!1 &3280519133390621005
 GameObject:
   m_ObjectHideFlags: 0
@@ -19637,9 +19586,9 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -2507205364665678}
-  - {fileID: 8993547290193439053}
-  - {fileID: 6752714873336908791}
-  - {fileID: 6416200257816187918}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

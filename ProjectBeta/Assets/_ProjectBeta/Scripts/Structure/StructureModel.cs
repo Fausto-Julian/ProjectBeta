@@ -26,26 +26,32 @@ namespace _ProjectBeta.Scripts.Structure
 
         public void DoDamage(float damage, Player doesToDamage)
         {
-            photonView.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage, doesToDamage);
+            photonView.RPC(nameof(RPC_DoDamage), photonView.Owner, damage);
+            photonView.RPC(nameof(RPC_CreateFloatingInt), doesToDamage, (int)damage);
         }
 
         [PunRPC]
-        private void RPC_TakeDamage(float damage, Player doesToDamage)
+        private void RPC_DoDamage(float damage)
         {
             _currentHealth -= damage / (1 + defense / 100);
-            photonView.RPC(nameof(RPC_CreateFloatingInt), doesToDamage, (int)damage);
 
-            if (!(_currentHealth <= 0) || !photonView.IsMine) 
+            CheckDestroy();
+        }
+
+        private void CheckDestroy()
+        {
+            if (_currentHealth > 0) 
                 return;
             
-            photonView.RPC(nameof(RPC_DestroyStructure), RpcTarget.All);
+            OnDestroyStructure?.Invoke();
+            photonView.RPC(nameof(RPC_DestroyStructure), RpcTarget.Others);
+            PhotonNetwork.Destroy(gameObject);
         }
 
         [PunRPC]
         private void RPC_DestroyStructure()
         {
             OnDestroyStructure?.Invoke();
-            Destroy(gameObject);
         }
 
         [PunRPC]

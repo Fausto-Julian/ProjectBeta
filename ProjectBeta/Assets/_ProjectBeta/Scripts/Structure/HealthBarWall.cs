@@ -30,13 +30,11 @@ namespace _ProjectBeta.Scripts.Structure
         {
             Debug.Log(currentHealth / maxHealth);
             healthBar.transform.localScale = new Vector3(1, currentHealth / maxHealth,1);
-            /*
-            var posY = currentHealth / maxHealth;
+            
+            var posY = currentHealth / maxHealth - 1;
 
-            var healthBarPos = healthBar.transform.position;
-            var newPos = new Vector3(healthBarPos.x, posY,  healthBarPos.z);
-            healthBar.transform.position = newPos;
-            */
+            healthBar.transform.localPosition = new Vector3(0, posY,  0);
+            
         }
     }
 }

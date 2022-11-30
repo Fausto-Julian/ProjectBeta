@@ -19,9 +19,15 @@ namespace _ProjectBeta.Scripts.Structure
 
         private void OnChangeHealthHandler(float maxHealth, float currentHealth)
         {
-            if(!photonView.IsMine) return;
+            //if(!photonView.IsMine) return;
 
-            photonView.RPC(nameof(RPC_UpdateUI), RpcTarget.All, maxHealth, currentHealth);
+            healthBar.transform.localScale = new Vector3(1, currentHealth / maxHealth,1);
+            
+            var posY = currentHealth / maxHealth - 1;
+
+            healthBar.transform.localPosition = new Vector3(0, posY,  0);
+            
+            //photonView.RPC(nameof(RPC_UpdateUI), RpcTarget.All, maxHealth, currentHealth);
         }
 
 
@@ -34,7 +40,6 @@ namespace _ProjectBeta.Scripts.Structure
             var posY = currentHealth / maxHealth - 1;
 
             healthBar.transform.localPosition = new Vector3(0, posY,  0);
-            
         }
     }
 }

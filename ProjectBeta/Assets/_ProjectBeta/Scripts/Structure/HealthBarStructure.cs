@@ -20,9 +20,10 @@ namespace _ProjectBeta.Scripts.Structure
 
         private void OnChangeHealthHandler(float maxHealth, float currentHealth)
         {
-            if(!photonView.IsMine) return;
+            healthBar.fillAmount = currentHealth / maxHealth;
+            //if(!photonView.IsMine) return;
 
-            photonView.RPC(nameof(RPC_UpdateUI), RpcTarget.All, maxHealth, currentHealth);
+            //photonView.RPC(nameof(RPC_UpdateUI), RpcTarget.All, maxHealth, currentHealth);
         }
 
 

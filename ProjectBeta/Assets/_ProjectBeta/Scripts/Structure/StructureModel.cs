@@ -43,7 +43,7 @@ namespace _ProjectBeta.Scripts.Structure
         }
 
         [PunRPC]
-        private void RPC_TakeDamage(float damage, Player doesToDamage)
+        public void RPC_TakeDamage(float damage, Player doesToDamage)
         {
             _currentHealth -= damage / (1 + defense / 100);
             OnChangeHealth.Invoke(maxHealth, _currentHealth);
@@ -56,14 +56,14 @@ namespace _ProjectBeta.Scripts.Structure
         }
 
         [PunRPC]
-        private void RPC_DestroyStructure()
+        public void RPC_DestroyStructure()
         {
             OnDestroyStructure?.Invoke();
             Destroy(gameObject);
         }
 
         [PunRPC]
-        private void RPC_CreateFloatingInt(int textInt)
+        public void RPC_CreateFloatingInt(int textInt)
         {
             var position = isWall ? transform.position + new Vector3(-1,-3,-1) : transform.position;
             

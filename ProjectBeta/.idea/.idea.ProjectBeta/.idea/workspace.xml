@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character/Death/Materials/n2017.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Character/Death/Materials/n2017.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character/Editor/CommodityProgect/BackGround/XuanRenTaiZi/Materials/fx_diban.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Character/Editor/CommodityProgect/BackGround/XuanRenTaiZi/Materials/fx_diban.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +118,7 @@
       <workItem from="1669144142340" duration="872000" />
       <workItem from="1669145610509" duration="3795000" />
       <workItem from="1669149833993" duration="4114000" />
-      <workItem from="1670936910835" duration="605000" />
+      <workItem from="1670936910835" duration="1049000" />
     </task>
     <servers />
   </component>

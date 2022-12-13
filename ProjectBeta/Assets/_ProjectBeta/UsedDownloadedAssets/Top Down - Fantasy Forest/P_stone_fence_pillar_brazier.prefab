@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3328963596681556999}
   - component: {fileID: 3328963596680786983}
   - component: {fileID: 3328963596679657191}
-  - component: {fileID: 8307891458432248031}
+  - component: {fileID: 8799801469754602239}
   m_Layer: 0
   m_Name: P_stone_fence_pillar_brazier
   m_TagString: Untagged
@@ -86,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8307891458432248031
-MeshCollider:
+--- !u!65 &8799801469754602239
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,10 +96,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: fc2d6bbe8a9ef8f4fa0319db82bbc583, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.71041083, y: 1.2325344, z: 0.71369624}
+  m_Center: {x: 0.012005448, y: 0.59823334, z: 0.035435796}
 --- !u!1 &9041610677121134780
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,8 +143,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.6323692, b: 0, a: 1}
-  m_Intensity: 3
-  m_Range: 4
+  m_Intensity: 4
+  m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

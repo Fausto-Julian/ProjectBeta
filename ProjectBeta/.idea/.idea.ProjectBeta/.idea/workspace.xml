@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,6 +121,7 @@
       <workItem from="1669145610509" duration="3795000" />
       <workItem from="1669149833993" duration="4114000" />
       <workItem from="1670936910835" duration="1049000" />
+      <workItem from="1670942302355" duration="622000" />
     </task>
     <servers />
   </component>

@@ -167,7 +167,7 @@ MonoBehaviour:
   maxPlayers: 6
   playerListPrefab: {fileID: 4907113437751846200, guid: 9e96e670b948fe748b56990ea5afc2d5, type: 3}
   championsButtonPrefab: {fileID: 1332041204200088728, guid: a81f765fea03f174bbc04064648c134d, type: 3}
-  sceneToLoad: NicolasScene
+  sceneToLoad: FinalScene
 --- !u!4 &123269081
 Transform:
   m_ObjectHideFlags: 0

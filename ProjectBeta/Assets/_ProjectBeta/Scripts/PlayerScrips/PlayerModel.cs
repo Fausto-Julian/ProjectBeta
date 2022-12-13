@@ -36,6 +36,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private StatisticsController _statisticsController;
         private KillStreakSystem _killStreakSystem;
         private UpgradeController _upgradeController;
+        private PlayerView _playerView;
 
         public static event Action<PlayerModel> OnDiePlayer;
 
@@ -112,6 +113,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             Assert.IsNotNull(playerHeadUI);
             playerHeadUI.Initialize(this);
 
+            _playerView = GetComponent<PlayerView>();
+            Assert.IsNotNull(_playerView);
+            
             _playerOneLayerMask = LayerMask.NameToLayer("Players One");
             _playerTwoLayerMask = LayerMask.NameToLayer("Players Two");
             _playerColOneLayerMask = LayerMask.NameToLayer("PlayersCol One");
@@ -131,6 +135,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             }
                 
             SubscribePlayerController();
+            
         }
 
         public void SetRespawnPosition(Vector3 position)
@@ -173,6 +178,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             OnDieStatics?.Invoke();
             OnDiePlayer?.Invoke(this);
+            _playerView.StartDeathAnimation();
         }
         
         [PunRPC]
@@ -283,6 +289,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent.isStopped = true;
             ActiveAbilityOne?.Invoke(data.AbilityOne.CooldownTime);
             _abilityHolderOne.Activate();
+            _playerView.StartAbilityOneAnimation();
         }
 
         private void OnActiveTwoAbilityHandler()
@@ -290,6 +297,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent.isStopped = true;
             ActiveAbilityTwo?.Invoke(data.AbilityTwo.CooldownTime);
             _abilityHolderTwo.Activate();
+            _playerView.StartAbilityTwoAnimation();
         }
 
         private void OnActiveThreeAbilityHandler()
@@ -297,6 +305,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _agent.isStopped = true;
             ActiveAbilityThree?.Invoke(data.AbilityThree.CooldownTime);
             _abilityHolderThree.Activate();
+            _playerView.StartAbilityThreeAnimation();
         }
 
         public void SetStopped(bool value) => _agent.isStopped = value;

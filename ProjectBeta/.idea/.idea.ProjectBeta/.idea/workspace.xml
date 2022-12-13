@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Knight/Animation/Knight@idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Knight/Animation/Knight@idle.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Knight/Animation/Knight@run.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Knight/Animation/Knight@run.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Knight/Knight Animator Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Knight/Knight Animator Controller.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CFXR3 Magic Aura A (Runic).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CFXR3 Magic Aura A (Runic).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Core.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Core.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/WizardPolyArt/Animations/WizardAnimControl.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/WizardPolyArt/Animations/WizardAnimControl.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/MainMenuScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -12,6 +26,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/0c/b86bb2b8/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fc/239520fa/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/IDamageable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Menu/PlayerListController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -121,7 +136,8 @@
       <workItem from="1669145610509" duration="3795000" />
       <workItem from="1669149833993" duration="4114000" />
       <workItem from="1670936910835" duration="1049000" />
-      <workItem from="1670942302355" duration="622000" />
+      <workItem from="1670942302355" duration="1217000" />
+      <workItem from="1670952690474" duration="3246000" />
     </task>
     <servers />
   </component>

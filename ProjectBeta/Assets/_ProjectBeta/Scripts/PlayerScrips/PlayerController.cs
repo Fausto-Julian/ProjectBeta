@@ -5,6 +5,7 @@ using _ProjectBeta.Scripts.Projectiles;
 using _ProjectBeta.Scripts.Structure;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 namespace _ProjectBeta.Scripts.PlayerScrips
@@ -28,6 +29,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         public event Action OnSpace;
 
         private PlayerModel _model;
+        private PlayerView _playerView;
 
         private float _currentCooldownBasic;
 
@@ -37,6 +39,9 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             {
                 PlayerInputGetActions();
             }
+
+            _playerView = GetComponent<PlayerView>();
+            Assert.IsNotNull(_playerView);
         }
 
         private void PlayerInputGetActions()
@@ -102,6 +107,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                             var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position,
                                 Quaternion.identity, layer);
                             projectile.Initialize(_model.GetStats().damage, model.transform);
+                            _playerView.StartBaseAttackAnimation();
                             _currentCooldownBasic = Time.time + cooldownBasic;
                             return;
                         }
@@ -115,6 +121,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
                         var projectile = PhotonNetworkExtension.Instantiate(projectilePrefab, transform.position,
                             Quaternion.identity, layer);
                         projectile.Initialize(_model.GetStats().damage, structureModel.transform);
+                        _playerView.StartBaseAttackAnimation();
                         _currentCooldownBasic = Time.time + cooldownBasic;
                         return;
                     }

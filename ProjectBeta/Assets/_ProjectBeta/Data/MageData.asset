@@ -32,3 +32,6 @@ MonoBehaviour:
   <AbilityOne>k__BackingField: {fileID: 11400000, guid: e5d81ccfc69dcd143a9dcebcf09ce90a, type: 2}
   <AbilityTwo>k__BackingField: {fileID: 11400000, guid: d8306d6d17b5ee449bcd7a679655ada6, type: 2}
   <AbilityThree>k__BackingField: {fileID: 11400000, guid: 3bc8db787a9a78e419dd7da9389bb6ed, type: 2}
+  <AudioIdAbilityOne>k__BackingField: AbilityOne
+  <AudioIdAbilityTwo>k__BackingField: AbilityTwo
+  <AudioIdAbilityThree>k__BackingField: AbilityThree

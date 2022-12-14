@@ -27,5 +27,10 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Player
         [field: SerializeField] public Ability AbilityOne { get; private set; }
         [field: SerializeField] public Ability AbilityTwo { get; private set; }
         [field: SerializeField] public Ability AbilityThree { get; private set; }
+        
+        [field: Header(("AudioAbilitiesId"))]
+        [field: SerializeField] public string AudioIdAbilityOne { get; private set; }
+        [field: SerializeField] public string AudioIdAbilityTwo { get; private set; }
+        [field: SerializeField] public string AudioIdAbilityThree { get; private set; }
     }
 }

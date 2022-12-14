@@ -65,6 +65,7 @@ MonoBehaviour:
   - RPC_Respawn
   - RPC_SetActiveObject
   - RPC_DoDamage
+  - RPC_SendPlayAudio
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

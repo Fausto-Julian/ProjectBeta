@@ -37,6 +37,7 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         private KillStreakSystem _killStreakSystem;
         private UpgradeController _upgradeController;
         private PlayerView _playerView;
+        private PlayerAudioController _playerAudio;
 
         public static event Action<PlayerModel> OnDiePlayer;
 
@@ -89,10 +90,12 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _upgradeController = GetComponent<UpgradeController>();
             Assert.IsNotNull(_upgradeController);
             _upgradeController.Initialize(_stats);
+
+            _playerAudio = GetComponent<PlayerAudioController>();
             
             if (!photonView.IsMine) 
                 return;
-
+            
             _healthController = new HealthController(_stats);
             _healthController.OnDie += HealthControllerOnOnDie;
 
@@ -186,8 +189,6 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             gameObject.SetActive(false);
         }
-
-        
 
         public void Update()
         {
@@ -288,24 +289,30 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             _agent.isStopped = true;
             ActiveAbilityOne?.Invoke(data.AbilityOne.CooldownTime);
-            if(_abilityHolderOne.Activate())
-                _playerView.StartAbilityOneAnimation();
+            if (!_abilityHolderOne.Activate()) return;
+            
+            SendPlayAudio(data.AudioIdAbilityOne);
+            _playerView.StartAbilityOneAnimation();
         }
 
         private void OnActiveTwoAbilityHandler()
         {
             _agent.isStopped = true;
             ActiveAbilityTwo?.Invoke(data.AbilityTwo.CooldownTime);
-            if(_abilityHolderTwo.Activate())
-                _playerView.StartAbilityTwoAnimation();
+            if (!_abilityHolderTwo.Activate()) return;
+            
+            SendPlayAudio(data.AudioIdAbilityTwo);
+            _playerView.StartAbilityTwoAnimation();
         }
 
         private void OnActiveThreeAbilityHandler()
         {
             _agent.isStopped = true;
             ActiveAbilityThree?.Invoke(data.AbilityThree.CooldownTime);
-            if(_abilityHolderThree.Activate())
-                _playerView.StartAbilityThreeAnimation();
+            if (!_abilityHolderThree.Activate()) return;
+            
+            SendPlayAudio(data.AudioIdAbilityThree);
+            _playerView.StartAbilityThreeAnimation();
         }
 
         public void SetStopped(bool value) => _agent.isStopped = value;
@@ -316,6 +323,17 @@ namespace _ProjectBeta.Scripts.PlayerScrips
             _playerController.OnActiveTwo += OnActiveTwoAbilityHandler;
             _playerController.OnActiveThree += OnActiveThreeAbilityHandler;
             _playerController.OnRightClick += Movement;
+        }
+
+        private void SendPlayAudio(string id)
+        {
+            _playerAudio.TryPlayAudioClip(id);
+            photonView.RPC(nameof(RPC_SendPlayAudio), RpcTarget.Others, id);
+        }
+        [PunRPC]
+        private void RPC_SendPlayAudio(string id)
+        {
+            _playerAudio.TryPlayAudioClip(id);
         }
 
 #if UNITY_EDITOR

@@ -66,7 +66,7 @@ namespace FXV
 
             if (needDestroy)
             {
-                DestroyObject(gameObject);
+                Destroy(gameObject);
             }
         }
 

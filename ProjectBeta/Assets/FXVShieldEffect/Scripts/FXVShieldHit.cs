@@ -32,7 +32,7 @@ namespace FXV
 
             if (lifeTime <= 0.0f)
             {
-                DestroyObject(gameObject);
+                Destroy(gameObject);
             }
         }
 

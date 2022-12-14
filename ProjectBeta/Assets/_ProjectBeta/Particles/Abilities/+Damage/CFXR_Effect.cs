@@ -34,7 +34,7 @@ namespace CartoonFX
 		{
 			AnimatedLight.editorPreview = EditorPrefs.GetBool("CFXR Light EditorPreview", true);
 	#if !DISABLE_CAMERA_SHAKE
-			CameraShake.editorPreview = EditorPrefs.GetBool("CFXR CameraShake EditorPreview", true);
+			JMO_Assets.Cartoon_FX_Remaster.CFXR_Assets.Scripts.CFXR_Effect.CameraShake.editorPreview = EditorPrefs.GetBool("CFXR CameraShake EditorPreview", true);
 	#endif
 		}
 #endif
@@ -446,7 +446,7 @@ namespace CartoonFX
 		[Tooltip("Defines an action to execute when the Particle System has completely finished playing and emitting particles.")]
 		public ClearBehavior clearBehavior = ClearBehavior.Destroy;
 		[Space]
-		public CameraShake cameraShake;
+		public JMO_Assets.Cartoon_FX_Remaster.CFXR_Assets.Scripts.CFXR_Effect.CameraShake cameraShake;
 		[Space]
 		public AnimatedLight[] animatedLights;
 		[Tooltip("Defines which Particle System to track to trigger light fading out.\nLeave empty if not using fading out.")]
@@ -816,7 +816,7 @@ namespace CartoonFX
 				{
 					shakeEditorPreview = shakePreview;
 					EditorPrefs.SetBool("CFXR CameraShake EditorPreview", shakePreview);
-					CFXR_Effect.CameraShake.editorPreview = shakePreview;
+					JMO_Assets.Cartoon_FX_Remaster.CFXR_Assets.Scripts.CFXR_Effect.CameraShake.editorPreview = shakePreview;
 				}
 #endif
 			}

@@ -4,10 +4,11 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using JMO_Assets.Cartoon_FX_Remaster.CFXR_Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CartoonFX
+namespace JMO_Assets.Cartoon_FX_Remaster.Demo_Assets
 {
 	public class CFXR_Demo : MonoBehaviour
 	{
@@ -64,20 +65,20 @@ namespace CartoonFX
 
 		public void ToggleCameraShake()
 		{
-			CFXR_Effect.GlobalDisableCameraShake = !CFXR_Effect.GlobalDisableCameraShake;
+			//CFXR_Effect.GlobalDisableCameraShake = !CFXR_Effect.GlobalDisableCameraShake;
 
 			var color = Color.white;
-			color.a = CFXR_Effect.GlobalDisableCameraShake ? 0.33f : 1.0f;
+			//color.a = CFXR_Effect.GlobalDisableCameraShake ? 0.33f : 1.0f;
 			btnCamShake.color = color;
 			lblCamShake.color = color;
 		}
 
 		public void ToggleEffectsLights()
 		{
-			CFXR_Effect.GlobalDisableLights = !CFXR_Effect.GlobalDisableLights;
+			//CFXR_Effect.GlobalDisableLights = !CFXR_Effect.GlobalDisableLights;
 
 			var color = Color.white;
-			color.a = CFXR_Effect.GlobalDisableLights ? 0.33f : 1.0f;
+			//color.a = CFXR_Effect.GlobalDisableLights ? 0.33f : 1.0f;
 			btnLights.color = color;
 			lblLights.color = color;
 		}
@@ -184,7 +185,7 @@ namespace CartoonFX
 							var cfxrEffects = currentEffect.GetComponentsInChildren<CFXR_Effect>();
 							foreach (var cfxr in cfxrEffects)
 							{
-								cfxr.ResetState();
+								//cfxr.ResetState();
 							}
 						}
 					}

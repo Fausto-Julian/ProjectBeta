@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="" />
+    <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/+Damage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/+Damage.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Arrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Arrow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CFXR3 Magic Aura A (Runic).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CFXR3 Magic Aura A (Runic).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Core.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Core.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CoreTeam2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CoreTeam2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/DummyAlly.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DummyAlly.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/DummyEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DummyEnemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/FX_Explosion_Blue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/FX_Explosion_Blue.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Grito.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Grito.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/HealingArea.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/HealingArea.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MultipleShot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MultipleShot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/OrquestaMovil.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/OrquestaMovil.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PlayerSup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerSup.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ProjectileBasic.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProjectileBasic.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ProyectileBasicNoMesh.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProyectileBasicNoMesh.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Wall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Wall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/WallTeamOne.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/WallTeamOne.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/WallTeamTwo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/WallTeamTwo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Manager/SideManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Manager/SideManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Structure/StructureModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/Structure/StructureModel.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

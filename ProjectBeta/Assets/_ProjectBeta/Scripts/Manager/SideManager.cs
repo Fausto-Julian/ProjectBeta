@@ -21,8 +21,9 @@ namespace _ProjectBeta.Scripts.Manager
             }
         }
 
-        private void OnDestroyStructure()
+        private void OnDestroyStructure(StructureModel structureModel)
         {
+            structureModel.OnDestroyStructure -= OnDestroyStructure;
             _countStructureDestroy++;
 
             if (!(_countStructureDestroy >= structuresList.Count)) 

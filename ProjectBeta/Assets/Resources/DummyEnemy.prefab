@@ -436,6 +436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9fbb2e529458645a2fd3c0390eb771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  cooldownBasic: 0
 --- !u!114 &1113391043445866507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae5b731ec93f8b4a89528aca9f28e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangeVisual: 0
 --- !u!114 &6919482547409438304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,7 +508,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
@@ -572,6 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 4383958942096818564}
   playerNameText: {fileID: 7171666005592534236}
+  killStreakText: {fileID: 0}
   floatingTextPrefab: {fileID: 5496022496808442327, guid: ad19b271f71548149a3da6a149e0b231, type: 3}
 --- !u!195 &6040077315891607851
 NavMeshAgent:

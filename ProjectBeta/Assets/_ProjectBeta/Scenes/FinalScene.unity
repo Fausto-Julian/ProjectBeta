@@ -23881,6 +23881,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1823014324, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
+      propertyPath: OwnershipTransfer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5792641013195466860, guid: 760c5e41f468b35499431ff26841b6b1, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -28353,7 +28357,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 852995485124435761, guid: 248e0a939a2972645bbbeedd462971ca, type: 3}
       propertyPath: sceneViewId
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 852995485124435761, guid: 248e0a939a2972645bbbeedd462971ca, type: 3}
+      propertyPath: Synchronization
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 852995485124435770, guid: 248e0a939a2972645bbbeedd462971ca, type: 3}
       propertyPath: m_RootOrder
@@ -28462,7 +28470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7883310612189081405, guid: 68cc983ed4500a844a951790ebef4f57, type: 3}
       propertyPath: sceneViewId
-      value: 5
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883310612189081405, guid: 68cc983ed4500a844a951790ebef4f57, type: 3}
+      propertyPath: Synchronization
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68cc983ed4500a844a951790ebef4f57, type: 3}

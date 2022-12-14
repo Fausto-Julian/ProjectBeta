@@ -15,7 +15,7 @@ namespace _ProjectBeta.Scripts.Structure
         [SerializeField] private FloatingText floatingTextPrefab;
 
         private float _currentHealth;
-        public Action OnDestroyStructure;
+        public event Action<StructureModel> OnDestroyStructure;
         public Action<float, float> OnChangeHealth;
 
         public bool GetIsAcceptProjectileDamage() => isAcceptProjectileDamage;
@@ -51,14 +51,15 @@ namespace _ProjectBeta.Scripts.Structure
 
             if (!(_currentHealth <= 0) || !photonView.IsMine) 
                 return;
-            
-            photonView.RPC(nameof(RPC_DestroyStructure), RpcTarget.All);
+            OnDestroyStructure?.Invoke(this);
+            photonView.RPC(nameof(RPC_DestroyStructure), RpcTarget.Others);
+            Destroy(gameObject);
         }
 
         [PunRPC]
         public void RPC_DestroyStructure()
         {
-            OnDestroyStructure?.Invoke();
+            OnDestroyStructure?.Invoke(this);
             Destroy(gameObject);
         }
 

@@ -3,14 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="c28416a8-fc4f-4d79-91df-9660c4c6d0d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBeta/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerMage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/WallTeamOne.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/WallTeamOne.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/WallTeamTwo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/WallTeamTwo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Materials/RojoTraslucido.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Materials/RojoTraslucido.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scenes/FinalScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_www.unityassetcollection.com.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_www.unityassetcollection.com.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_www.unityassetcollection.com.txt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_www.unityassetcollection.com.txt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/RainEntertainment/FantasyMonster2/Elf Archer Pack/Motion/ElfArcher_Stand.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/RainEntertainment/FantasyMonster2/Elf Archer Pack/Motion/ElfArcher_Stand.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/+Damage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/+Damage.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MultipleShot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MultipleShot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Animations/DPSAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Animations/DPSAnimator.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Animations/KnightAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Animations/KnightAnimator.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Animations/SupportAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Animations/SupportAnimator.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/PlayerScrips/PlayerModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/ScriptableObjects/Abilities/AbilityHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_ProjectBeta/Scripts/ScriptableObjects/Abilities/AbilityHolder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +132,8 @@
       <workItem from="1670936910835" duration="1049000" />
       <workItem from="1670942302355" duration="1217000" />
       <workItem from="1670952690474" duration="3848000" />
-      <workItem from="1670961393636" duration="1946000" />
+      <workItem from="1670961393636" duration="2820000" />
+      <workItem from="1671030211149" duration="797000" />
     </task>
     <servers />
   </component>

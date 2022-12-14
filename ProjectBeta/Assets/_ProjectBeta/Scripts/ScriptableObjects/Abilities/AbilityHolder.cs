@@ -51,13 +51,13 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
         /// <summary>
         /// Activate the ability if the current state is AbilityState.Active.
         /// </summary>
-        public void Activate()
+        public bool Activate()
         {
             if (_state != AbilityState.Active)
-                return;
+                return false;
 
             if (!_ability.TryActivate(_player))
-                return;
+                return false;
 
             var stats = _player.GetStats();
 
@@ -65,6 +65,7 @@ namespace _ProjectBeta.Scripts.ScriptableObjects.Abilities
             var cooldownTimeReduce = _ability.CooldownTime * (_player.GetStats().percentageReduceCooldownAbilities / 100);
             _currentTime = _ability.CooldownTime - cooldownTimeReduce;
             OnActiveAbility?.Invoke();
+            return true;
         }
 
         public Sprite GetAbilitySprite() => _ability.Sprite;

@@ -288,24 +288,24 @@ namespace _ProjectBeta.Scripts.PlayerScrips
         {
             _agent.isStopped = true;
             ActiveAbilityOne?.Invoke(data.AbilityOne.CooldownTime);
-            _abilityHolderOne.Activate();
-            _playerView.StartAbilityOneAnimation();
+            if(_abilityHolderOne.Activate())
+                _playerView.StartAbilityOneAnimation();
         }
 
         private void OnActiveTwoAbilityHandler()
         {
             _agent.isStopped = true;
             ActiveAbilityTwo?.Invoke(data.AbilityTwo.CooldownTime);
-            _abilityHolderTwo.Activate();
-            _playerView.StartAbilityTwoAnimation();
+            if(_abilityHolderTwo.Activate())
+                _playerView.StartAbilityTwoAnimation();
         }
 
         private void OnActiveThreeAbilityHandler()
         {
             _agent.isStopped = true;
             ActiveAbilityThree?.Invoke(data.AbilityThree.CooldownTime);
-            _abilityHolderThree.Activate();
-            _playerView.StartAbilityThreeAnimation();
+            if(_abilityHolderThree.Activate())
+                _playerView.StartAbilityThreeAnimation();
         }
 
         public void SetStopped(bool value) => _agent.isStopped = value;

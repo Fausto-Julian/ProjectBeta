@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Single Audio Clip Ability Two Supp
   m_EditorClassIdentifier: 
   <ID>k__BackingField: AbilityTwo
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 3b90f0ec9a5074e609e4ef7d01da23e2, type: 3}

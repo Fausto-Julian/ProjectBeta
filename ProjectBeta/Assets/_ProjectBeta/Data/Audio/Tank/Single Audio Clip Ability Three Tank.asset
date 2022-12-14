@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Single Audio Clip Ability Three Tank
   m_EditorClassIdentifier: 
   <ID>k__BackingField: AbilityThree
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 1abc614f06d26480080d6d34e09aface, type: 3}

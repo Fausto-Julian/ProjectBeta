@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Single Audio Clip Ability Two DPS
   m_EditorClassIdentifier: 
   <ID>k__BackingField: AbilityTwo
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: d21baccec2cd4489da6ed5af96d68d9c, type: 3}
